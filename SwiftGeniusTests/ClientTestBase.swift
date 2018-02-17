@@ -1,4 +1,4 @@
-//  Copyright © 2017 nrith. All rights reserved.
+//  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
 import PromiseKit
 import XCTest

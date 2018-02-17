@@ -1,4 +1,4 @@
-//  Copyright © 2018 nrith. All rights reserved.
+//  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
 import Foundation
 import PromiseKit

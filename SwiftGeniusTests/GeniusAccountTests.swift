@@ -1,4 +1,4 @@
-//  Copyright © 2018 nrith. All rights reserved.
+//  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
 @testable import SwiftGenius
 import XCTest
@@ -17,8 +17,8 @@ class GeniusAccountTests: GeniusTestBase {
             return
         }
 
-        XCTAssertEqual(account.name, "nrith")
-        XCTAssertEqual(account.login, "nrith")
+        XCTAssertEqual(account.name, "Jason R Tibbetts")
+        XCTAssertEqual(account.login, "Jason R Tibbetts")
     }
 
 }
