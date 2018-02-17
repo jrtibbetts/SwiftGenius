@@ -1,0 +1,5 @@
+github "Quick/Nimble" "v7.0.3"
+github "OAuthSwift/OAuthSwift" "1.2.1"
+github "mxcl/PromiseKit" "4.5.2"
+github "Quick/Quick" "v1.2.0"
+github "PromiseKit/Foundation" "1.0.7"

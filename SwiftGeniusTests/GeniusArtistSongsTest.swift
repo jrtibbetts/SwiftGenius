@@ -1,0 +1,27 @@
+//  Copyright © 2018 nrith. All rights reserved.
+
+@testable import SwiftGenius
+import XCTest
+
+class GeniusArtistSongsTests: GeniusTestBase {
+
+    func testDecodeArtistJson() {
+        GeniusArtistSongsTests.assert(geniusObject(inLocalJsonFileNamed: "get-artist-songs-200")!)
+    }
+
+    public static func assert(_ artistSongsResponse: GeniusArtistSongs.Response) {
+        XCTAssertEqual(artistSongsResponse.meta.status, 200)
+
+        guard let songs = artistSongsResponse.response?.songs else {
+            XCTFail("Failed to get the song objects in the JSON response.")
+            return
+        }
+
+        XCTAssertEqual(songs.count, 20)
+
+        let firstSong = songs[0]
+        XCTAssertEqual(firstSong.annotationCount, 8)
+        XCTAssertEqual(firstSong.pyongsCount, 8)
+    }
+
+}

@@ -1,0 +1,11 @@
+framework module PMKFoundation {
+  umbrella header "PMKFoundation.h"
+
+  export *
+  module * { export * }
+}
+
+module PMKFoundation.Swift {
+    header "PMKFoundation-Swift.h"
+    requires objc
+}
