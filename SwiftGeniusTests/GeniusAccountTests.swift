@@ -5,8 +5,8 @@ import XCTest
 
 class GeniusAccountTests: GeniusTestBase {
 
-    func testDecodeAccountJson() {
-        GeniusAccountTests.assert(geniusObject(inLocalJsonFileNamed: "get-account-200")!)
+    func testDecodeAccountJson() throws {
+        GeniusAccountTests.assert(try geniusObject(inLocalJsonFileNamed: "get-account-200"))
     }
 
     public static func assert(_ accountResponse: GeniusAccount.Response) {

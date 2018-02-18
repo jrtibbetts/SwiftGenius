@@ -5,8 +5,8 @@ import XCTest
 
 class GeniusReferentTests: GeniusTestBase {
 
-    func testDecodeReferentJson() {
-        GeniusReferentTests.assert(geniusObject(inLocalJsonFileNamed: "get-referents-200")!)
+    func testDecodeReferentJson() throws {
+        GeniusReferentTests.assert(try geniusObject(inLocalJsonFileNamed: "get-referents-200"))
     }
 
     public static func assert(_ referentResponse: GeniusReferent.Response) {

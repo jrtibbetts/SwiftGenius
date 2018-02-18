@@ -5,8 +5,8 @@ import XCTest
 
 class GeniusArtistTests: GeniusTestBase {
 
-    func testDecodeArtistJson() {
-        GeniusArtistTests.assert(geniusObject(inLocalJsonFileNamed: "get-artists-200")!)
+    func testDecodeArtistJson() throws {
+        GeniusArtistTests.assert(try geniusObject(inLocalJsonFileNamed: "get-artists-200"))
     }
 
     public static func assert(_ artistResponse: GeniusArtist.Response) {

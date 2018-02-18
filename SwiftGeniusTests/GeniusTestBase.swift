@@ -5,10 +5,10 @@ import XCTest
 
 class GeniusTestBase: JSONTestBase {
 
-    func geniusObject<T: Codable>(inLocalJsonFileNamed fileName: String) -> T? {
+    func geniusObject<T: Codable>(inLocalJsonFileNamed fileName: String) throws -> T {
         let bundle = Bundle(for: MockGenius.self)
 
-        return jsonObject(inLocalJsonFileNamed: fileName, inBundle: bundle)
+        return try jsonObject(inLocalJsonFileNamed: fileName, inBundle: bundle)
     }
 
 }

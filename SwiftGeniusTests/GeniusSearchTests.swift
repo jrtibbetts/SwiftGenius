@@ -5,8 +5,8 @@ import XCTest
 
 class GeniusSearchTests: GeniusTestBase {
 
-    func testDecodeSearchResults() {
-        GeniusSearchTests.assert(geniusObject(inLocalJsonFileNamed: "get-search-200")!)
+    func testDecodeSearchResults() throws {
+        GeniusSearchTests.assert(try geniusObject(inLocalJsonFileNamed: "get-search-200"))
     }
 
     public static func assert(_ searchResponse: GeniusSearch.Response) {

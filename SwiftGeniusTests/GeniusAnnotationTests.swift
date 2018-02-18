@@ -5,8 +5,8 @@ import XCTest
 
 class GeniusAnnotationTests: GeniusTestBase {
 
-    func testDecodeAnnotationJson() {
-        GeniusAnnotationTests.assert(geniusObject(inLocalJsonFileNamed: "get-annotations-200")!)
+    func testDecodeAnnotationJson() throws {
+        GeniusAnnotationTests.assert(try geniusObject(inLocalJsonFileNamed: "get-annotations-200"))
     }
 
     public static func assert(_ annotationResponse: GeniusAnnotation.Response) {
