@@ -84,8 +84,8 @@ public protocol Genius: class {
     /// these results can be paged.
     ///
     /// - parameter byArtistId: The artist's Genius ID.
-    /// - parameter sortOrder: Either by [SongSortOrder.popularity] or
-    ///             [SongSortOrder.title].
+    /// - parameter sortOrder: Either by [GeniusSongSortOrder.popularity] or
+    ///             [GeniusSongSortOrder.title].
     /// - parameter resultsPerPage: The number of songs to include in each
     ///             page of results.
     /// - parameter pageNumber: The index of the search results pages. These
@@ -96,7 +96,7 @@ public protocol Genius: class {
     /// - returns: A `Promise` that yields a `GeniusArtistSongs.Response` if
     ///            the request was successful, or an error if it isn't.
     func songs(byArtistId artistId: Int,
-               sortOrder: SongSortOrder,
+               sortOrder: GeniusSongSortOrder,
                resultsPerPage: Int,
                pageNumber: Int,
                responseFormats: [GeniusResponseFormat]) -> Promise<GeniusArtistSongs.Response>
@@ -114,7 +114,7 @@ public enum GeniusResponseFormat: String, Codable {
 /// The acceptable values for the `sortOrder` parameter of the
 /// `Genius.songs(byArtistId:sortOrder:resultsPerPage:pageNumber:responseFormat)`
 /// function.
-public enum SongSortOrder: String, Codable {
+public enum GeniusSongSortOrder: String, Codable {
     case popularity
     case title
 }

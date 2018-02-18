@@ -49,7 +49,7 @@ public class MockGenius: MockClient, Genius {
     }
 
     public func songs(byArtistId artistId: Int,
-                      sortOrder: SongSortOrder = .title,
+                      sortOrder: GeniusSongSortOrder = .title,
                       resultsPerPage: Int = 20,
                       pageNumber: Int = 1,
                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtistSongs.Response> {

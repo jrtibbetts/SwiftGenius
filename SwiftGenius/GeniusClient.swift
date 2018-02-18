@@ -118,7 +118,7 @@ open class GeniusClient: BaseClient, Genius {
     }
 
     public func songs(byArtistId artistId: Int,
-                      sortOrder: SongSortOrder,
+                      sortOrder: GeniusSongSortOrder,
                       resultsPerPage: Int,
                       pageNumber: Int,
                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtistSongs.Response> {
