@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9660112C2037E26C0035FE96 /* SwiftGenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966011222037E26C0035FE96 /* SwiftGenius.framework */; };
-		966011312037E26C0035FE96 /* SwiftGeniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011302037E26C0035FE96 /* SwiftGeniusTests.swift */; };
 		966011332037E26C0035FE96 /* SwiftGenius.h in Headers */ = {isa = PBXBuildFile; fileRef = 966011252037E26C0035FE96 /* SwiftGenius.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9660113F2037F3800035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113D2037F3800035FE96 /* PromiseKit.framework */; };
 		966011402037F3800035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113E2037F3800035FE96 /* OAuthSwift.framework */; };
@@ -34,9 +33,6 @@
 		9660116C2037F3D30035FE96 /* GeniusSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011562037F3D20035FE96 /* GeniusSong.swift */; };
 		9660116D2037F3D30035FE96 /* GeniusArtistSongs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011572037F3D20035FE96 /* GeniusArtistSongs.swift */; };
 		9660116E2037F3D30035FE96 /* GeniusClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011582037F3D30035FE96 /* GeniusClient.swift */; };
-		966011722037F3E80035FE96 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660116F2037F3E60035FE96 /* MockClient.swift */; };
-		966011732037F3E80035FE96 /* BaseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011702037F3E70035FE96 /* BaseClient.swift */; };
-		966011742037F3E80035FE96 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011712037F3E80035FE96 /* JSONUtils.swift */; };
 		9660117F2037F41D0035FE96 /* MockGeniusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011752037F4170035FE96 /* MockGeniusTests.swift */; };
 		966011802037F41D0035FE96 /* GeniusSongTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011762037F4180035FE96 /* GeniusSongTests.swift */; };
 		966011812037F41D0035FE96 /* GeniusAccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011772037F4180035FE96 /* GeniusAccountTests.swift */; };
@@ -49,7 +45,6 @@
 		966011882037F41D0035FE96 /* GeniusAnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660117E2037F41C0035FE96 /* GeniusAnnotationTests.swift */; };
 		9660118C2037F42C0035FE96 /* JSONTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011892037F42A0035FE96 /* JSONTestBase.swift */; };
 		9660118D2037F42C0035FE96 /* ClientTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660118A2037F42B0035FE96 /* ClientTestBase.swift */; };
-		9660118E2037F42C0035FE96 /* JSONUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660118B2037F42B0035FE96 /* JSONUtilsTests.swift */; };
 		9660118F203886430035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113E2037F3800035FE96 /* OAuthSwift.framework */; };
 		96601190203886430035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113D2037F3800035FE96 /* PromiseKit.framework */; };
 		9689839D203D158A00DE77BC /* JSONClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9689839C203D158A00DE77BC /* JSONClient.framework */; };
@@ -70,7 +65,6 @@
 		966011252037E26C0035FE96 /* SwiftGenius.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftGenius.h; sourceTree = "<group>"; };
 		966011262037E26C0035FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9660112B2037E26C0035FE96 /* SwiftGeniusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGeniusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		966011302037E26C0035FE96 /* SwiftGeniusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftGeniusTests.swift; sourceTree = "<group>"; };
 		966011322037E26C0035FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9660113D2037F3800035FE96 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		9660113E2037F3800035FE96 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
@@ -96,9 +90,6 @@
 		966011562037F3D20035FE96 /* GeniusSong.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusSong.swift; sourceTree = "<group>"; };
 		966011572037F3D20035FE96 /* GeniusArtistSongs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusArtistSongs.swift; sourceTree = "<group>"; };
 		966011582037F3D30035FE96 /* GeniusClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusClient.swift; sourceTree = "<group>"; };
-		9660116F2037F3E60035FE96 /* MockClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
-		966011702037F3E70035FE96 /* BaseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClient.swift; sourceTree = "<group>"; };
-		966011712037F3E80035FE96 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
 		966011752037F4170035FE96 /* MockGeniusTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockGeniusTests.swift; sourceTree = "<group>"; };
 		966011762037F4180035FE96 /* GeniusSongTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusSongTests.swift; sourceTree = "<group>"; };
 		966011772037F4180035FE96 /* GeniusAccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusAccountTests.swift; sourceTree = "<group>"; };
@@ -111,7 +102,6 @@
 		9660117E2037F41C0035FE96 /* GeniusAnnotationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusAnnotationTests.swift; sourceTree = "<group>"; };
 		966011892037F42A0035FE96 /* JSONTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTestBase.swift; sourceTree = "<group>"; };
 		9660118A2037F42B0035FE96 /* ClientTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestBase.swift; sourceTree = "<group>"; };
-		9660118B2037F42B0035FE96 /* JSONUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtilsTests.swift; sourceTree = "<group>"; };
 		9689839C203D158A00DE77BC /* JSONClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONClient.framework; path = Carthage/Build/iOS/JSONClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -161,7 +151,6 @@
 		966011242037E26C0035FE96 /* SwiftGenius */ = {
 			isa = PBXGroup;
 			children = (
-				966011702037F3E70035FE96 /* BaseClient.swift */,
 				966011522037F3D00035FE96 /* Genius.swift */,
 				966011532037F3D00035FE96 /* GeniusAccount.swift */,
 				9660114E2037F3CD0035FE96 /* GeniusAnnotation.swift */,
@@ -174,9 +163,7 @@
 				966011562037F3D20035FE96 /* GeniusSong.swift */,
 				966011542037F3D10035FE96 /* GeniusWebPage.swift */,
 				966011262037E26C0035FE96 /* Info.plist */,
-				966011712037F3E80035FE96 /* JSONUtils.swift */,
 				966011422037F3CD0035FE96 /* Mock Implementation */,
-				9660116F2037F3E60035FE96 /* MockClient.swift */,
 				966011502037F3CE0035FE96 /* OtherTypes.swift */,
 				966011252037E26C0035FE96 /* SwiftGenius.h */,
 			);
@@ -198,9 +185,7 @@
 				9660117D2037F41C0035FE96 /* GeniusTestBase.swift */,
 				966011322037E26C0035FE96 /* Info.plist */,
 				966011892037F42A0035FE96 /* JSONTestBase.swift */,
-				9660118B2037F42B0035FE96 /* JSONUtilsTests.swift */,
 				966011752037F4170035FE96 /* MockGeniusTests.swift */,
-				966011302037E26C0035FE96 /* SwiftGeniusTests.swift */,
 			);
 			path = SwiftGeniusTests;
 			sourceTree = "<group>";
@@ -361,11 +346,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				966011662037F3D30035FE96 /* OtherTypes.swift in Sources */,
-				966011732037F3E80035FE96 /* BaseClient.swift in Sources */,
 				9660116A2037F3D30035FE96 /* GeniusWebPage.swift in Sources */,
 				9660116C2037F3D30035FE96 /* GeniusSong.swift in Sources */,
 				966011672037F3D30035FE96 /* GeniusReferent.swift in Sources */,
-				966011742037F3E80035FE96 /* JSONUtils.swift in Sources */,
 				966011642037F3D30035FE96 /* GeniusAnnotation.swift in Sources */,
 				966011652037F3D30035FE96 /* GeniusResponse.swift in Sources */,
 				9660116D2037F3D30035FE96 /* GeniusArtistSongs.swift in Sources */,
@@ -374,7 +357,6 @@
 				966011682037F3D30035FE96 /* Genius.swift in Sources */,
 				966011632037F3D30035FE96 /* MockGenius.swift in Sources */,
 				966011692037F3D30035FE96 /* GeniusAccount.swift in Sources */,
-				966011722037F3E80035FE96 /* MockClient.swift in Sources */,
 				966011592037F3D30035FE96 /* GeniusSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,7 +370,6 @@
 				966011832037F41D0035FE96 /* GeniusArtistTests.swift in Sources */,
 				966011842037F41D0035FE96 /* GeniusSearchTests.swift in Sources */,
 				966011802037F41D0035FE96 /* GeniusSongTests.swift in Sources */,
-				9660118E2037F42C0035FE96 /* JSONUtilsTests.swift in Sources */,
 				966011822037F41D0035FE96 /* GeniusArtistSongsTest.swift in Sources */,
 				966011872037F41D0035FE96 /* GeniusTestBase.swift in Sources */,
 				9660118C2037F42C0035FE96 /* JSONTestBase.swift in Sources */,
@@ -396,7 +377,6 @@
 				966011852037F41D0035FE96 /* GeniusReferentTests.swift in Sources */,
 				966011882037F41D0035FE96 /* GeniusAnnotationTests.swift in Sources */,
 				966011812037F41D0035FE96 /* GeniusAccountTests.swift in Sources */,
-				966011312037E26C0035FE96 /* SwiftGeniusTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

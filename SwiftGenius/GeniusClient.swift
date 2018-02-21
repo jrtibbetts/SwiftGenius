@@ -1,9 +1,10 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
+import JSONClient
 import OAuthSwift
 import PromiseKit
 
-open class GeniusClient: BaseClient, Genius {
+open class GeniusClient: JSONClient, Genius {
 
     public enum GeniusError: Error {
         case Unimplemented(functionName: String)
@@ -34,6 +35,8 @@ open class GeniusClient: BaseClient, Genius {
 
     fileprivate var scope: [Scope]
 
+    fileprivate var userAgent: String
+
     // MARK: - Initializers
 
     public init(consumerKey: String,
@@ -43,15 +46,14 @@ open class GeniusClient: BaseClient, Genius {
                 scope: [Scope] = [.me]) {
         self.callbackUrl = callbackUrl
         self.scope = scope
+        self.userAgent = "Immediate (https://github.com/jrtibbetts/Immediate)"
         let geniusBaseUrl = URL(string: "https://api.genius.com/")!
         let authUrl = URL(string: "/oauth/authorize", relativeTo: geniusBaseUrl)!
         oAuth = OAuth2Swift(consumerKey: consumerKey,
                             consumerSecret: consumerSecret,
                             authorizeUrl: authUrl.absoluteString,
                             responseType: "code")
-
-        super.init(baseUrl: geniusBaseUrl,
-                   userAgent: "Immediate (https://github.com/jrtibbetts/Immediate)")
+        super.init(baseUrl: geniusBaseUrl)
     }
 
     open func authorize(presentingViewController: UIViewController) -> Promise<String> {

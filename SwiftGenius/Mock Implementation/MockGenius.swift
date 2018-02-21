@@ -1,5 +1,6 @@
 //  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
+import JSONClient
 import PromiseKit
 import UIKit
 
