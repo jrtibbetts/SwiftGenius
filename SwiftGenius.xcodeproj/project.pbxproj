@@ -52,6 +52,7 @@
 		9660118E2037F42C0035FE96 /* JSONUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660118B2037F42B0035FE96 /* JSONUtilsTests.swift */; };
 		9660118F203886430035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113E2037F3800035FE96 /* OAuthSwift.framework */; };
 		96601190203886430035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113D2037F3800035FE96 /* PromiseKit.framework */; };
+		9689839D203D158A00DE77BC /* JSONClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9689839C203D158A00DE77BC /* JSONClient.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		966011892037F42A0035FE96 /* JSONTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTestBase.swift; sourceTree = "<group>"; };
 		9660118A2037F42B0035FE96 /* ClientTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestBase.swift; sourceTree = "<group>"; };
 		9660118B2037F42B0035FE96 /* JSONUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtilsTests.swift; sourceTree = "<group>"; };
+		9689839C203D158A00DE77BC /* JSONClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONClient.framework; path = Carthage/Build/iOS/JSONClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9689839D203D158A00DE77BC /* JSONClient.framework in Frameworks */,
 				9660113F2037F3800035FE96 /* PromiseKit.framework in Frameworks */,
 				966011402037F3800035FE96 /* OAuthSwift.framework in Frameworks */,
 			);
@@ -205,6 +208,7 @@
 		9660113C2037F37F0035FE96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9689839C203D158A00DE77BC /* JSONClient.framework */,
 				9660113E2037F3800035FE96 /* OAuthSwift.framework */,
 				9660113D2037F3800035FE96 /* PromiseKit.framework */,
 			);
@@ -537,7 +541,7 @@
 				);
 				INFOPLIST_FILE = SwiftGenius/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGenius;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -564,7 +568,7 @@
 				);
 				INFOPLIST_FILE = SwiftGenius/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGenius;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

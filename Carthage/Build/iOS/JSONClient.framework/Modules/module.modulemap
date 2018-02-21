@@ -1,0 +1,11 @@
+framework module JSONClient {
+  umbrella header "JSONClient.h"
+
+  export *
+  module * { export * }
+}
+
+module JSONClient.Swift {
+    header "JSONClient-Swift.h"
+    requires objc
+}
