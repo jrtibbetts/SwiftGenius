@@ -86,6 +86,7 @@ open class GeniusClient: JSONClient, Genius {
 
     public func annotation(id: Int,
                            responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAnnotation.Response> {
+//        return get(path: "/annotations/\(id)")
         return Promise<GeniusAnnotation.Response>() { (fulfill, reject) in
             reject(GeniusError.Unimplemented(functionName: "account"))
         }

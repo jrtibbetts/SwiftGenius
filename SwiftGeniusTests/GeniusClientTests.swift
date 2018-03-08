@@ -43,8 +43,8 @@ class GeniusClientTests: ClientTestBase {
         assert(invalidPromise: genius.account())
     }
 
-    func testAnnotationIsUnimplemented() {
-        assert(invalidPromise: genius.annotation(id: 99))
+    func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
+        assert(invalidPromise: genius.annotation(id: 99), description: "annotation 99")
     }
 
     func testArtistIsUnimplemented() {
@@ -68,6 +68,7 @@ class GeniusClientTests: ClientTestBase {
     }
 
     // MARK: - Utility functions
+
     func assertPromiseWasRejected<T>(promise: Promise<T>) {
         assert(invalidPromise: promise)
     }
