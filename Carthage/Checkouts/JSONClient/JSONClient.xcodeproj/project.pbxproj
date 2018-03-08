@@ -7,17 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		964F13C3204F141300B54B97 /* Ambassador.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F13C1204F141300B54B97 /* Ambassador.framework */; };
+		964F13C4204F141300B54B97 /* Embassy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 964F13C2204F141300B54B97 /* Embassy.framework */; };
+		964F13C820509BB600B54B97 /* AuthenticatedJSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964F13C720509BB500B54B97 /* AuthenticatedJSONClient.swift */; };
 		966011E3203A839C0035FE96 /* JSONClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966011D9203A839B0035FE96 /* JSONClient.framework */; };
 		966011EA203A839C0035FE96 /* JSONClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 966011DC203A839B0035FE96 /* JSONClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		966011F6203A83E00035FE96 /* MockClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011F3203A83DF0035FE96 /* MockClient.swift */; };
 		966011F7203A83E00035FE96 /* JSONClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011F4203A83DF0035FE96 /* JSONClient.swift */; };
 		966011F8203A83E00035FE96 /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011F5203A83E00035FE96 /* JSONUtils.swift */; };
-		966011FC203A840D0035FE96 /* JSONTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011F9203A840D0035FE96 /* JSONTestBase.swift */; };
 		966011FE203A840D0035FE96 /* JSONUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011FB203A840D0035FE96 /* JSONUtilsTests.swift */; };
 		96601202203A88640035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96601200203A88640035FE96 /* OAuthSwift.framework */; };
 		96601203203A88640035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96601201203A88640035FE96 /* PromiseKit.framework */; };
 		96601204203A8A310035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96601200203A88640035FE96 /* OAuthSwift.framework */; };
 		96601205203A8A310035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96601201203A88640035FE96 /* PromiseKit.framework */; };
+		9689BC5A2049D0C500F8DEB1 /* SampleFoo.json in Resources */ = {isa = PBXBuildFile; fileRef = 9689BC592049D0C500F8DEB1 /* SampleFoo.json */; };
+		96D8CC97204B96A00083A7DA /* MockClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D8CC96204B96A00083A7DA /* MockClientTests.swift */; };
+		96D8CC99204BCDEA0083A7DA /* JSONClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D8CC98204BCDEA0083A7DA /* JSONClientTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		964F13C1204F141300B54B97 /* Ambassador.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ambassador.framework; path = Carthage/Build/iOS/Ambassador.framework; sourceTree = "<group>"; };
+		964F13C2204F141300B54B97 /* Embassy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Embassy.framework; path = Carthage/Build/iOS/Embassy.framework; sourceTree = "<group>"; };
+		964F13C720509BB500B54B97 /* AuthenticatedJSONClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatedJSONClient.swift; sourceTree = "<group>"; };
 		966011D9203A839B0035FE96 /* JSONClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JSONClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		966011DC203A839B0035FE96 /* JSONClient.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSONClient.h; sourceTree = "<group>"; };
 		966011DD203A839B0035FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -39,10 +47,12 @@
 		966011F3203A83DF0035FE96 /* MockClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockClient.swift; sourceTree = "<group>"; };
 		966011F4203A83DF0035FE96 /* JSONClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONClient.swift; sourceTree = "<group>"; };
 		966011F5203A83E00035FE96 /* JSONUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
-		966011F9203A840D0035FE96 /* JSONTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTestBase.swift; sourceTree = "<group>"; };
 		966011FB203A840D0035FE96 /* JSONUtilsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONUtilsTests.swift; sourceTree = "<group>"; };
 		96601200203A88640035FE96 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 		96601201203A88640035FE96 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		9689BC592049D0C500F8DEB1 /* SampleFoo.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SampleFoo.json; sourceTree = "<group>"; };
+		96D8CC96204B96A00083A7DA /* MockClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockClientTests.swift; sourceTree = "<group>"; };
+		96D8CC98204BCDEA0083A7DA /* JSONClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONClientTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964F13C3204F141300B54B97 /* Ambassador.framework in Frameworks */,
+				964F13C4204F141300B54B97 /* Embassy.framework in Frameworks */,
 				96601204203A8A310035FE96 /* OAuthSwift.framework in Frameworks */,
 				96601205203A8A310035FE96 /* PromiseKit.framework in Frameworks */,
 				966011E3203A839C0035FE96 /* JSONClient.framework in Frameworks */,
@@ -90,6 +102,7 @@
 		966011DB203A839B0035FE96 /* JSONClient */ = {
 			isa = PBXGroup;
 			children = (
+				964F13C720509BB500B54B97 /* AuthenticatedJSONClient.swift */,
 				966011DD203A839B0035FE96 /* Info.plist */,
 				966011DC203A839B0035FE96 /* JSONClient.h */,
 				966011F4203A83DF0035FE96 /* JSONClient.swift */,
@@ -103,8 +116,10 @@
 			isa = PBXGroup;
 			children = (
 				966011E9203A839C0035FE96 /* Info.plist */,
-				966011F9203A840D0035FE96 /* JSONTestBase.swift */,
+				96D8CC98204BCDEA0083A7DA /* JSONClientTests.swift */,
 				966011FB203A840D0035FE96 /* JSONUtilsTests.swift */,
+				96D8CC96204B96A00083A7DA /* MockClientTests.swift */,
+				9689BC592049D0C500F8DEB1 /* SampleFoo.json */,
 			);
 			path = JSONClientTests;
 			sourceTree = "<group>";
@@ -112,6 +127,8 @@
 		966011FF203A88630035FE96 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				964F13C1204F141300B54B97 /* Ambassador.framework */,
+				964F13C2204F141300B54B97 /* Embassy.framework */,
 				96601200203A88640035FE96 /* OAuthSwift.framework */,
 				96601201203A88640035FE96 /* PromiseKit.framework */,
 			);
@@ -219,6 +236,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9689BC5A2049D0C500F8DEB1 /* SampleFoo.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +247,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				964F13C820509BB600B54B97 /* AuthenticatedJSONClient.swift in Sources */,
 				966011F6203A83E00035FE96 /* MockClient.swift in Sources */,
 				966011F8203A83E00035FE96 /* JSONUtils.swift in Sources */,
 				966011F7203A83E00035FE96 /* JSONClient.swift in Sources */,
@@ -239,8 +258,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96D8CC97204B96A00083A7DA /* MockClientTests.swift in Sources */,
+				96D8CC99204BCDEA0083A7DA /* JSONClientTests.swift in Sources */,
 				966011FE203A840D0035FE96 /* JSONUtilsTests.swift in Sources */,
-				966011FC203A840D0035FE96 /* JSONTestBase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

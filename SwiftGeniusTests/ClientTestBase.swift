@@ -22,7 +22,7 @@ class ClientTestBase: XCTestCase {
 
         wait(for: [exp], timeout: timeoutSeconds)
 
-        return returnableObject
+        return returnableObject 
     }
 
     @discardableResult

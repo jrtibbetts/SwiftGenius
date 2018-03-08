@@ -1,4 +1,4 @@
-//  Copyright © 2018 nrith. All rights reserved.
+//  Copyright © 2018 Poikile Creations. All rights reserved.
 
 import Foundation
 import PromiseKit
@@ -35,11 +35,11 @@ open class MockClient: NSObject {
                                   error: Error? = nil) -> Promise<T> {
         return Promise<T> { (fulfill, reject) in
             if errorMode {
-                if let error = error {
-                    reject(error)
+                if let customError = error {
+                    reject(customError)
                 } else {
-                    let error = NSError(domain: errorDomain, code: 0, userInfo: nil)
-                    reject(error)
+                    let defaultError = NSError(domain: errorDomain, code: 0, userInfo: nil)
+                    reject(defaultError)
                 }
             } else {
                 do {

@@ -4,7 +4,7 @@ import JSONClient
 import OAuthSwift
 import PromiseKit
 
-open class GeniusClient: JSONClient, Genius {
+open class GeniusClient: AuthenticatedJSONClient, Genius {
 
     public enum GeniusError: Error {
         case Unimplemented(functionName: String)

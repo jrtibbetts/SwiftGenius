@@ -192,6 +192,12 @@ SWIFT_CLASS("_TtC10JSONClient10JSONClient")
 @end
 
 
+SWIFT_CLASS("_TtC10JSONClient23AuthenticatedJSONClient")
+@interface AuthenticatedJSONClient : JSONClient
+@end
+
+
+
 /// Base class for mock client implementations of third-party services.
 SWIFT_CLASS("_TtC10JSONClient10MockClient")
 @interface MockClient : NSObject
