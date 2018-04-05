@@ -1,5 +1,0 @@
-github "envoy/Embassy" "v4.0.2"
-github "OAuthSwift/OAuthSwift" "1.2.1"
-github "mxcl/PromiseKit" "4.5.2"
-github "envoy/Ambassador" "v4.0.1"
-github "PromiseKit/Foundation" "1.0.7"
