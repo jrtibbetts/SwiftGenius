@@ -19,4 +19,3 @@ public class GeniusResponse<ResponseType: Codable>: Codable {
     }
 
 }
-

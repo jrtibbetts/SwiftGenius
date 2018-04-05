@@ -21,25 +21,8 @@ public struct GeniusReferent: Codable {
     public var url: URL
     public var verifiedAnnotatorIds: [Int]?
 
-    fileprivate enum CodingKeys: String, CodingKey {
-        case annotatable
-        case annotations
-        case annotatorId = "annotator_id"
-        case annotatorLogin = "annotator_login"
-        case apiPath = "api_path"
-        case classification
-        case featured
-        case fragment
-        case id
-        case isDescription = "is_description"
-        case path
-        case songId = "song_id"
-        case type = "_type"
-        case url
-        case verifiedAnnotatorIds = "verified_annotator_ids"
-    }
-
     public struct Annotatable: Codable {
+
         public var apiPath: String
         public var context: String
         public var id: Int
@@ -49,22 +32,14 @@ public struct GeniusReferent: Codable {
         public var type: String
         public var url: URL
 
-        fileprivate enum CodingKeys: String, CodingKey {
-            case apiPath = "api_path"
-            case context
-            case id
-            case imageUrl = "image_url"
-            case linkTitle = "link_title"
-            case title
-            case type
-            case url
-        }
     }
 
     public typealias Response = GeniusResponse<GeniusReferent.ResponseBlock>
 
     public struct ResponseBlock: Codable {
+
         public var referents: [GeniusReferent]
+        
     }
 
 }

@@ -20,20 +20,6 @@ public struct GeniusAnnotation: Codable {
     public var votesTotal: Int
 //    public var currentUserMetadata: CurrentUserMetadata?
 
-    fileprivate enum CodingKeys: String, CodingKey {
-        case apiPath = "api_path"
-        case commentCount = "comment_count"
-        case community
-        case hasVoters = "has_voters"
-        case id
-        case pinned
-        case shareUrl = "share_url"
-        case state
-        case url
-        case verified
-        case votesTotal = "votes_total"
-    }
-
     public typealias Response = GeniusResponse<GeniusAnnotation.ResponseBlock>
 
     public struct ResponseBlock: Codable {
@@ -42,4 +28,3 @@ public struct GeniusAnnotation: Codable {
     }
 
 }
-

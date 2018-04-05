@@ -14,7 +14,7 @@ public struct GeniusAccount: Codable {
     public var followedUsersCount: Int?
     public var followersCount: Int?
     public var headerImageUrl: URL?
-    public var humanReadableRole: String?
+    public var humanReadableRoleForDisplay: String?
     public var id: Int
     public var identities: [Identity]?
     public var iq: Int
@@ -32,53 +32,21 @@ public struct GeniusAccount: Codable {
     public var unreadNewsfeedInboxCount: Int?
     public var url: URL?
 
-    fileprivate enum CodingKeys: String, CodingKey {
-        case apiPath                      = "api_path"
-        case availableIdentityProviders   = "available_identity_providers"
-        case avatar
-        case currentUserMetadata          = "current_user_metadata"
-        case customHeaderImageUrl         = "custom_header_image_url"
-        case email
-        case followedUsersCount           = "followed_users_count"
-        case followersCount               = "followed_users"
-        case headerImageUrl               = "header_image_url"
-        case humanReadableRole            = "human_readable_role_for_display"
-        case id
-        case identities
-        case iq
-        case iqForDisplay                 = "iq_for_display"
-        case login
-        case name
-        case photoUrl                     = "photo_url"
-        case preferences
-        case roleForDisplay               = "role_for_display"
-        case rolesForDisplay              = "roles_for_display"
-        case stats
-        case unreadGroupsInboxCount       = "unread_groups_inbox_count"
-        case unreadMainActivityInboxCount = "unread_main_activity_inbox_count"
-        case unreadMessagesCount          = "unread_messages_count"
-        case unreadNewsfeedInboxCount     = "unread_newsfeed_inbox_count"
-        case url
-    }
-
     public struct Identity: Codable {
+
         public var id: Int
         public var name: String?
         public var provider: String
         public var customProperties: [String : String]?
 
-        fileprivate enum CodingKeys: String, CodingKey {
-            case customProperties = "custom_properties"
-            case id
-            case name
-            case provider
-        }
     }
 
     public typealias Response = GeniusResponse<GeniusAccount.ResponseBlock>
 
     public struct ResponseBlock: Codable {
+
         public var user: GeniusAccount
+
     }
 
     public struct Role: Codable {
@@ -86,6 +54,7 @@ public struct GeniusAccount: Codable {
     }
 
     public struct Stats: Codable {
+        
         public var allActivitiesCount: Int
         public var annotationsCount: Int
         public var answersCount: Int
@@ -95,16 +64,6 @@ public struct GeniusAccount: Codable {
         public var questionsCount: Int
         public var transcriptionsCount: Int
 
-        fileprivate enum CodingKeys: String, CodingKey {
-            case allActivitiesCount  = "all_activities_count"
-            case annotationsCount    = "annotations_count"
-            case answersCount        = "answers_count"
-            case commentsCount       = "comments_count"
-            case forumPostsCount     = "forum_posts_count"
-            case pyongsCount         = "pyongs_count"
-            case questionsCount      = "questions_count"
-            case transcriptionsCount = "transcriptions_count"
-        }
     }
 
 }

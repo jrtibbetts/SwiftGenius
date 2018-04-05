@@ -13,24 +13,9 @@ public struct GeniusWebPage: Codable {
     public var title: String
     public var url: URL
 
-    fileprivate enum CodingKeys: String, CodingKey {
-        case annotationCount = "annotation_count"
-        case apiPath = "api_path"
-        case domain
-        case id
-        case normalizedUrl = "normalized_url"
-        case shareUrl = "share_url"
-        case title
-        case url
-    }
-
     public typealias Response = GeniusResponse<GeniusWebPage.ResponseBlock>
 
     public struct ResponseBlock: Codable {
-
-        fileprivate enum CodingKeys: String, CodingKey {
-            case webPage = "web_page"
-        }
 
         public var webPage: GeniusWebPage
 

@@ -131,4 +131,3 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
     }
 
 }
-

@@ -12,8 +12,9 @@ public struct GeniusSearch: Codable {
     public typealias Response = GeniusResponse<GeniusSearch.ResponseBlock>
 
     public struct ResponseBlock: Codable {
+        
         public var hits: [GeniusSearch]
+
     }
 
 }
-

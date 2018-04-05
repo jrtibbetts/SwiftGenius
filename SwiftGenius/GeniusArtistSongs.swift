@@ -7,7 +7,9 @@ public struct GeniusArtistSongs: Codable {
     public typealias Response = GeniusResponse<GeniusArtistSongs.ResponseBlock>
 
     public struct ResponseBlock: Codable {
-        public var songs: [GeniusSong]?
-    }
-}
 
+        public var songs: [GeniusSong]?
+
+    }
+    
+}

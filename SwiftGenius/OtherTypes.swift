@@ -6,24 +6,13 @@ public typealias IQAction = String
 public typealias IQLevel = String
 
 public struct GeniusContributor: Codable {
-    
-    fileprivate enum CodingKeys: String, CodingKey {
-        case resourceUrl = "resource_url"
-        case username
-    }
+
     public var resourceUrl: String
     public var username: String
     
 }
 
 public struct GeniusCurrentUserMetadata: Codable {
-
-    fileprivate enum CodingKeys: String, CodingKey {
-        case permissions
-        case excludedPermissions = "excluded_permissions"
-        case interactions
-        case iqByAction = "iq_by_action"
-    }
 
     public var permissions: [String]?
     public var excludedPermissions: [String]?
@@ -59,11 +48,6 @@ public struct GeniusAvatar: Codable {
     public struct Icon: Codable {
         public var url: URL
         public var boundingBox: Rectangle
-
-        fileprivate enum CodingKeys: String, CodingKey {
-            case url
-            case boundingBox = "bounding_box"
-        }
         
         public struct Rectangle: Codable {
             public var width: Int
