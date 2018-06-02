@@ -2,6 +2,8 @@ install: carthage update --platform iOS
 language: swift
 os: osx
 osx_image: xcode9.3
-xcode_project: SwiftGenius.xcodeproj
-xcode_scheme: SwiftGenius
+script:
+  xcodebuild -scheme SwiftGenius -project SwiftGenius.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone X,OS=11.3' test
+after_success:
+  bash <(curl -s https://codecov.io/bash)
 
