@@ -53,7 +53,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
                             consumerSecret: consumerSecret,
                             authorizeUrl: authUrl.absoluteString,
                             responseType: "code")
-        super.init(oAuth: oAuth, baseUrl: geniusBaseUrl)
+        super.init(oAuth: oAuth, authorizeUrl: authUrl.absoluteString, baseUrl: geniusBaseUrl)
     }
 
     open func authorize(presentingViewController: UIViewController) -> Promise<String> {

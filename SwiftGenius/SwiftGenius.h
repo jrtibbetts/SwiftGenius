@@ -1,10 +1,4 @@
-//
-//  SwiftGenius.h
-//  SwiftGenius
-//
-//  Created by Jason R Tibbetts on 2/16/18.
 //  Copyright © 2018 Poikile Creations. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 
