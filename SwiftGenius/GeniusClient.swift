@@ -63,7 +63,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
     }
 
     open func authorize() -> Promise<String> {
-        return Promise<String> { (success, failure) in
+        return Promise<String> { (seal) in
             oAuth.authorizeURLHandler = SafariURLHandler(viewController: presentingViewController!, oauthSwift: oAuth)
             _ = oAuth.authorize(
                 withCallbackURL: URL(string: "immediate://oauth-callback/genius")!,
@@ -71,9 +71,9 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
                 success: { [weak self] credential, response, parameters in
                     self?.oAuthToken = credential.oauthToken
                     print(credential.oauthToken)
-                    success(credential.oauthToken)
+                    seal.fulfill(credential.oauthToken)
                 }, failure: { error in
-                    failure(error)
+                    seal.reject(error)
             })
         }
     }
@@ -86,7 +86,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
 
     public func annotation(id: Int,
                            responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAnnotation.Response> {
-//        return get(path: "/annotations/\(id)")
+        //        return get(path: "/annotations/\(id)")
         return Promise<GeniusAnnotation.Response>() { (fulfill, reject) in
             reject(GeniusError.unimplemented(functionName: "account"))
         }
