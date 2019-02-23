@@ -79,44 +79,38 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
     }
 
     public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAccount.Response> {
-        return Promise<GeniusAccount.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+        return unimplemented(functionName: "account")
     }
 
     public func annotation(id: Int,
                            responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAnnotation.Response> {
-        //        return get(path: "/annotations/\(id)")
-        return Promise<GeniusAnnotation.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+//        return get(path: "/annotations/\(id)")
+        return unimplemented(functionName: "annotation")
     }
 
     public func artist(id: Int,
                        responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtist.Response> {
-        return Promise<GeniusArtist.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+        return unimplemented(functionName: "artist")
     }
 
     public func referents(forSongId id: Int,
                           responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusReferent.Response> {
-        return Promise<GeniusReferent.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+        return unimplemented(functionName: "referents")
     }
 
     public func search(terms: String,
                        responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusSearch.Response> {
-        return Promise<GeniusSearch.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+        return unimplemented(functionName: "search")
     }
 
     public func song(id: Int,
                      responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusSong.Response> {
-        return Promise<GeniusSong.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
+        return unimplemented(functionName: "song")
+    }
+
+    private func unimplemented<T>(functionName: String) -> Promise<T> {
+        return Promise<T>() { (seal) in
+            seal.reject(GeniusError.unimplemented(functionName: functionName))
         }
     }
 
@@ -125,9 +119,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
                       resultsPerPage: Int,
                       pageNumber: Int,
                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtistSongs.Response> {
-        return Promise<GeniusArtistSongs.Response>() { (fulfill, reject) in
-            reject(GeniusError.unimplemented(functionName: "account"))
-        }
+        return unimplemented(functionName: "account")
     }
 
 }

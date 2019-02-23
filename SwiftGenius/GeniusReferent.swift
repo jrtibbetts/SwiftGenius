@@ -17,7 +17,7 @@ public struct GeniusReferent: Codable {
     public var path: String
 //        public var range: Range
     public var songId: Int?
-    public var type: String
+    public var _type: String
     public var url: URL
     public var verifiedAnnotatorIds: [Int]?
 

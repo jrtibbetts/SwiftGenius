@@ -1,7 +1,7 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
 @testable import SwiftGenius
-import JSONClient
+import Stylobate
 import XCTest
 
 public class JSONTestBase: XCTestCase {

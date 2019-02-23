@@ -19,9 +19,9 @@ class MockGeniusTests: ClientTestBase {
     }
 
     func testAnnotationReturnsValidJson() {
-        assertValidJson(description: "annotation response") { (genius) -> Promise<GeniusAnnotation.Response> in
+        _ = assertValidJson(description: "annotation response") { (genius) -> Promise<GeniusAnnotation.Response> in
             genius.annotation(id: 99)
-            }.then { (annotationResponse) in
+            }.done { (annotationResponse) in
                 GeniusAnnotationTests.assert(annotationResponse)
         }
     }
@@ -33,9 +33,9 @@ class MockGeniusTests: ClientTestBase {
     }
 
     func testArtistReturnsValidJson() {
-        assertValidJson(description: "artist response") { (genius) -> Promise<GeniusArtist.Response> in
+        _ = assertValidJson(description: "artist response") { (genius) -> Promise<GeniusArtist.Response> in
             genius.artist(id: 99)
-            }.then { (artistResponse) in
+            }.done { (artistResponse) in
                 GeniusArtistTests.assert(artistResponse)
         }
     }
@@ -47,9 +47,9 @@ class MockGeniusTests: ClientTestBase {
     }
 
     func testSongsByArtistReturnsValidJson() {
-        assertValidJson(description: "artist songs response") { (genius) -> Promise<GeniusArtistSongs.Response> in
+        _ = assertValidJson(description: "artist songs response") { (genius) -> Promise<GeniusArtistSongs.Response> in
             genius.songs(byArtistId : 99)
-            }.then { (songsResponse) in
+            }.done { (songsResponse) in
                 GeniusArtistSongsTests.assert(songsResponse)
         }
     }
@@ -61,9 +61,9 @@ class MockGeniusTests: ClientTestBase {
     }
 
     func testReferentsReturnsValidJson() {
-        assertValidJson(description: "referents response") { (genius) -> Promise<GeniusReferent.Response> in
+        _ = assertValidJson(description: "referents response") { (genius) -> Promise<GeniusReferent.Response> in
             genius.referents(forSongId: 99)
-            }.then { (referentsResponse) in
+            }.done { (referentsResponse) in
                 GeniusReferentTests.assert(referentsResponse)
         }
     }
@@ -87,9 +87,9 @@ class MockGeniusTests: ClientTestBase {
     }
 
     func testSongReturnsValidJson() {
-        assertValidJson(description: "song response") { (genius) -> Promise<GeniusSong.Response> in
+        _ = assertValidJson(description: "song response") { (genius) -> Promise<GeniusSong.Response> in
             genius.song(id: 99)
-            }.then { (songResponse) in
+            }.done { (songResponse) in
                 GeniusSongTests.assert(songResponse)
         }
     }

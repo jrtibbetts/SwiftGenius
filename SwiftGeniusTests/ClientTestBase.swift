@@ -9,15 +9,17 @@ class ClientTestBase: XCTestCase {
 
     @discardableResult
     func assert<T>(validPromise promise: Promise<T>,
+                   file: StaticString = #file,
+                   line: UInt = #line,
                    description: String = "valid \(type(of: T.self))") -> T? {
         let exp = expectation(description: description)
         var returnableObject: T?
 
-        promise.then { (fetchedObject) -> Void in
+        promise.done { (fetchedObject) -> Void in
             returnableObject = fetchedObject
             exp.fulfill()
-        }.catch { (error) in
-            XCTFail(error.localizedDescription)
+            }.catch { (error) in
+                XCTFail(error.localizedDescription, file: file, line: line)
         }
 
         wait(for: [exp], timeout: timeoutSeconds)
@@ -27,12 +29,14 @@ class ClientTestBase: XCTestCase {
 
     @discardableResult
     func assert<T>(invalidPromise promise: Promise<T>,
+                   file: StaticString = #file,
+                   line: UInt = #line,
                    description: String = "invalid \(type(of: T.self))") -> Error? {
         let exp = expectation(description: description)
         var returnableError: Error?
 
-        promise.then { (fetchedObject) in
-            XCTFail("Expected an error to be thrown.")
+        promise.done { (fetchedObject) in
+            XCTFail("Expected an error to be thrown.", file: file, line: line)
         }.catch { (error) -> Void in
             returnableError = error
             exp.fulfill()
