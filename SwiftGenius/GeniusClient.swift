@@ -68,7 +68,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
             _ = oAuth.authorize(
                 withCallbackURL: URL(string: "immediate://oauth-callback/genius")!,
                 scope: scopeString, state: "code",
-                success: { [weak self] credential, response, parameters in
+                success: { [weak self] (credential, _, _) in
                     self?.oAuthToken = credential.oauthToken
                     print(credential.oauthToken)
                     seal.fulfill(credential.oauthToken)
@@ -109,7 +109,7 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
     }
 
     private func unimplemented<T>(functionName: String) -> Promise<T> {
-        return Promise<T>() { (seal) in
+        return Promise<T> { (seal) in
             seal.reject(GeniusError.unimplemented(functionName: functionName))
         }
     }

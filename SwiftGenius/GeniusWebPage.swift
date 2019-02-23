@@ -7,7 +7,9 @@ public struct GeniusWebPage: Codable {
     public var annotationCount: Int
     public var apiPath: String
     public var domain: String
+    // swiftlint:disable identifier_name
     public var id: Int
+    // swiftlint:enable identifier_name
     public var normalizedUrl: URL
     public var shareUrl: URL
     public var title: String

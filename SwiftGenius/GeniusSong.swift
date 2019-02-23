@@ -15,7 +15,9 @@ public struct GeniusSong: Codable {
     public var fullTitle: String
     public var headerThumbnailImageUrl: URL?
     public var headerImageUrl: URL?
+    // swiftlint:disable identifier_name
     public var id: Int
+    // swiftlint:enable identifier_name
     public var lyricsOwnerId: Int
     public var lyricsState: String?
     public var path: String
@@ -60,7 +62,9 @@ public struct GeniusSong: Codable {
         public var artist: ArtistOverview?
         public var coverArtUrl: URL?
         public var fullTitle: String
+        // swiftlint:disable identifier_name
         public var id: Int
+        // swiftlint:enable identifier_name
         public var name: String
         public var url: URL?
 
@@ -70,13 +74,17 @@ public struct GeniusSong: Codable {
 
         public var apiPath: String
         public var headerImageUrl: URL?
+        // swiftlint:disable identifier_name
         public var id: Int
+        // swiftlint:enable identifier_name
         public var imageUrl: URL?
         public var isMemeVerified: Bool
         public var isVerified: Bool
         public var name: String
         public var url: URL
+        // swiftlint:disable identifier_name
         public var iq: Int
+        // swiftlint:enable identifier_name
 
     }
 

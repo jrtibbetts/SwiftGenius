@@ -12,7 +12,9 @@ public struct GeniusReferent: Codable {
     public var classification: String
     public var featured: Bool?
     public var fragment: String?
+    // swiftlint:disable identifier_name
     public var id: Int
+    // swiftlint:enable identifier_name
     public var isDescription: Bool
     public var path: String
 //        public var range: Range
@@ -25,8 +27,10 @@ public struct GeniusReferent: Codable {
 
         public var apiPath: String
         public var context: String
+        // swiftlint:disable identifier_name
         public var id: Int
-        public var imageUrl: URL
+        // swiftlint:enable identifier_name
+       public var imageUrl: URL
         public var linkTitle: String?
         public var title: String?
         public var type: String

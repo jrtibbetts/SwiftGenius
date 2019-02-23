@@ -15,9 +15,13 @@ public struct GeniusAccount: Codable {
     public var followersCount: Int?
     public var headerImageUrl: URL?
     public var humanReadableRoleForDisplay: String?
+    // swiftlint:disable identifier_name
     public var id: Int
+    // swiftlint:enable identifier_name
     public var identities: [Identity]?
+    // swiftlint:disable identifier_name
     public var iq: Int
+    // swiftlint:enable identifier_name
     public var iqForDisplay: String?
     public var login: String
     public var name: String
@@ -34,7 +38,9 @@ public struct GeniusAccount: Codable {
 
     public struct Identity: Codable {
 
+        // swiftlint:disable identifier_name
         public var id: Int
+        // swiftlint:enable identifier_name
         public var name: String?
         public var provider: String
         public var customProperties: [String : String]?
