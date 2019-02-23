@@ -6,103 +6,53 @@ import XCTest
 
 class MockGeniusTests: ClientTestBase {
 
-    func testAccountReturnsValidJson() {
-        assertValidJson(description: "user response",
-                        promise: MockGenius().account())
-    }
+    let client = MockGenius()
+    let errorClient = MockGenius(useErrorMode: true)
 
-    func testAccountReturnsInErrorMode() {
-        assertInvalidJson(description: "user response",
-                          promise: MockGenius(useErrorMode: true).account())
-    }
-
-    func testAnnotationReturnsValidJson() {
-        _ = assertValidJson(description: "annotation response",
-                            promise: MockGenius().annotation(id: 99)).done { (annotationResponse) in
-            GeniusAnnotationTests.assert(annotationResponse)
+    func testValidMode() {
+        assertValidJson("user response", promise: client.account())
+        _ = assertValidJson("annotation response",
+                            promise: client.annotation(id: 99)).done { (response) in
+                                GeniusAnnotationTests.assert(response)
         }
-    }
-
-    func testAnnotationInErrorMode() {
-        assertInvalidJson(description: "annotation response",
-                          promise: MockGenius(useErrorMode: true).annotation(id: 99))
-    }
-
-    func testArtistReturnsValidJson() {
-        _ = assertValidJson(description: "artist response",
-                            promise: MockGenius().artist(id: 99)).done { (artistResponse) in
-            GeniusArtistTests.assert(artistResponse)
+        _ = assertValidJson("artist response",
+                            promise: client.artist(id: 99)).done { (response) in
+                                GeniusArtistTests.assert(response)
         }
-    }
-
-    func testArtistInErrorMode() {
-        assertInvalidJson(description: "artist response",
-                          promise: MockGenius(useErrorMode: true).artist(id: 99))
-    }
-
-    func testSongsByArtistReturnsValidJson() {
-        _ = assertValidJson(description: "artist songs response",
-                            promise: MockGenius().songs(byArtistId : 99)).done { (songsResponse) in
-            GeniusArtistSongsTests.assert(songsResponse)
+        _ = assertValidJson("artist songs response",
+                            promise: client.songs(byArtistId : 99)).done { (response) in
+                                GeniusArtistSongsTests.assert(response)
         }
-    }
-
-    func testSongsByArtistInErrorMode() {
-        assertInvalidJson(description: "artist songs response",
-                          promise: MockGenius(useErrorMode: true).songs(byArtistId: 99))
-    }
-
-    func testReferentsReturnsValidJson() {
-        _ = assertValidJson(description: "referents response",
-                            promise: MockGenius().referents(forSongId: 99)).done { (referentsResponse) in
-            GeniusReferentTests.assert(referentsResponse)
+        _ = assertValidJson("referents response",
+                            promise: client.referents(forSongId: 99)).done { (response) in
+                                GeniusReferentTests.assert(response)
         }
-    }
-
-    func testReferentsInErrorMode() {
-        assertInvalidJson(description: "referents response",
-                          promise: MockGenius(useErrorMode: true).referents(forSongId: 99))
-    }
-
-    func testSearchReturnsValidJson() {
-        assertValidJson(description: "search results",
-                        promise: MockGenius().search(terms: "foo"))
-    }
-
-    func testSearchReturnsInErrorMode() {
-        assertInvalidJson(description: "search results",
-                          promise: MockGenius(useErrorMode: true).search(terms: "foo"))
-    }
-
-    func testSongReturnsValidJson() {
-        _ = assertValidJson(description: "song response",
-                            promise: MockGenius().song(id: 99)).done { (songResponse) in
-            GeniusSongTests.assert(songResponse)
+        assertValidJson("search results", promise: client.search(terms: "foo"))
+        _ = assertValidJson("song response",
+                            promise: client.song(id: 99)).done { (response) in
+                                GeniusSongTests.assert(response)
         }
+        assertValidJson("web page response", promise: client.webPage(id: 99))
     }
 
-    func testSongReturnsInErrorMode() {
-        assertInvalidJson(description: "song response",
-                          promise: MockGenius(useErrorMode: true).song(id: 99))
-    }
-
-    func testWebPageReturnsValidJson() {
-        assertValidJson(description: "web page response",
-                        promise: MockGenius().webPage(id: 99))
-    }
-
-    func testWebPageReturnsInErrorMode() {
-        assertInvalidJson(description: "web page response",
-                          promise: MockGenius(useErrorMode: true).webPage(id: 99))
+    func testErrorMode() {
+        assertInvalidJson("user response",         promise: errorClient.account())
+        assertInvalidJson("annotation response",   promise: errorClient.annotation(id: 99))
+        assertInvalidJson("artist response",       promise: errorClient.artist(id: 99))
+        assertInvalidJson("artist songs response", promise: errorClient.songs(byArtistId: 99))
+        assertInvalidJson("referents response",    promise: errorClient.referents(forSongId: 99))
+        assertInvalidJson("search results",        promise: errorClient.search(terms: "foo"))
+        assertInvalidJson("song response",         promise: errorClient.song(id: 99))
+        assertInvalidJson( "web page response",    promise: errorClient.webPage(id: 99))
     }
 
     func testInvalidJsonRejectsPromise() {
-        assertInvalidJson(description: "broken request",
-                          promise: MockGenius().brokenRequest())
+        assertInvalidJson("broken request",
+                          promise: client.brokenRequest())
     }
 
     @discardableResult
-    func assertValidJson<T: Codable>(description: String = "",
+    func assertValidJson<T: Codable>(_ description: String = "",
                                      file: StaticString = #file,
                                      line: UInt = #line,
                                      promise: Promise<T>) -> Promise<T> {
@@ -112,7 +62,7 @@ class MockGeniusTests: ClientTestBase {
     }
 
     @discardableResult
-    func assertInvalidJson<T: Codable>(description: String = "",
+    func assertInvalidJson<T: Codable>(_ description: String = "",
                                        file: StaticString = #file,
                                        line: UInt = #line,
                                        promise: Promise<T>) -> Promise<T> {
