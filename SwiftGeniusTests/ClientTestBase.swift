@@ -10,8 +10,8 @@ class ClientTestBase: XCTestCase {
     @discardableResult
     func assert<T>(validPromise promise: Promise<T>,
                    description: String = "valid \(type(of: T.self))",
-                   file: StaticString = #file,
-                   line: UInt = #line) -> T? {
+        file: StaticString = #file,
+        line: UInt = #line) -> T? {
         let exp = expectation(description: description)
         var returnableObject: T?
 
@@ -29,9 +29,9 @@ class ClientTestBase: XCTestCase {
 
     @discardableResult
     func assert<T>(invalidPromise promise: Promise<T>,
-                   file: StaticString = #file,
-                   line: UInt = #line,
-                   description: String = "invalid \(type(of: T.self))") -> Error? {
+                   description: String = "invalid \(type(of: T.self))",
+        file: StaticString = #file,
+        line: UInt = #line) -> Error? {
         let exp = expectation(description: description)
         var returnableError: Error?
 
