@@ -27,15 +27,15 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
 
     // MARK: - Other Properties
 
-    fileprivate let oAuth: OAuth2Swift
+    private let oAuth: OAuth2Swift
 
-    fileprivate var oAuthToken: String?
+    private var oAuthToken: String?
 
-    fileprivate var presentingViewController: UIViewController?
+    private var presentingViewController: UIViewController?
 
-    fileprivate var scope: [Scope]
+    private var scope: [Scope]
 
-    fileprivate var userAgent: String
+    private var userAgent: String
 
     // MARK: - Initializers
 

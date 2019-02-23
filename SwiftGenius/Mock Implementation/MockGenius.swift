@@ -31,7 +31,9 @@ public class MockGenius: MockClient, Genius {
     }
 
     public func brokenRequest() -> Promise<String> {
-        return apply(toJsonObjectIn: "this file doesn't exist, so the promise returned by this function should be rejected.")
+        return apply(toJsonObjectIn: """
+This file doesn't exist, so the promise returned by this function should be rejected.
+""")
     }
 
     public func referents(forSongId id: Int,

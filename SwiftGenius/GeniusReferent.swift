@@ -17,11 +17,32 @@ public struct GeniusReferent: Codable {
     // swiftlint:enable identifier_name
     public var isDescription: Bool
     public var path: String
-//        public var range: Range
+//    public var range: Range
     public var songId: Int?
-    public var _type: String
+    public var type: String
     public var url: URL
     public var verifiedAnnotatorIds: [Int]?
+
+    private enum CodingKeys: String, CodingKey {
+        case annotatable
+        case annotations
+        case annotatorId
+        case annotatorLogin
+        case apiPath
+        case classification
+        case featured
+        case fragment
+        // swiftlint:disable identifier_name
+        case id
+        // swiftlint:enable identifier_name
+        case isDescription
+        case path
+//        case range
+        case songId
+        case type = "_type"
+        case url
+        case verifiedAnnotatorIds
+    }
 
     public struct Annotatable: Codable {
 
