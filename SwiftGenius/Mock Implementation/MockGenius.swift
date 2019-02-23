@@ -7,10 +7,10 @@ import UIKit
 public class MockGenius: MockClient, Genius {
 
     public init(useErrorMode errorMode: Bool = false) {
-        let bundle = Bundle(for: MockGenius.self)
+        let bundle = Bundle(for: type(of: self))
 
         if errorMode {
-            super.init(errorDomain: "net.immediate.MockGenius", bundle: bundle)
+            super.init(errorDomain: "net.poikile.MockGenius", bundle: bundle)
         } else {
             super.init(bundle: bundle)
         }
