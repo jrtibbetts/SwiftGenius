@@ -29,9 +29,9 @@ class ClientTestBase: XCTestCase {
 
     @discardableResult
     func assert<T>(invalidPromise promise: Promise<T>,
-                   description: String = "invalid \(type(of: T.self))",
-        file: StaticString = #file,
-        line: UInt = #line) -> Error? {
+                   file: StaticString = #file,
+                   line: UInt = #line,
+                   description: String = "invalid \(type(of: T.self))") -> Error? {
         let exp = expectation(description: description)
         var returnableError: Error?
 
