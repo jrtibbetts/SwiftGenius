@@ -3,14 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9660112C2037E26C0035FE96 /* SwiftGenius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 966011222037E26C0035FE96 /* SwiftGenius.framework */; };
 		966011332037E26C0035FE96 /* SwiftGenius.h in Headers */ = {isa = PBXBuildFile; fileRef = 966011252037E26C0035FE96 /* SwiftGenius.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9660113F2037F3800035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113D2037F3800035FE96 /* PromiseKit.framework */; };
-		966011402037F3800035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113E2037F3800035FE96 /* OAuthSwift.framework */; };
 		966011592037F3D30035FE96 /* GeniusSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011412037F3CC0035FE96 /* GeniusSearch.swift */; };
 		9660115A2037F3D30035FE96 /* get-songs-200.json in Resources */ = {isa = PBXBuildFile; fileRef = 966011442037F3CD0035FE96 /* get-songs-200.json */; };
 		9660115B2037F3D30035FE96 /* get-web-pages-200.json in Resources */ = {isa = PBXBuildFile; fileRef = 966011452037F3CD0035FE96 /* get-web-pages-200.json */; };
@@ -45,9 +43,9 @@
 		966011882037F41D0035FE96 /* GeniusAnnotationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660117E2037F41C0035FE96 /* GeniusAnnotationTests.swift */; };
 		9660118C2037F42C0035FE96 /* JSONTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 966011892037F42A0035FE96 /* JSONTestBase.swift */; };
 		9660118D2037F42C0035FE96 /* ClientTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9660118A2037F42B0035FE96 /* ClientTestBase.swift */; };
-		9660118F203886430035FE96 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113E2037F3800035FE96 /* OAuthSwift.framework */; };
-		96601190203886430035FE96 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9660113D2037F3800035FE96 /* PromiseKit.framework */; };
-		9689839D203D158A00DE77BC /* JSONClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9689839C203D158A00DE77BC /* JSONClient.framework */; };
+		96E67EAA2641137800D51F41 /* PromiseKit in Frameworks */ = {isa = PBXBuildFile; productRef = 96E67EA92641137800D51F41 /* PromiseKit */; };
+		96E67EAD2641158600D51F41 /* OAuthSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 96E67EAC2641158600D51F41 /* OAuthSwift */; };
+		96E67EB02641193A00D51F41 /* JSONClient in Frameworks */ = {isa = PBXBuildFile; productRef = 96E67EAF2641193A00D51F41 /* JSONClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +64,6 @@
 		966011262037E26C0035FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9660112B2037E26C0035FE96 /* SwiftGeniusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftGeniusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		966011322037E26C0035FE96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9660113D2037F3800035FE96 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
-		9660113E2037F3800035FE96 /* OAuthSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OAuthSwift.framework; path = Carthage/Build/iOS/OAuthSwift.framework; sourceTree = "<group>"; };
 		966011412037F3CC0035FE96 /* GeniusSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusSearch.swift; sourceTree = "<group>"; };
 		966011442037F3CD0035FE96 /* get-songs-200.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-songs-200.json"; sourceTree = "<group>"; };
 		966011452037F3CD0035FE96 /* get-web-pages-200.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "get-web-pages-200.json"; sourceTree = "<group>"; };
@@ -102,7 +98,6 @@
 		9660117E2037F41C0035FE96 /* GeniusAnnotationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeniusAnnotationTests.swift; sourceTree = "<group>"; };
 		966011892037F42A0035FE96 /* JSONTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONTestBase.swift; sourceTree = "<group>"; };
 		9660118A2037F42B0035FE96 /* ClientTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientTestBase.swift; sourceTree = "<group>"; };
-		9689839C203D158A00DE77BC /* JSONClient.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JSONClient.framework; path = Carthage/Build/iOS/JSONClient.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,9 +105,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9689839D203D158A00DE77BC /* JSONClient.framework in Frameworks */,
-				9660113F2037F3800035FE96 /* PromiseKit.framework in Frameworks */,
-				966011402037F3800035FE96 /* OAuthSwift.framework in Frameworks */,
+				96E67EAD2641158600D51F41 /* OAuthSwift in Frameworks */,
+				96E67EAA2641137800D51F41 /* PromiseKit in Frameworks */,
+				96E67EB02641193A00D51F41 /* JSONClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,8 +115,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9660118F203886430035FE96 /* OAuthSwift.framework in Frameworks */,
-				96601190203886430035FE96 /* PromiseKit.framework in Frameworks */,
 				9660112C2037E26C0035FE96 /* SwiftGenius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,7 +128,6 @@
 				966011242037E26C0035FE96 /* SwiftGenius */,
 				9660112F2037E26C0035FE96 /* SwiftGeniusTests */,
 				966011232037E26C0035FE96 /* Products */,
-				9660113C2037F37F0035FE96 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,16 +180,6 @@
 				966011752037F4170035FE96 /* MockGeniusTests.swift */,
 			);
 			path = SwiftGeniusTests;
-			sourceTree = "<group>";
-		};
-		9660113C2037F37F0035FE96 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9689839C203D158A00DE77BC /* JSONClient.framework */,
-				9660113E2037F3800035FE96 /* OAuthSwift.framework */,
-				9660113D2037F3800035FE96 /* PromiseKit.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		966011422037F3CD0035FE96 /* Mock Implementation */ = {
@@ -253,6 +235,11 @@
 			dependencies = (
 			);
 			name = SwiftGenius;
+			packageProductDependencies = (
+				96E67EA92641137800D51F41 /* PromiseKit */,
+				96E67EAC2641158600D51F41 /* OAuthSwift */,
+				96E67EAF2641193A00D51F41 /* JSONClient */,
+			);
 			productName = SwiftGenius;
 			productReference = 966011222037E26C0035FE96 /* SwiftGenius.framework */;
 			productType = "com.apple.product-type.framework";
@@ -282,7 +269,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Poikile Creations";
 				TargetAttributes = {
 					966011212037E26C0035FE96 = {
@@ -302,8 +289,14 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 966011182037E26C0035FE96;
+			packageReferences = (
+				96E67EA82641137800D51F41 /* XCRemoteSwiftPackageReference "PromiseKit" */,
+				96E67EAB2641158600D51F41 /* XCRemoteSwiftPackageReference "OAuthSwift" */,
+				96E67EAE2641193A00D51F41 /* XCRemoteSwiftPackageReference "JSONClient" */,
+			);
 			productRefGroup = 966011232037E26C0035FE96 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -416,6 +409,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -442,6 +436,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -478,6 +473,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -498,9 +494,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -525,7 +523,14 @@
 				);
 				INFOPLIST_FILE = SwiftGenius/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGenius;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -552,7 +557,14 @@
 				);
 				INFOPLIST_FILE = SwiftGenius/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(PROJECT_DIR)/Carthage/Build/iOS";
+				"IPHONEOS_DEPLOYMENT_TARGET[sdk=macosx*]" = 14.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				MARKETING_VERSION = 0.2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGenius;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -572,7 +584,12 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SwiftGeniusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGeniusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -591,7 +608,12 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = SwiftGeniusTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+					"$(FRAMEWORK_SEARCH_PATHS)",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = net.poikile.SwiftGeniusTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -630,6 +652,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		96E67EA82641137800D51F41 /* XCRemoteSwiftPackageReference "PromiseKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/PromiseKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.13.3;
+			};
+		};
+		96E67EAB2641158600D51F41 /* XCRemoteSwiftPackageReference "OAuthSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/OAuthSwift/OAuthSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.2;
+			};
+		};
+		96E67EAE2641193A00D51F41 /* XCRemoteSwiftPackageReference "JSONClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jrtibbetts/JSONClient";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		96E67EA92641137800D51F41 /* PromiseKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E67EA82641137800D51F41 /* XCRemoteSwiftPackageReference "PromiseKit" */;
+			productName = PromiseKit;
+		};
+		96E67EAC2641158600D51F41 /* OAuthSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E67EAB2641158600D51F41 /* XCRemoteSwiftPackageReference "OAuthSwift" */;
+			productName = OAuthSwift;
+		};
+		96E67EAF2641193A00D51F41 /* JSONClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 96E67EAE2641193A00D51F41 /* XCRemoteSwiftPackageReference "JSONClient" */;
+			productName = JSONClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 966011192037E26C0035FE96 /* Project object */;
 }

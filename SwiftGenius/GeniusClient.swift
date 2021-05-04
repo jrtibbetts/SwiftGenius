@@ -1,10 +1,9 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
-import JSONClient
 import OAuthSwift
 import PromiseKit
 
-open class GeniusClient: AuthorizedJSONClient, Genius {
+open class GeniusClient: NSObject, Genius {
 
     public enum GeniusError: Error {
         case unimplemented(functionName: String)
@@ -35,25 +34,20 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
 
     private var scope: [Scope]
 
-    private var userAgent: String
-
     // MARK: - Initializers
 
     public init(consumerKey: String,
                 consumerSecret: String,
-                userAgent: String,
                 callbackUrl: URL,
                 scope: [Scope] = [.me]) {
         self.callbackUrl = callbackUrl
         self.scope = scope
-        self.userAgent = "Immediate (https://github.com/jrtibbetts/SwiftGenius)"
-        let geniusBaseUrl = URL(string: "https://api.genius.com/")!
-        let authUrl = URL(string: "/oauth/authorize", relativeTo: geniusBaseUrl)!
+        let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
         oAuth = OAuth2Swift(consumerKey: consumerKey,
                             consumerSecret: consumerSecret,
                             authorizeUrl: authUrl.absoluteString,
-                            responseType: "code")
-        super.init(oAuth: oAuth, authorizeUrl: authUrl.absoluteString, baseUrl: geniusBaseUrl)
+                            responseType: "token")
+        super.init()
     }
 
     open func authorize(presentingViewController: UIViewController) -> Promise<String> {
@@ -63,18 +57,20 @@ open class GeniusClient: AuthorizedJSONClient, Genius {
     }
 
     open func authorize() -> Promise<String> {
-        return Promise<String> { (seal) in
+        return Promise<String> { [weak self] (seal) in
             oAuth.authorizeURLHandler = SafariURLHandler(viewController: presentingViewController!, oauthSwift: oAuth)
             _ = oAuth.authorize(
-                withCallbackURL: URL(string: "immediate://oauth-callback/genius")!,
-                scope: scopeString, state: "code",
-                success: { [weak self] (credential, _, _) in
+                withCallbackURL: URL(string: "swiftgenius://oauth-callback/genius")!,
+                scope: scopeString, state: "code") { (result) in
+                switch result {
+                case .success(let (credential, _, _)):
                     self?.oAuthToken = credential.oauthToken
                     print(credential.oauthToken)
                     seal.fulfill(credential.oauthToken)
-                }, failure: { error in
+                case .failure(let error):
                     seal.reject(error)
-            })
+                }
+            }
         }
     }
 
