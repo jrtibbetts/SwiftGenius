@@ -7,7 +7,7 @@ import PromiseKit
 /// that no functions relating to authenticating with the genius.com server are
 /// included in this protocol; they can be found in the `GeniusClient`
 /// implementation instead.
-public protocol Genius: class {
+public protocol Genius: AnyObject {
 
     /// Get the currently-authenticated user's account information.
     ///
