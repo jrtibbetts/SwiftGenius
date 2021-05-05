@@ -11,17 +11,17 @@ let pkg = Package(
     products: [
         .library(
             name: "SwiftGenius",
-            targets: ["Sources"]
+            targets: ["SwiftGenius"]
         )
     ],
 
     dependencies: [
         .package(url: "https://github.com/jrtibbetts/JSONClient.git",
-                 .branch("main")),
+                 .branch("main"))
     ],
 
     targets: [
-        .target(name: "Sources",
+        .target(name: "SwiftGenius",
                 dependencies: ["JSONClient"],
                 path: "Sources",
                 resources: [
@@ -34,11 +34,11 @@ let pkg = Package(
                     .copy("Sources/MockImplementation/JSON/get-search-200.json"),
                     .copy("Sources/MockImplementation/JSON/get-web-pages-200.json")
                 ]
-        ,
-        .testTarget(name: "Tests",
-                    dependencies: ["Sources"],
-                    path: "Tests"
-                    )
+        ),
+        .testTarget(name: "SwiftGeniusTests",
+                    dependencies: ["SwiftGenius"],
+                    path: "Tests",
+                    resources: [.copy("SampleFoo.json")])
     ]
 )
 

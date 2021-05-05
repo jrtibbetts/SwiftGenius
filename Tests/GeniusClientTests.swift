@@ -15,7 +15,6 @@ class GeniusClientTests: ClientTestBase {
     var genius: GeniusClient {
         return GeniusClient(consumerKey: consumerKey,
                             consumerSecret: consumerSecret,
-                            userAgent: userAgent,
                             callbackUrl: callbackUrl)
     }
 
@@ -25,7 +24,6 @@ class GeniusClientTests: ClientTestBase {
         let scope: [GeniusClient.Scope] = [.me, .manageAnnotation]
         let explicitScopeGenius = GeniusClient(consumerKey: consumerKey,
                                                consumerSecret: consumerSecret,
-                                               userAgent: userAgent,
                                                callbackUrl: callbackUrl,
                                                scope: scope)
         XCTAssertEqual(explicitScopeGenius.scopeString, "me manage_annotation")

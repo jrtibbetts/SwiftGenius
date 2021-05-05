@@ -3,6 +3,7 @@
 import Foundation
 import OAuthSwift
 import PromiseKit
+import UIKit
 
 open class GeniusClient: NSObject, Genius {
 
