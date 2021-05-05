@@ -1,7 +1,9 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
+import Foundation
 import OAuthSwift
 import PromiseKit
+import UIKit
 
 open class GeniusClient: NSObject, Genius {
 
