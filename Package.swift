@@ -25,14 +25,14 @@ let pkg = Package(
                 dependencies: ["JSONClient"],
                 path: "Sources",
                 resources: [
-                    .copy("Sources/MockImplementation/JSON/get-account-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-artist-songs-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-referents-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-songs-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-annotations-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-artists-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-search-200.json"),
-                    .copy("Sources/MockImplementation/JSON/get-web-pages-200.json")
+                    .copy("MockImplementation/JSON/get-account-200.json"),
+                    .copy("MockImplementation/JSON/get-artist-songs-200.json"),
+                    .copy("MockImplementation/JSON/get-referents-200.json"),
+                    .copy("MockImplementation/JSON/get-songs-200.json"),
+                    .copy("MockImplementation/JSON/get-annotations-200.json"),
+                    .copy("MockImplementation/JSON/get-artists-200.json"),
+                    .copy("MockImplementation/JSON/get-search-200.json"),
+                    .copy("MockImplementation/JSON/get-web-pages-200.json")
                 ]
         ),
         .testTarget(name: "SwiftGeniusTests",
