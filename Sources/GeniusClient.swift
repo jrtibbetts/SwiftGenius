@@ -1,5 +1,6 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
+import Foundation
 import OAuthSwift
 import PromiseKit
 

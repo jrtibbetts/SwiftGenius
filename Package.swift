@@ -23,8 +23,18 @@ let pkg = Package(
     targets: [
         .target(name: "Sources",
                 dependencies: ["JSONClient"],
-                path: "Sources"
-        ),
+                path: "Sources",
+                resources: [
+                .copy("Sources/Mock Implementation/JSON/get-account-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-artist-songs-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-referents-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-songs-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-annotations-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-artists-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-search-200.json"),
+                .copy("Sources/Mock Implementation/JSON/get-web-pages-200.json")
+                ]
+        ,
         .testTarget(name: "Tests",
                     dependencies: ["Sources"],
                     path: "Tests"
