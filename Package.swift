@@ -11,7 +11,7 @@ let pkg = Package(
     products: [
         .library(
             name: "SwiftGenius",
-            targets: ["SwiftGenius"]
+            targets: ["Sources"]
         )
     ],
 
