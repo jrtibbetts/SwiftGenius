@@ -18,8 +18,8 @@ class ClientTestBase: XCTestCase {
         promise.done { (fetchedObject) -> Void in
             returnableObject = fetchedObject
             exp.fulfill()
-            }.catch { (error) in
-                XCTFail(error.localizedDescription, file: file, line: line)
+        }.catch { (error) in
+            XCTFail(error.localizedDescription, file: file, line: line)
         }
 
         wait(for: [exp], timeout: timeoutSeconds)

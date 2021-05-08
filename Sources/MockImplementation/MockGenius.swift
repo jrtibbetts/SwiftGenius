@@ -8,11 +8,13 @@ public class MockGenius: MockClient, Genius {
 
     public init(useErrorMode errorMode: Bool = false) {
         let bundle = SwiftGenius.bundle
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
 
         if errorMode {
-            super.init(errorDomain: "net.poikile.MockGenius", bundle: bundle)
+            super.init(errorDomain: "net.poikile.MockGenius", bundle: bundle, jsonDecoder: decoder)
         } else {
-            super.init(bundle: bundle)
+            super.init(bundle: bundle, jsonDecoder: decoder)
         }
     }
 
