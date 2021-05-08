@@ -1,4 +1,5 @@
 Carthage/
 build/
+.build
 docs/
 
