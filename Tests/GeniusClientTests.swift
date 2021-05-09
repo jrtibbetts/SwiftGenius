@@ -8,8 +8,8 @@ class GeniusClientTests: ClientTestBase {
 
     // MARK: - Properties
 
-    let consumerKey = "1234567890"
-    let consumerSecret = "abcdefghijklm"
+    let consumerKey = ProcessInfo.processInfo.environment["genius.client-id"] ?? "1234567890"
+    let consumerSecret = ProcessInfo.processInfo.environment["genius.client-secret"] ?? "abcdefghijklm"
     let userAgent = "test agent"
     let callbackUrl = URL(string: "https://www.apple.com")!
     var genius: GeniusClient {
