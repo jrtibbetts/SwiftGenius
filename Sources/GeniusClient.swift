@@ -1,11 +1,12 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
 import Foundation
+import JSONClient
 import OAuthSwift
 import PromiseKit
 import UIKit
 
-open class GeniusClient: NSObject, Genius {
+open class GeniusClient: JSONClient, Genius {
 
     public enum GeniusError: Error {
         case unimplemented(functionName: String)
@@ -32,8 +33,6 @@ open class GeniusClient: NSObject, Genius {
 
     private var oAuthToken: String?
 
-    private let baseUrl = URL(string: "https://api.genius.com")!
-
     private var presentingViewController: UIViewController?
 
     private var scope: [Scope]
@@ -51,7 +50,10 @@ open class GeniusClient: NSObject, Genius {
                             consumerSecret: consumerSecret,
                             authorizeUrl: authUrl.absoluteString,
                             responseType: "token")
-        super.init()
+
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        super.init(baseUrl: URL(string: "https://api.genius.com")!, jsonDecoder: decoder)
     }
 
     open func authorize(presentingViewController: UIViewController) -> Promise<String> {
