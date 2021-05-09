@@ -31,10 +31,6 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
-    func testConstructorSetsCallbackUrls() {
-        XCTAssertEqual(genius.callbackUrl, callbackUrl)
-    }
-
     func testAccountIsUnimplemented() {
         assert(invalidPromise: genius.account())
     }
