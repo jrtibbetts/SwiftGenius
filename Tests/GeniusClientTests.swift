@@ -31,9 +31,9 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
-    func testAccountIsUnimplemented() {
-        assert(invalidPromise: genius.account())
-    }
+//    func testAccountIsUnimplemented() {
+//        assert(invalidPromise: genius.account())
+//    }
 
     func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
         assert(invalidPromise: genius.annotation(id: 99), description: "annotation 99")
