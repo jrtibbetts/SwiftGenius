@@ -20,8 +20,6 @@ open class GeniusClient: NSObject, Genius {
 
     // MARK: - Public Properties
 
-    public let callbackUrl: URL
-
     public var scopeString: String {
         return scope.map { $0.rawValue }.joined(separator: " ")
     }
@@ -32,6 +30,8 @@ open class GeniusClient: NSObject, Genius {
 
     private var oAuthToken: String?
 
+    private let baseUrl = URL(string: "https://api.genius.com")!
+
     private var presentingViewController: UIViewController?
 
     private var scope: [Scope]
@@ -40,9 +40,7 @@ open class GeniusClient: NSObject, Genius {
 
     public init(consumerKey: String,
                 consumerSecret: String,
-                callbackUrl: URL,
                 scope: [Scope] = [.me]) {
-        self.callbackUrl = callbackUrl
         self.scope = scope
         let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
         oAuth = OAuth2Swift(consumerKey: consumerKey,
