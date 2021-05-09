@@ -20,6 +20,8 @@ open class GeniusClient: NSObject, Genius {
 
     // MARK: - Public Properties
 
+    public var callbackScheme: String
+
     public var scopeString: String {
         return scope.map { $0.rawValue }.joined(separator: " ")
     }
@@ -40,7 +42,9 @@ open class GeniusClient: NSObject, Genius {
 
     public init(consumerKey: String,
                 consumerSecret: String,
+                callbackScheme: String,
                 scope: [Scope] = [.me]) {
+        self.callbackScheme = callbackScheme
         self.scope = scope
         let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
         oAuth = OAuth2Swift(consumerKey: consumerKey,
@@ -56,7 +60,7 @@ open class GeniusClient: NSObject, Genius {
         return Promise<String> { [weak self] (seal) in
             oAuth.authorizeURLHandler = SafariURLHandler(viewController: presentingViewController, oauthSwift: oAuth)
             _ = oAuth.authorize(
-                withCallbackURL: URL(string: "swiftgenius://oauth-callback/genius")!,
+                withCallbackURL: URL(string: callbackScheme + "://oauth-callback/genius")!,
                 scope: scopeString, state: "code") { (result) in
                 switch result {
                 case .success(let (credential, _, _)):
@@ -70,6 +74,9 @@ open class GeniusClient: NSObject, Genius {
         }
     }
 
+    open func handleCallbackUrl(_ url: URL) {
+        print("Handing callback URL \(url.absoluteString)")
+    }
 
     public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAccount.Response> {
         return Promise<GeniusAccount.Response> { (seal) in
