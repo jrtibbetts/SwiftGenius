@@ -1,12 +1,10 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
+import AuthenticationServices
+import Combine
 import Foundation
-import JSONClient
-import OAuthSwift
-import PromiseKit
-import UIKit
 
-open class GeniusClient: JSONClient, Genius {
+open class GeniusClient: NSObject, ObservableObject {
 
     public enum GeniusError: Error {
         case unimplemented(functionName: String)
@@ -29,7 +27,7 @@ open class GeniusClient: JSONClient, Genius {
 
     // MARK: - Other Properties
 
-    private let oAuth: OAuth2Swift
+    private var baseUrl = URL(string: "https://api.genius.com")!
 
     private var oAuthToken: String?
 
@@ -45,92 +43,116 @@ open class GeniusClient: JSONClient, Genius {
                 scope: [Scope] = [.me]) {
         self.callbackScheme = callbackScheme
         self.scope = scope
-        let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
-        oAuth = OAuth2Swift(consumerKey: consumerKey,
-                            consumerSecret: consumerSecret,
-                            authorizeUrl: authUrl.absoluteString,
-                            responseType: "token")
-
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
-        super.init(baseUrl: URL(string: "https://api.genius.com")!, jsonDecoder: decoder)
+        super.init()
     }
 
-    open func authorize(presentingViewController: UIViewController) -> Promise<String> {
-        self.presentingViewController = presentingViewController
+    private var logInSubscription: AnyCancellable?
 
-        return Promise<String> { [weak self] (seal) in
-            oAuth.authorizeURLHandler = SafariURLHandler(viewController: presentingViewController, oauthSwift: oAuth)
-            _ = oAuth.authorize(
-                withCallbackURL: URL(string: callbackScheme + "://oauth-callback/genius")!,
-                scope: scopeString, state: "code") { (result) in
-                switch result {
-                case .success(let (credential, _, _)):
-                    self?.oAuthToken = credential.oauthToken
-                    print(credential.oauthToken)
-                    seal.fulfill(credential.oauthToken)
-                case .failure(let error):
-                    seal.reject(error)
+    open func authorize(presentingViewController: UIViewController) {
+        let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
+        let logInFuture = Future<URL, Error> { [weak self] (completion) in
+            let session = ASWebAuthenticationSession(url: authUrl,
+                                                     callbackURLScheme: self?.callbackScheme) { (callbackUrl, error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else if let url = callbackUrl {
+                    completion(.success(url))
                 }
             }
+
+            session.presentationContextProvider = self
+            session.prefersEphemeralWebBrowserSession = true
+            session.start()
         }
+
+        logInSubscription = logInFuture.sink(receiveCompletion: { (completion) in
+            switch completion {
+            case .failure(let error):
+                print("Failed to receive a sign-in completion: ", error)
+            default:
+                break
+            }
+        }, receiveValue: { [weak self] (url) in
+            self?.handleCallbackUrl(url)
+        })
     }
 
     open func handleCallbackUrl(_ url: URL) {
         print("Handing callback URL \(url.absoluteString)")
     }
 
-    public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAccount.Response> {
-        return Promise<GeniusAccount.Response> { (seal) in
-            let url = URL(string: "/annotations/10225840", relativeTo: baseUrl)!
+    public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAccount.Response, Error> {
+        return Future<GeniusAccount.Response, Error> { [weak self] (future) in
+            guard let oAuthToken = self?.oAuthToken else {
+                future(.failure(NSError(domain: "GeniusClient", code: 0, userInfo: nil)))
+
+                return
+            }
+
+            let url = URL(string: "/annotations/10225840", relativeTo: self?.baseUrl)!
             var request = URLRequest(url: url)
-            request.addValue("Bearer \(oAuthToken!)", forHTTPHeaderField: "Authorization")
+            request.addValue("Bearer \(oAuthToken)", forHTTPHeaderField: "Authorization")
+
             URLSession.shared.dataTask(with: request) { (data, response, error) in
                 if let error = error {
-                    seal.reject(error)
+                    future(.failure(error))
                 } else if let data = data {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     do {
                         let jsonResponse: GeniusAccount.Response = try GeniusAccount.Response.decode(fromJSONData: data, withDecoder: decoder)
-                        seal.fulfill(jsonResponse)
+                        future(.success(jsonResponse))
                     } catch {
-                        seal.reject(error)
+                        future(.failure(error))
                     }
                 }
             }.resume()
         }
     }
 
+}
+
+extension GeniusClient: ASWebAuthenticationPresentationContextProviding {
+
+    public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
+        return ASPresentationAnchor()
+    }
+
+}
+
+extension GeniusClient: Genius {
+
     public func annotation(id: Int,
-                           responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusAnnotation.Response> {
+                           responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAnnotation.Response, Error> {
 //        return get(path: "/annotations/\(id)")
         return unimplemented(functionName: "annotation")
     }
 
     public func artist(id: Int,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtist.Response> {
+                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtist.Response, Error> {
         return unimplemented(functionName: "artist")
     }
 
     public func referents(forSongId id: Int,
-                          responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusReferent.Response> {
+                          responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusReferent.Response, Error> {
         return unimplemented(functionName: "referents")
     }
 
     public func search(terms: String,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusSearch.Response> {
+                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSearch.Response, Error> {
         return unimplemented(functionName: "search")
     }
 
     public func song(id: Int,
-                     responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusSong.Response> {
+                     responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSong.Response, Error> {
         return unimplemented(functionName: "song")
     }
 
-    private func unimplemented<T>(functionName: String) -> Promise<T> {
-        return Promise<T> { (seal) in
-            seal.reject(GeniusError.unimplemented(functionName: functionName))
+    private func unimplemented<T>(functionName: String) -> Future<T, Error> {
+        return Future<T, Error> { (future) in
+            future(.failure(GeniusError.unimplemented(functionName: functionName)))
         }
     }
 
@@ -138,7 +160,7 @@ open class GeniusClient: JSONClient, Genius {
                       sortOrder: GeniusSongSortOrder,
                       resultsPerPage: Int,
                       pageNumber: Int,
-                      responseFormats: [GeniusResponseFormat] = [.dom]) -> Promise<GeniusArtistSongs.Response> {
+                      responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtistSongs.Response, Error> {
         return unimplemented(functionName: "account")
     }
 

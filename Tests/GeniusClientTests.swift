@@ -1,7 +1,7 @@
 //  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
 @testable import SwiftGenius
-import PromiseKit
+import Combine
 import XCTest
 
 class GeniusClientTests: ClientTestBase {
@@ -64,7 +64,7 @@ class GeniusClientTests: ClientTestBase {
 
     // MARK: - Utility functions
 
-    func assertPromiseWasRejected<T>(promise: Promise<T>) {
+    func assertPromiseWasRejected<T>(promise: Future<T, Error>) {
         assert(invalidPromise: promise)
     }
 

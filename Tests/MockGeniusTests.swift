@@ -1,7 +1,7 @@
 //  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
 @testable import SwiftGenius
-import PromiseKit
+import Combine
 import XCTest
 
 class MockGeniusTests: ClientTestBase {
@@ -55,7 +55,7 @@ class MockGeniusTests: ClientTestBase {
     func assertValidJson<T: Codable>(_ description: String = "",
                                      file: StaticString = #file,
                                      line: UInt = #line,
-                                     promise: Promise<T>) -> Promise<T> {
+                                     promise: Future<T, Error>) -> Future<T, Error> {
         assert(validPromise: promise, description: description, file: file, line: line)
 
         return promise
@@ -65,7 +65,7 @@ class MockGeniusTests: ClientTestBase {
     func assertInvalidJson<T: Codable>(_ description: String = "",
                                        file: StaticString = #file,
                                        line: UInt = #line,
-                                       promise: Promise<T>) -> Promise<T> {
+                                       promise: Future<T, Error>) -> Future<T, Error> {
         assert(invalidPromise: promise, description: description, file: file, line: line)
 
         return promise

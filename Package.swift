@@ -16,13 +16,13 @@ let pkg = Package(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/jrtibbetts/JSONClient.git",
+        .package(url: "https://github.com/jrtibbetts/Stylobate.git",
                  .branch("main"))
     ],
 
     targets: [
         .target(name: "SwiftGenius",
-                dependencies: ["JSONClient"],
+                dependencies: ["Stylobate"],
                 path: "Sources",
                 resources: [
                     .copy("MockImplementation/JSON/get-account-200.json"),
