@@ -35,37 +35,37 @@ class GeniusClientTests: ClientTestBase {
     }
 
 //    func testAccountIsUnimplemented() {
-//        assert(invalidPromise: genius.account())
+//        assert(invalidFuture: genius.account())
 //    }
 
     func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
-        assert(invalidPromise: genius.annotation(id: 99), description: "annotation 99")
+        assert(invalidFuture: genius.annotation(id: 99), description: "annotation 99")
     }
 
     func testArtistIsUnimplemented() {
-        assert(invalidPromise: genius.artist(id: 99))
+        assert(invalidFuture: genius.artist(id: 99))
     }
 
     func testReferentsIsUnimplemented() {
-        assert(invalidPromise: genius.referents(forSongId: 99))
+        assert(invalidFuture: genius.referents(forSongId: 99))
     }
 
     func testSearchIsUnimplemented() {
-        assert(invalidPromise: genius.search(terms: "foo", responseFormats: [.dom]))
+        assert(invalidFuture: genius.search(terms: "foo", responseFormats: [.dom]))
     }
 
     func testSongIsUnimplemented() {
-        assert(invalidPromise: genius.song(id: 99))
+        assert(invalidFuture: genius.song(id: 99))
     }
 
     func testSongsByArtistIsUnimplemented() {
-        assert(invalidPromise: genius.songs(byArtistId: 99, sortOrder: .popularity, resultsPerPage: 100, pageNumber: 50))
+        assert(invalidFuture: genius.songs(byArtistId: 99, sortOrder: .popularity, resultsPerPage: 100, pageNumber: 50))
     }
 
     // MARK: - Utility functions
 
     func assertPromiseWasRejected<T>(promise: Future<T, Error>) {
-        assert(invalidPromise: promise)
+        assert(invalidFuture: promise)
     }
 
 }

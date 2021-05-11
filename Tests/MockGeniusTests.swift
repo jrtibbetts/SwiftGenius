@@ -12,26 +12,31 @@ class MockGeniusTests: ClientTestBase {
     func testValidMode() {
         assertValidJson("user response", promise: client.account())
         _ = assertValidJson("annotation response",
-                            promise: client.annotation(id: 99)).done { (response) in
-                                GeniusAnnotationTests.assert(response)
-        }
+                            promise: client.annotation(id: 99)).sink(receiveCompletion: { _ in },
+                                                                     receiveValue: { (response) in
+                                                                        GeniusAnnotationTests.assert(response)
+                                                                     })
         _ = assertValidJson("artist response",
-                            promise: client.artist(id: 99)).done { (response) in
-                                GeniusArtistTests.assert(response)
-        }
+                            promise: client.artist(id: 99)).sink(receiveCompletion: { _ in },
+                                                                 receiveValue: { (response) in
+                                                                    GeniusArtistTests.assert(response)
+                                                                 })
         _ = assertValidJson("artist songs response",
-                            promise: client.songs(byArtistId : 99)).done { (response) in
-                                GeniusArtistSongsTests.assert(response)
-        }
+                            promise: client.songs(byArtistId : 99)).sink(receiveCompletion: { _ in },
+                                                                         receiveValue: { (response) in
+                                                                            GeniusArtistSongsTests.assert(response)
+                                                                         })
         _ = assertValidJson("referents response",
-                            promise: client.referents(forSongId: 99)).done { (response) in
-                                GeniusReferentTests.assert(response)
-        }
+                            promise: client.referents(forSongId: 99)).sink(receiveCompletion: { _ in },
+                                                                           receiveValue: { (response) in
+                                                                            GeniusReferentTests.assert(response)
+                                                                           })
         assertValidJson("search results", promise: client.search(terms: "foo"))
         _ = assertValidJson("song response",
-                            promise: client.song(id: 99)).done { (response) in
-                                GeniusSongTests.assert(response)
-        }
+                            promise: client.song(id: 99)).sink(receiveCompletion: { _ in },
+                                                               receiveValue: { (response) in
+                                                                GeniusSongTests.assert(response)
+                                                               })
         assertValidJson("web page response", promise: client.webPage(id: 99))
     }
 
@@ -56,7 +61,7 @@ class MockGeniusTests: ClientTestBase {
                                      file: StaticString = #file,
                                      line: UInt = #line,
                                      promise: Future<T, Error>) -> Future<T, Error> {
-        assert(validPromise: promise, description: description, file: file, line: line)
+        assert(validFuture: promise, description: description, file: file, line: line)
 
         return promise
     }
@@ -66,7 +71,7 @@ class MockGeniusTests: ClientTestBase {
                                        file: StaticString = #file,
                                        line: UInt = #line,
                                        promise: Future<T, Error>) -> Future<T, Error> {
-        assert(invalidPromise: promise, description: description, file: file, line: line)
+        assert(invalidFuture: promise, description: description, file: file, line: line)
 
         return promise
     }
