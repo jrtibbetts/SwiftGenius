@@ -13,8 +13,8 @@ class GeniusClientTests: ClientTestBase {
     let userAgent = "test agent"
     let callbackUrl = URL(string: "https://www.apple.com")!
     lazy var genius: GeniusClient = {
-        return GeniusClient(consumerKey: consumerKey,
-                            consumerSecret: consumerSecret,
+        return GeniusClient(clientId: consumerKey,
+                            clientSecret: consumerSecret,
                             callbackScheme: "genius-client-test")
     }()
 
@@ -22,8 +22,8 @@ class GeniusClientTests: ClientTestBase {
 
     func testConstructorWithExplicitScopeOk() {
         let scope: [GeniusClient.Scope] = [.me, .manageAnnotation]
-        let explicitScopeGenius = GeniusClient(consumerKey: consumerKey,
-                                               consumerSecret: consumerSecret,
+        let explicitScopeGenius = GeniusClient(clientId: consumerKey,
+                                               clientSecret: consumerSecret,
                                                callbackScheme: "genius-client-test",
                                                scope: scope)
         XCTAssertEqual(explicitScopeGenius.scopeString, "me manage_annotation")

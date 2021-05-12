@@ -33,16 +33,28 @@ open class GeniusClient: NSObject, ObservableObject {
 
     private var baseUrl = URL(string: "https://api.genius.com")!
 
+    private var clientId: String
+
+    private var clientSecret: String
+
+    private var dateFormatter = ISO8601DateFormatter()
+
+    private var state: String
+
     private var scope: [Scope]
 
     // MARK: - Initializers
 
-    public init(consumerKey: String,
-                consumerSecret: String,
+    public init(clientId: String,
+                clientSecret: String,
                 callbackScheme: String,
                 scope: [Scope] = [.me]) {
+        self.clientId = clientId
+        self.clientSecret = clientSecret
         self.callbackScheme = callbackScheme
         self.scope = scope
+        self.state = "Genius " + dateFormatter.string(from: Date())
+
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         super.init()
@@ -51,7 +63,17 @@ open class GeniusClient: NSObject, ObservableObject {
     private var logInSubscription: AnyCancellable?
 
     open func authorize() {
-        let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
+        let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
+        var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: false)!
+        components.queryItems = [
+            "client_id": clientId,
+            "redirect_uri": "swift-genius://oauth-login",
+            "scope": scope.map { $0.rawValue }.joined(separator: " "),
+            "state": state,
+            "response_type": "code"
+        ].map { URLQueryItem(name: $0, value: $1) }
+
+        let authUrl = components.url!
         let logInFuture = Future<URL, Error> { [weak self] (completion) in
             let session = ASWebAuthenticationSession(url: authUrl,
                                                      callbackURLScheme: self?.callbackScheme) { (callbackUrl, error) in
