@@ -17,6 +17,10 @@ open class GeniusClient: NSObject, ObservableObject {
         case vote
     }
 
+    // MARK: - Published Properties
+
+    @Published private var oAuthToken: String?
+
     // MARK: - Public Properties
 
     public var callbackScheme: String
@@ -28,10 +32,6 @@ open class GeniusClient: NSObject, ObservableObject {
     // MARK: - Other Properties
 
     private var baseUrl = URL(string: "https://api.genius.com")!
-
-    private var oAuthToken: String?
-
-    private var presentingViewController: UIViewController?
 
     private var scope: [Scope]
 
@@ -50,7 +50,7 @@ open class GeniusClient: NSObject, ObservableObject {
 
     private var logInSubscription: AnyCancellable?
 
-    open func authorize(presentingViewController: UIViewController) {
+    open func authorize() {
         let authUrl = URL(string: "https://api.genius.com/oauth/authorize")!
         let logInFuture = Future<URL, Error> { [weak self] (completion) in
             let session = ASWebAuthenticationSession(url: authUrl,
