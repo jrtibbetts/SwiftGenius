@@ -31,7 +31,7 @@ open class GeniusClient: NSObject, ObservableObject {
 
     // MARK: - Other Properties
 
-    private var baseUrl = URL(string: "https://api.genius.com")!
+    private var baseUrl = URL(string: "https://api.genius.com/")!
 
     private var clientId: String
 
