@@ -98,12 +98,69 @@ open class GeniusClient: NSObject, ObservableObject {
                 break
             }
         }, receiveValue: { [weak self] (url) in
-            self?.handleCallbackUrl(url)
+            self?.retrieveAccessToken(from: url)
         })
     }
 
-    open func handleCallbackUrl(_ url: URL) {
-        print("Handing callback URL \(url.absoluteString)")
+    open func retrieveAccessToken(from url: URL) {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let queryItems = components.query!
+            .split(separator: "&")
+            .reduce(into: [String: String]()) { (dictionary, queryItem) in
+                let itemElements = queryItem.split(separator: "=")
+                dictionary[String(itemElements[0])] = String(itemElements[1])
+            }
+        let tokenBody = TokenRequestBody(code: queryItems["code"]!,
+                                  clientSecret: clientSecret,
+                                  clientId: clientId,
+                                  redirectUri: callbackUrl.absoluteString)
+        let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
+        var request = URLRequest(url: endpoint)
+        request.httpMethod = "POST"
+        request.httpBody = try? TokenRequestBody.encoder.encode(tokenBody)
+        URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
+            if let data = data {
+                let tokenResponse = try? TokenResponseBody.decoder.decode(TokenResponseBody.self, from: data)
+                self?.oAuthToken = tokenResponse?.accessToken
+            }
+        }
+    }
+
+    struct TokenRequestBody: Codable {
+
+        static var encoder: JSONEncoder = {
+            let encoder = JSONEncoder()
+            encoder.keyEncodingStrategy = .convertToSnakeCase
+
+            return encoder
+        }()
+
+        enum CodingKeys: String, CodingKey {
+            case code
+            case clientSecret
+            case clientId
+            case redirectUri
+        }
+
+        var code: String
+        var clientSecret: String
+        let grantType = "authorization_code"
+        var clientId: String
+        var redirectUri: String
+        let responseType = "code"
+    }
+
+    struct TokenResponseBody: Codable {
+
+        static var decoder: JSONDecoder = {
+            let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+            return decoder
+        }()
+
+        var accessToken: String
+
     }
 
     public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAccount.Response, Error> {
