@@ -113,9 +113,9 @@ open class GeniusClient: NSObject, ObservableObject {
         let tokenBody = TokenRequestBody(code: queryItems["code"]!,
                                          clientId: clientId,
                                          clientSecret: clientSecret,
-                                         redirectUri: "authorization_code",
-                                         responseType: callbackUrl.absoluteString,
-                                         grantType: "code")
+                                         redirectUri: callbackUrl.absoluteString,
+                                         responseType: "code",
+                                         grantType: "authorization_code")
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
