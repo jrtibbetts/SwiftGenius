@@ -23,7 +23,7 @@ open class GeniusClient: NSObject, ObservableObject {
 
     // MARK: - Public Properties
 
-    public var callbackScheme: String
+    public var callbackUrl: URL
 
     public var scopeString: String {
         return scope.map { $0.rawValue }.joined(separator: " ")
@@ -47,11 +47,11 @@ open class GeniusClient: NSObject, ObservableObject {
 
     public init(clientId: String,
                 clientSecret: String,
-                callbackScheme: String,
+                callbackUrl: URL,
                 scope: [Scope] = [.me]) {
         self.clientId = clientId
         self.clientSecret = clientSecret
-        self.callbackScheme = callbackScheme
+        self.callbackUrl = callbackUrl
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
 
@@ -67,16 +67,17 @@ open class GeniusClient: NSObject, ObservableObject {
         var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: false)!
         components.queryItems = [
             "client_id": clientId,
-            "redirect_uri": "swift-genius://oauth-login",
+            "redirect_uri": callbackUrl.absoluteString,
             "scope": scope.map { $0.rawValue }.joined(separator: " "),
             "state": state,
             "response_type": "code"
         ].map { URLQueryItem(name: $0, value: $1) }
 
         let authUrl = components.url!
+        let callbackScheme = callbackUrl.scheme
         let logInFuture = Future<URL, Error> { [weak self] (completion) in
             let session = ASWebAuthenticationSession(url: authUrl,
-                                                     callbackURLScheme: self?.callbackScheme) { (callbackUrl, error) in
+                                                     callbackURLScheme: callbackScheme) { (callbackUrl, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else if let url = callbackUrl {

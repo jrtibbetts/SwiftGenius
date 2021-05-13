@@ -15,7 +15,7 @@ class GeniusClientTests: ClientTestBase {
     lazy var genius: GeniusClient = {
         return GeniusClient(clientId: consumerKey,
                             clientSecret: consumerSecret,
-                            callbackScheme: "genius-client-test")
+                            callbackUrl: URL(string: "genius-client-test")!)
     }()
 
     // MARK: - Test functions
@@ -24,10 +24,10 @@ class GeniusClientTests: ClientTestBase {
         let scope: [GeniusClient.Scope] = [.me, .manageAnnotation]
         let explicitScopeGenius = GeniusClient(clientId: consumerKey,
                                                clientSecret: consumerSecret,
-                                               callbackScheme: "genius-client-test",
+                                               callbackUrl: URL(string: "genius-client-test")!,
                                                scope: scope)
         XCTAssertEqual(explicitScopeGenius.scopeString, "me manage_annotation")
-        XCTAssertEqual(explicitScopeGenius.callbackScheme, "genius-client-test")
+        XCTAssertEqual(explicitScopeGenius.callbackUrl, URL(string: "genius-client-test")!)
     }
 
     func testConstructorWithDefaultScopeHasJustMeScope() {
