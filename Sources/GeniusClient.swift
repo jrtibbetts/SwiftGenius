@@ -64,7 +64,7 @@ open class GeniusClient: NSObject, ObservableObject {
 
     open func authorize() {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
-        var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: false)!
+        var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
         components.queryItems = [
             "client_id": clientId,
             "redirect_uri": callbackUrl.absoluteString,
