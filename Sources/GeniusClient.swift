@@ -112,15 +112,17 @@ open class GeniusClient: NSObject, ObservableObject {
             }
         let tokenBody = TokenRequestBody(code: queryItems["code"]!,
                                   clientSecret: clientSecret,
+                                  grantType: "authorization_code",
                                   clientId: clientId,
-                                  redirectUri: callbackUrl.absoluteString)
+                                  redirectUri: callbackUrl.absoluteString,
+                                  responseType: "code")
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
         request.httpBody = try? TokenRequestBody.encoder.encode(tokenBody)
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             if let data = data {
-                let tokenResponse = try? TokenResponseBody.decoder.decode(TokenResponseBody.self, from: data)
+                let tokenResponse = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
                 self?.oAuthToken = tokenResponse?.accessToken
             }
         }.resume()
@@ -135,22 +137,15 @@ open class GeniusClient: NSObject, ObservableObject {
             return encoder
         }()
 
-        enum CodingKeys: String, CodingKey {
-            case code
-            case clientSecret
-            case clientId
-            case redirectUri
-        }
-
         var code: String
         var clientSecret: String
-        let grantType = "authorization_code"
+        let grantType: String // always "authorization_code"
         var clientId: String
         var redirectUri: String
-        let responseType = "code"
+        let responseType: String // always "code"
     }
 
-    struct TokenResponseBody: Codable {
+    struct TokenResponse: Codable {
 
         static var decoder: JSONDecoder = {
             let decoder = JSONDecoder()
