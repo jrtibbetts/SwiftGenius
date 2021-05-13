@@ -111,17 +111,22 @@ open class GeniusClient: NSObject, ObservableObject {
                 dictionary[String(itemElements[0])] = String(itemElements[1])
             }
         let tokenBody = TokenRequestBody(code: queryItems["code"]!,
-                                  clientSecret: clientSecret,
-                                  grantType: "authorization_code",
-                                  clientId: clientId,
-                                  redirectUri: callbackUrl.absoluteString,
-                                  responseType: "code")
+                                         clientId: clientId,
+                                         clientSecret: clientSecret,
+                                         redirectUri: "authorization_code",
+                                         responseType: callbackUrl.absoluteString,
+                                         grantType: "code")
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
         request.httpMethod = "POST"
         request.httpBody = try? TokenRequestBody.encoder.encode(tokenBody)
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
-            if let data = data {
+            if let error = error {
+                print("Error when requesting auth token: ", error)
+            } else if let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode != 200 {
+                print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
+            } else if let data = data {
                 let tokenResponse = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
                 self?.oAuthToken = tokenResponse?.accessToken
             }
@@ -138,11 +143,11 @@ open class GeniusClient: NSObject, ObservableObject {
         }()
 
         var code: String
-        var clientSecret: String
-        let grantType: String // always "authorization_code"
         var clientId: String
+        var clientSecret: String
         var redirectUri: String
         let responseType: String // always "code"
+        let grantType: String // always "authorization_code"
     }
 
     struct TokenResponse: Codable {
