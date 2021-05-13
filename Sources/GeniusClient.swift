@@ -86,7 +86,7 @@ open class GeniusClient: NSObject, ObservableObject {
             }
 
             session.presentationContextProvider = self
-            session.prefersEphemeralWebBrowserSession = true
+            session.prefersEphemeralWebBrowserSession = false
             session.start()
         }
 
