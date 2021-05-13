@@ -123,7 +123,7 @@ open class GeniusClient: NSObject, ObservableObject {
                 let tokenResponse = try? TokenResponseBody.decoder.decode(TokenResponseBody.self, from: data)
                 self?.oAuthToken = tokenResponse?.accessToken
             }
-        }
+        }.resume()
     }
 
     struct TokenRequestBody: Codable {
