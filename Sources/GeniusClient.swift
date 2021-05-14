@@ -118,6 +118,7 @@ open class GeniusClient: NSObject, ObservableObject {
                                          grantType: "authorization_code")
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
+        request.addValue("SwiftGenius/1.0", forHTTPHeaderField: "User-Agent")
         request.httpMethod = "POST"
         request.httpBody = try? TokenRequestBody.encoder.encode(tokenBody)
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
