@@ -18,17 +18,15 @@ public class MockGenius: NSObject, Genius {
         super.init()
     }
 
-    public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAccount.Response, Error> {
+    public func account() -> Future<GeniusAccount.Response, Error> {
         return apply(toJsonObjectIn: "get-account-200")
     }
 
-    public func annotation(id: Int,
-                           responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAnnotation.Response, Error> {
+    public func annotation(id: Int) -> Future<GeniusAnnotation.Response, Error> {
         return apply(toJsonObjectIn: "get-annotations-200")
     }
 
-    public func artist(id: Int,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtist.Response, Error> {
+    public func artist(id: Int) -> Future<GeniusArtist.Response, Error> {
         return apply(toJsonObjectIn: "get-artists-200")
     }
 
@@ -38,31 +36,26 @@ This file doesn't exist, so the promise returned by this function should be reje
 """)
     }
 
-    public func referents(forSongId id: Int,
-                          responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusReferent.Response, Error> {
+    public func referents(forSongId id: Int) -> Future<GeniusReferent.Response, Error> {
         return apply(toJsonObjectIn: "get-referents-200")
     }
 
-    public func search(terms: String,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSearch.Response, Error> {
+    public func search(terms: String) -> Future<GeniusSearch.Response, Error> {
         return apply(toJsonObjectIn: "get-search-200")
     }
 
-    public func song(id: Int,
-                     responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSong.Response, Error> {
+    public func song(id: Int) -> Future<GeniusSong.Response, Error> {
         return apply(toJsonObjectIn: "get-songs-200")
     }
 
     public func songs(byArtistId artistId: Int,
                       sortOrder: GeniusSongSortOrder = .title,
                       resultsPerPage: Int = 20,
-                      pageNumber: Int = 1,
-                      responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtistSongs.Response, Error> {
+                      pageNumber: Int = 1) -> Future<GeniusArtistSongs.Response, Error> {
         return apply(toJsonObjectIn: "get-artist-songs-200")
     }
 
-    public func webPage(id: Int,
-                        responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusWebPage.Response, Error> {
+    public func webPage(id: Int) -> Future<GeniusWebPage.Response, Error> {
         return apply(toJsonObjectIn: "get-web-pages-200")
     }
 

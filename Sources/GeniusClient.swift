@@ -33,9 +33,20 @@ open class GeniusClient: NSObject, ObservableObject {
         return scope.map { $0.rawValue }.joined(separator: " ")
     }
 
+    /// Identifies the calling app in each request's `User-Agent` request
+    /// header.
+    public var userAgent: String
+
+    internal private(set) static var jsonDecoder: JSONDecoder = {
+        let jsonDecoder = JSONDecoder()
+        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        return jsonDecoder
+    }()
+
     // MARK: - Other Properties
 
-    private var baseUrl = URL(string: "https://api.genius.com/")!
+    internal var baseUrl = URL(string: "https://api.genius.com/")!
 
     private var clientId: String
 
@@ -52,15 +63,15 @@ open class GeniusClient: NSObject, ObservableObject {
     public init(clientId: String,
                 clientSecret: String,
                 callbackUrl: URL,
+                userAgent: String = "SwiftGenius/1.0",
                 scope: [Scope] = [.me]) {
         self.clientId = clientId
         self.clientSecret = clientSecret
         self.callbackUrl = callbackUrl
+        self.userAgent = userAgent
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
 
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         super.init()
     }
 
@@ -121,7 +132,7 @@ open class GeniusClient: NSObject, ObservableObject {
                           httpResponse.statusCode != 200 {
                     print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
                 } else if let data = data {
-                    let tokenResponse: TokenResponse? = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
+                    let tokenResponse: TokenResponse? = try? Self.jsonDecoder.decode(TokenResponse.self, from: data)
                     self?.oAuthToken = tokenResponse?.accessToken
                 }
             }
@@ -140,12 +151,28 @@ open class GeniusClient: NSObject, ObservableObject {
                                          clientId: clientId,
                                          clientSecret: clientSecret,
                                          redirectUri: callbackUrl.absoluteString)
+
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
-        request.addValue("SwiftGenius/1.0", forHTTPHeaderField: "User-Agent")
+        request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
         request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         request.httpBody = tokenBody.wwwFormUrlEncodedData
+
+        return request
+    }
+
+    func geniusGetRequest(path: String) -> URLRequest? {
+        guard let endpoint = URL(string: path, relativeTo: baseUrl),
+              let oAuthToken = oAuthToken else {
+            return nil
+        }
+
+        var request = URLRequest(url: endpoint)
+        request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
+        request.addValue("text/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(oAuthToken)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
 
         return request
     }
@@ -181,41 +208,33 @@ open class GeniusClient: NSObject, ObservableObject {
 
     struct TokenResponse: Codable {
 
-        static var decoder: JSONDecoder = {
-            let decoder = JSONDecoder()
-            decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-            return decoder
-        }()
-
         var accessToken: String
         var tokenType: String
 
     }
 
-    public func account(responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAccount.Response, Error> {
+    public func account() -> Future<GeniusAccount.Response, Error> {
         return Future<GeniusAccount.Response, Error> { [weak self] (future) in
-            guard let oAuthToken = self?.oAuthToken else {
+            guard let request = self?.geniusGetRequest(path: "/account/") else {
                 future(.failure(NSError(domain: "GeniusClient", code: 0, userInfo: nil)))
 
                 return
             }
 
-            let url = URL(string: "/annotations/10225840", relativeTo: self?.baseUrl)!
-            var request = URLRequest(url: url)
-            request.addValue("Bearer \(oAuthToken)", forHTTPHeaderField: "Authorization")
-
             URLSession.shared.dataTask(with: request) { (data, response, error) in
-                if let error = error {
-                    future(.failure(error))
-                } else if let data = data {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    do {
-                        let jsonResponse: GeniusAccount.Response = try GeniusAccount.Response.decode(fromJSONData: data, withDecoder: decoder)
-                        future(.success(jsonResponse))
-                    } catch {
+                DispatchQueue.main.async {
+                    if let error = error {
                         future(.failure(error))
+                    } else if let httpResponse = response as? HTTPURLResponse,
+                              httpResponse.statusCode != 200 {
+                        print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
+                    } else if let data = data {
+                        do {
+                            let jsonResponse: GeniusAccount.Response = try Self.jsonDecoder.decode(GeniusAccount.Response.self, from: data)
+                            future(.success(jsonResponse))
+                        } catch {
+                            future(.failure(error))
+                        }
                     }
                 }
             }.resume()
@@ -234,29 +253,24 @@ extension GeniusClient: ASWebAuthenticationPresentationContextProviding {
 
 extension GeniusClient: Genius {
 
-    public func annotation(id: Int,
-                           responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusAnnotation.Response, Error> {
+    public func annotation(id: Int) -> Future<GeniusAnnotation.Response, Error> {
 //        return get(path: "/annotations/\(id)")
         return unimplemented(functionName: "annotation")
     }
 
-    public func artist(id: Int,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtist.Response, Error> {
+    public func artist(id: Int) -> Future<GeniusArtist.Response, Error> {
         return unimplemented(functionName: "artist")
     }
 
-    public func referents(forSongId id: Int,
-                          responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusReferent.Response, Error> {
+    public func referents(forSongId id: Int) -> Future<GeniusReferent.Response, Error> {
         return unimplemented(functionName: "referents")
     }
 
-    public func search(terms: String,
-                       responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSearch.Response, Error> {
+    public func search(terms: String) -> Future<GeniusSearch.Response, Error> {
         return unimplemented(functionName: "search")
     }
 
-    public func song(id: Int,
-                     responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusSong.Response, Error> {
+    public func song(id: Int) -> Future<GeniusSong.Response, Error> {
         return unimplemented(functionName: "song")
     }
 
@@ -269,8 +283,7 @@ extension GeniusClient: Genius {
     public func songs(byArtistId artistId: Int,
                       sortOrder: GeniusSongSortOrder,
                       resultsPerPage: Int,
-                      pageNumber: Int,
-                      responseFormats: [GeniusResponseFormat] = [.dom]) -> Future<GeniusArtistSongs.Response, Error> {
+                      pageNumber: Int) -> Future<GeniusArtistSongs.Response, Error> {
         return unimplemented(functionName: "account")
     }
 

@@ -72,7 +72,7 @@ class GeniusClientTests: ClientTestBase {
     }
 
     func testSearchIsUnimplemented() {
-        assert(invalidFuture: genius.search(terms: "foo", responseFormats: [.dom]))
+        assert(invalidFuture: genius.search(terms: "foo"))
     }
 
     func testSongIsUnimplemented() {
@@ -110,7 +110,7 @@ class GeniusClientTests: ClientTestBase {
 
     func testTokenResponseDecoding() throws {
         let tokenData = "{\"access_token\":\"foo\",\"token_type\":\"bearer\"}".data(using: .utf8)!
-        let tokenObject: GeniusClient.TokenResponse = try GeniusClient.TokenResponse.decoder.decode(GeniusClient.TokenResponse.self, from: tokenData)
+        let tokenObject: GeniusClient.TokenResponse = try GeniusClient.jsonDecoder.decode(GeniusClient.TokenResponse.self, from: tokenData)
         XCTAssertEqual(tokenObject.accessToken, "foo")
         XCTAssertEqual(tokenObject.tokenType, "bearer")
     }
