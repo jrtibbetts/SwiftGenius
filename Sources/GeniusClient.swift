@@ -179,6 +179,7 @@ open class GeniusClient: NSObject, ObservableObject {
         }()
 
         var accessToken: String
+        var tokenType: String
 
     }
 
