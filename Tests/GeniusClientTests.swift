@@ -89,4 +89,22 @@ class GeniusClientTests: ClientTestBase {
         assert(invalidFuture: promise)
     }
 
+    func testAccessTokenRequestFromUrl() {
+        let clientId = "foo"
+        let clientSecret = "bar"
+        let callbackUrl = URL(string: "https://thankyouforhearingme.com")!
+        let client = GeniusClient(clientId: clientId, clientSecret: clientSecret, callbackUrl: callbackUrl)
+        let responseUrl = URL(string: "https://someurl.com?code=this_is_a_code")!
+        let request = client.accessTokenRequest(from: responseUrl)
+        XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/x-www-form-urlencoded")
+        XCTAssertEqual(request.httpMethod, "POST")
+        let requestBody = String(data: request.httpBody!, encoding: .utf8)!
+        XCTAssertTrue(requestBody.contains("code=this_is_a_code"))
+        XCTAssertTrue(requestBody.contains("client_id=foo"))
+        XCTAssertTrue(requestBody.contains("client_secret=bar"))
+        XCTAssertTrue(requestBody.contains("redirect_uri=https://thankyouforhearingme.com"))
+        XCTAssertTrue(requestBody.contains("response_type=code"))
+        XCTAssertTrue(requestBody.contains("grant_type=authorization_code"))
+    }
+
 }

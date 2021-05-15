@@ -103,24 +103,8 @@ open class GeniusClient: NSObject, ObservableObject {
     }
 
     open func retrieveAccessToken(from url: URL) {
-        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        let queryItems = components.query!
-            .split(separator: "&")
-            .reduce(into: [String: String]()) { (dictionary, queryItem) in
-                let itemElements = queryItem.split(separator: "=")
-                dictionary[String(itemElements[0])] = String(itemElements[1])
-            }
-        let tokenBody = TokenRequestBody(code: queryItems["code"]!,
-                                         clientId: clientId,
-                                         clientSecret: clientSecret,
-                                         redirectUri: callbackUrl.absoluteString,
-                                         responseType: "code",
-                                         grantType: "authorization_code")
-        let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
-        var request = URLRequest(url: endpoint)
-        request.addValue("SwiftGenius/1.0", forHTTPHeaderField: "User-Agent")
-        request.httpMethod = "POST"
-        request.httpBody = try? TokenRequestBody.encoder.encode(tokenBody)
+        let request = accessTokenRequest(from: url)
+
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             if let error = error {
                 print("Error when requesting auth token: ", error)
@@ -132,6 +116,28 @@ open class GeniusClient: NSObject, ObservableObject {
                 self?.oAuthToken = tokenResponse?.accessToken
             }
         }.resume()
+    }
+
+    func accessTokenRequest(from url: URL) -> URLRequest {
+        let components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        let queryItems = components.query!
+            .split(separator: "&")
+            .reduce(into: [String: String]()) { (dictionary, queryItem) in
+                let itemElements = queryItem.split(separator: "=")
+                dictionary[String(itemElements[0])] = String(itemElements[1])
+            }
+        let tokenBody = TokenRequestBody(code: queryItems["code"]!,
+                                         clientId: clientId,
+                                         clientSecret: clientSecret,
+                                         redirectUri: callbackUrl.absoluteString)
+        let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
+        var request = URLRequest(url: endpoint)
+        request.addValue("SwiftGenius/1.0", forHTTPHeaderField: "User-Agent")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = tokenBody.wwwFormUrlEncodedData
+
+        return request
     }
 
     struct TokenRequestBody: Codable {
@@ -147,8 +153,20 @@ open class GeniusClient: NSObject, ObservableObject {
         var clientId: String
         var clientSecret: String
         var redirectUri: String
-        let responseType: String // always "code"
-        let grantType: String // always "authorization_code"
+
+        var wwwFormUrlEncodedData: Data? {
+            return [
+                "code": code,
+                "client_id": clientId,
+                "client_secret": clientSecret,
+                "redirect_uri": redirectUri,
+                "response_type": "code",
+                "grant_type": "authorization_code"
+            ]
+            .map { "\($0)=\($1)" }
+            .joined(separator: "&")
+            .data(using: .utf8)
+        }
     }
 
     struct TokenResponse: Codable {
