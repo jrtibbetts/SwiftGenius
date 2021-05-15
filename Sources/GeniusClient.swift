@@ -112,7 +112,7 @@ open class GeniusClient: NSObject, ObservableObject {
                       httpResponse.statusCode != 200 {
                 print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
             } else if let data = data {
-                let tokenResponse = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
+                let tokenResponse = try? GeniusClient.TokenResponse.decoder.decode(GeniusClient.TokenResponse.self, from: data)
                 self?.oAuthToken = tokenResponse?.accessToken
             }
         }.resume()
