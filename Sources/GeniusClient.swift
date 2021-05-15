@@ -114,14 +114,16 @@ open class GeniusClient: NSObject, ObservableObject {
         let request = accessTokenRequest(from: url)
 
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
-            if let error = error {
-                print("Error when requesting auth token: ", error)
-            } else if let httpResponse = response as? HTTPURLResponse,
-                      httpResponse.statusCode != 200 {
-                print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
-            } else if let data = data {
-                let tokenResponse: TokenResponse? = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
-                self?.oAuthToken = tokenResponse?.accessToken
+            DispatchQueue.main.async {
+                if let error = error {
+                    print("Error when requesting auth token: ", error)
+                } else if let httpResponse = response as? HTTPURLResponse,
+                          httpResponse.statusCode != 200 {
+                    print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
+                } else if let data = data {
+                    let tokenResponse: TokenResponse? = try? TokenResponse.decoder.decode(TokenResponse.self, from: data)
+                    self?.oAuthToken = tokenResponse?.accessToken
+                }
             }
         }.resume()
     }
