@@ -6,7 +6,7 @@ import XCTest
 class GeniusTestBase: JSONTestBase {
 
     func geniusObject<T: Codable>(inLocalJsonFileNamed fileName: String) throws -> T {
-        let bundle = SwiftGenius.bundle
+        let bundle = SwiftGenius.resourceBundle
 
         return try jsonObject(inLocalJsonFileNamed: fileName, inBundle: bundle)
     }

@@ -89,13 +89,14 @@ class GeniusClientTests: ClientTestBase {
         assert(invalidFuture: promise)
     }
 
-    func testAccessTokenRequestFromUrl() {
+    func testRetrieveAccessToken() throws {
         let clientId = "foo"
         let clientSecret = "bar"
         let callbackUrl = URL(string: "https://thankyouforhearingme.com")!
         let client = GeniusClient(clientId: clientId, clientSecret: clientSecret, callbackUrl: callbackUrl)
-        let responseUrl = URL(string: "https://someurl.com?code=this_is_a_code")!
-        let request = client.accessTokenRequest(from: responseUrl)
+        let responseUrl = SwiftGeniusTests.resourceBundle.url(forResource: "TokenResponse", withExtension: "json")!
+        let responseUrlWithQuery = URL(string: responseUrl.absoluteString + "?code=this_is_a_code")!
+        let request = client.accessTokenRequest(from: responseUrlWithQuery)
         XCTAssertEqual(request.value(forHTTPHeaderField: "Content-Type"), "application/x-www-form-urlencoded")
         XCTAssertEqual(request.httpMethod, "POST")
         let requestBody = String(data: request.httpBody!, encoding: .utf8)!
@@ -105,7 +106,7 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertTrue(requestBody.contains("redirect_uri=https://thankyouforhearingme.com"))
         XCTAssertTrue(requestBody.contains("response_type=code"))
         XCTAssertTrue(requestBody.contains("grant_type=authorization_code"))
-    }
+   }
 
     func testTokenResponseDecoding() throws {
         let tokenData = "{\"access_token\":\"foo\",\"token_type\":\"bearer\"}".data(using: .utf8)!
@@ -113,4 +114,5 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(tokenObject.accessToken, "foo")
         XCTAssertEqual(tokenObject.tokenType, "bearer")
     }
+
 }

@@ -38,7 +38,7 @@ let pkg = Package(
         .testTarget(name: "SwiftGeniusTests",
                     dependencies: ["SwiftGenius"],
                     path: "Tests",
-                    resources: [.copy("SampleFoo.json")])
+                    resources: [.copy("TokenResponse.json")])
     ]
 )
 

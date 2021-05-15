@@ -74,7 +74,7 @@ This file doesn't exist, so the promise returned by this function should be reje
                 future(.failure(NSError(domain: "MockGenius", code: 0, userInfo: nil)))
             } else {
                 do {
-                    if let url = SwiftGenius.bundle.url(forResource: fileName, withExtension: "json") {
+                    if let url = SwiftGenius.resourceBundle.url(forResource: fileName, withExtension: "json") {
                         let data = try Data(contentsOf: url)
                         let obj: T = try jsonDecoder.decode(T.self, from: data)
                         future(.success(obj))

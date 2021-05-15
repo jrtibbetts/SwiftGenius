@@ -15,7 +15,7 @@ class ClientTestBase: XCTestCase {
         let exp = expectation(description: description)
         var returnableObject: T?
 
-        let subscriber = future.sink(receiveCompletion: { (completion) in
+        _ = future.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 XCTFail(error.localizedDescription, file: file, line: line)
@@ -40,7 +40,7 @@ class ClientTestBase: XCTestCase {
         let exp = expectation(description: description)
         var returnableError: Error?
 
-        let subscriber = future.sink(receiveCompletion: { (completion) in
+        _ = future.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 returnableError = error
