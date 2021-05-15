@@ -25,6 +25,10 @@ open class GeniusClient: NSObject, ObservableObject {
 
     public var callbackUrl: URL
 
+    public var isAuthenticated: Bool {
+        return oAuthToken != nil
+    }
+
     public var scopeString: String {
         return scope.map { $0.rawValue }.joined(separator: " ")
     }
@@ -100,6 +104,10 @@ open class GeniusClient: NSObject, ObservableObject {
         }, receiveValue: { [weak self] (url) in
             self?.retrieveAccessToken(from: url)
         })
+    }
+
+    open func logOut() {
+        oAuthToken = nil
     }
 
     open func retrieveAccessToken(from url: URL) {
