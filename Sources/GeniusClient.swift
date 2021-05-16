@@ -213,8 +213,8 @@ open class GeniusClient: NSObject, ObservableObject {
 
     }
 
-    public func account() -> Future<GeniusAccount.Response, Error> {
-        return Future<GeniusAccount.Response, Error> { [weak self] (future) in
+    public func account() -> Future<GeniusAccount, Error> {
+        return Future<GeniusAccount, Error> { [weak self] (future) in
             guard let request = self?.geniusGetRequest(path: "/account/") else {
                 future(.failure(NSError(domain: "GeniusClient", code: 0, userInfo: nil)))
 
@@ -230,8 +230,15 @@ open class GeniusClient: NSObject, ObservableObject {
                         print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
                     } else if let data = data {
                         do {
-                            let jsonResponse: GeniusAccount.Response = try Self.jsonDecoder.decode(GeniusAccount.Response.self, from: data)
-                            future(.success(jsonResponse))
+                            let jsonResponse = try Self.jsonDecoder.decode(GeniusAccount.Response.self, from: data)
+
+                            if let user = jsonResponse.response?.user {
+                                future(.success(user))
+                            } else if let meta = jsonResponse.meta {
+                                future(.failure(NSError(domain: "GeniusClient", code: meta.status, userInfo: ["message": meta.message])))
+                            } else {
+                                future(.failure(NSError(domain: "GeniusClient", code: -1, userInfo: nil)))
+                            }
                         } catch {
                             future(.failure(error))
                         }
@@ -253,24 +260,24 @@ extension GeniusClient: ASWebAuthenticationPresentationContextProviding {
 
 extension GeniusClient: Genius {
 
-    public func annotation(id: Int) -> Future<GeniusAnnotation.Response, Error> {
+    public func annotation(id: Int) -> Future<GeniusAnnotation, Error> {
 //        return get(path: "/annotations/\(id)")
         return unimplemented(functionName: "annotation")
     }
 
-    public func artist(id: Int) -> Future<GeniusArtist.Response, Error> {
+    public func artist(id: Int) -> Future<GeniusArtist, Error> {
         return unimplemented(functionName: "artist")
     }
 
-    public func referents(forSongId id: Int) -> Future<GeniusReferent.Response, Error> {
+    public func referents(forSongId id: Int) -> Future<[GeniusReferent], Error> {
         return unimplemented(functionName: "referents")
     }
 
-    public func search(terms: String) -> Future<GeniusSearch.Response, Error> {
+    public func search(terms: String) -> Future<GeniusSearch, Error> {
         return unimplemented(functionName: "search")
     }
 
-    public func song(id: Int) -> Future<GeniusSong.Response, Error> {
+    public func song(id: Int) -> Future<GeniusSong, Error> {
         return unimplemented(functionName: "song")
     }
 
@@ -283,7 +290,7 @@ extension GeniusClient: Genius {
     public func songs(byArtistId artistId: Int,
                       sortOrder: GeniusSongSortOrder,
                       resultsPerPage: Int,
-                      pageNumber: Int) -> Future<GeniusArtistSongs.Response, Error> {
+                      pageNumber: Int) -> Future<[GeniusSong], Error> {
         return unimplemented(functionName: "account")
     }
 

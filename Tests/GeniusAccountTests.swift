@@ -5,14 +5,8 @@ import XCTest
 
 class GeniusAccountTests: GeniusTestBase {
 
-    func testDecodeAccountJson() throws {
-        GeniusAccountTests.assert(try geniusObject(inLocalJsonFileNamed: "get-account-200"))
-    }
-
-    public static func assert(_ accountResponse: GeniusAccount.Response) {
-        XCTAssertEqual(accountResponse.meta.status, 200)
-
-        guard let account = accountResponse.response?.user else {
+    public static func assert(_ account: GeniusAccount?) {
+        guard let account = account else {
             XCTFail("Failed to get an account object in the JSON response.")
             return
         }

@@ -5,14 +5,8 @@ import XCTest
 
 class GeniusArtistTests: GeniusTestBase {
 
-    func testDecodeArtistJson() throws {
-        GeniusArtistTests.assert(try geniusObject(inLocalJsonFileNamed: "get-artists-200"))
-    }
-
-    public static func assert(_ artistResponse: GeniusArtist.Response) {
-        XCTAssertEqual(artistResponse.meta.status, 200)
-
-        guard let artist = artistResponse.response?.artist else {
+    public static func assert(_ artist: GeniusArtist?) {
+        guard let artist = artist else {
             XCTFail("Failed to get an artist object in the JSON response.")
             return
         }

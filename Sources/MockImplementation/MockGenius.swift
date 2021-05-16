@@ -7,6 +7,7 @@ public class MockGenius: NSObject, Genius {
 
     let jsonDecoder: JSONDecoder
     let errorMode: Bool
+    let errorModeError = NSError(domain: "MockGenius", code: 9, userInfo: nil)
 
     public init(useErrorMode errorMode: Bool = false) {
         self.errorMode = errorMode
@@ -18,16 +19,37 @@ public class MockGenius: NSObject, Genius {
         super.init()
     }
 
-    public func account() -> Future<GeniusAccount.Response, Error> {
-        return apply(toJsonObjectIn: "get-account-200")
+    public func account() -> Future<GeniusAccount, Error> {
+        return Future<GeniusAccount, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusAccount.Response, Error> = self.apply(toJsonObjectIn: "get-account-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.user))
+            }
+        }
     }
 
-    public func annotation(id: Int) -> Future<GeniusAnnotation.Response, Error> {
-        return apply(toJsonObjectIn: "get-annotations-200")
+    public func annotation(id: Int) -> Future<GeniusAnnotation, Error> {
+        return Future<GeniusAnnotation, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusAnnotation.Response, Error> = self.apply(toJsonObjectIn: "get-annotations-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.annotation))
+            }
+        }
     }
 
-    public func artist(id: Int) -> Future<GeniusArtist.Response, Error> {
-        return apply(toJsonObjectIn: "get-artists-200")
+    public func artist(id: Int) -> Future<GeniusArtist, Error> {
+        return Future<GeniusArtist, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusArtist.Response, Error> = self.apply(toJsonObjectIn: "get-artists-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.artist))
+            }
+        }
     }
 
     public func brokenRequest() -> Future<String, Error> {
@@ -36,27 +58,62 @@ This file doesn't exist, so the promise returned by this function should be reje
 """)
     }
 
-    public func referents(forSongId id: Int) -> Future<GeniusReferent.Response, Error> {
-        return apply(toJsonObjectIn: "get-referents-200")
+    public func referents(forSongId id: Int) -> Future<[GeniusReferent], Error> {
+        return Future<[GeniusReferent], Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusReferent.Response, Error> = self.apply(toJsonObjectIn: "get-referents-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.referents))
+            }
+        }
     }
 
-    public func search(terms: String) -> Future<GeniusSearch.Response, Error> {
-        return apply(toJsonObjectIn: "get-search-200")
+    public func search(terms: String) -> Future<GeniusSearch, Error> {
+        return Future<GeniusSearch, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusSearch.Response, Error> = self.apply(toJsonObjectIn: "get-search-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.hits.first!))
+            }
+        }
     }
 
-    public func song(id: Int) -> Future<GeniusSong.Response, Error> {
-        return apply(toJsonObjectIn: "get-songs-200")
+    public func song(id: Int) -> Future<GeniusSong, Error> {
+        return Future<GeniusSong, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusSong.Response, Error> = self.apply(toJsonObjectIn: "get-songs-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.song))
+            }
+        }
     }
 
     public func songs(byArtistId artistId: Int,
                       sortOrder: GeniusSongSortOrder = .title,
                       resultsPerPage: Int = 20,
-                      pageNumber: Int = 1) -> Future<GeniusArtistSongs.Response, Error> {
-        return apply(toJsonObjectIn: "get-artist-songs-200")
+                      pageNumber: Int = 1) -> Future<[GeniusSong], Error> {
+        return Future<[GeniusSong], Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusArtistSongs.Response, Error> = self.apply(toJsonObjectIn: "get-artist-songs-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.songs!))
+            }
+        }
     }
 
-    public func webPage(id: Int) -> Future<GeniusWebPage.Response, Error> {
-        return apply(toJsonObjectIn: "get-web-pages-200")
+    public func webPage(id: Int) -> Future<GeniusWebPage, Error> {
+        return Future<GeniusWebPage, Error> { [unowned self] (future) in
+            let responseFuture: Future<GeniusWebPage.Response, Error> = self.apply(toJsonObjectIn: "get-web-pages-200")
+            _ = responseFuture.sink { (completion) in
+                future(.failure(errorModeError))
+            } receiveValue: { (response) in
+                future(.success(response.response!.webPage))
+            }
+        }
     }
 
     // Copied from JSONClient

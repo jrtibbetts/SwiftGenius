@@ -5,14 +5,8 @@ import XCTest
 
 class GeniusSearchTests: GeniusTestBase {
 
-    func testDecodeSearchResults() throws {
-        GeniusSearchTests.assert(try geniusObject(inLocalJsonFileNamed: "get-search-200"))
-    }
-
-    public static func assert(_ searchResponse: GeniusSearch.Response) {
-        XCTAssertEqual(searchResponse.meta.status, 200)
-
-        guard let hits = searchResponse.response?.hits else {
+    public static func assert(_ hits: [GeniusSong]?) {
+        guard let hits = hits else {
             XCTFail("The response is supposed to contain at least one song.")
             return
         }

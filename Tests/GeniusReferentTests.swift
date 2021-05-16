@@ -5,14 +5,8 @@ import XCTest
 
 class GeniusReferentTests: GeniusTestBase {
 
-    func testDecodeReferentJson() throws {
-        GeniusReferentTests.assert(try geniusObject(inLocalJsonFileNamed: "get-referents-200"))
-    }
-
-    public static func assert(_ referentResponse: GeniusReferent.Response) {
-        XCTAssertEqual(referentResponse.meta.status, 200)
-
-        guard let referents = referentResponse.response?.referents else {
+    public static func assert(_ referents: [GeniusReferent]?) {
+        guard let referents = referents else {
             XCTFail("The response is supposed to contain an array of referents.")
             return
         }

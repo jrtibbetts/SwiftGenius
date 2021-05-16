@@ -10,34 +10,40 @@ class MockGeniusTests: ClientTestBase {
     let errorClient = MockGenius(useErrorMode: true)
 
     func testValidMode() {
-        assertValidJson("user response", promise: client.account())
-        _ = assertValidJson("annotation response",
+        _ = assertValidJson("user response", promise: client.account()).sink(receiveCompletion: { _ in },
+                                                                             receiveValue: { (account) in
+                                                                                GeniusAccountTests.assert(account)
+                                                                             })
+        _ = assertValidJson("annotation",
                             promise: client.annotation(id: 99)).sink(receiveCompletion: { _ in },
-                                                                     receiveValue: { (response) in
-                                                                        GeniusAnnotationTests.assert(response)
+                                                                     receiveValue: { (annotation) in
+                                                                        GeniusAnnotationTests.assert(annotation)
                                                                      })
-        _ = assertValidJson("artist response",
+        _ = assertValidJson("artist",
                             promise: client.artist(id: 99)).sink(receiveCompletion: { _ in },
-                                                                 receiveValue: { (response) in
-                                                                    GeniusArtistTests.assert(response)
+                                                                 receiveValue: { (artist) in
+                                                                    GeniusArtistTests.assert(artist)
                                                                  })
-        _ = assertValidJson("artist songs response",
+        _ = assertValidJson("artist songs",
                             promise: client.songs(byArtistId : 99)).sink(receiveCompletion: { _ in },
-                                                                         receiveValue: { (response) in
-                                                                            GeniusArtistSongsTests.assert(response)
+                                                                         receiveValue: { (songs) in
+                                                                            GeniusArtistSongsTests.assert(songs)
                                                                          })
-        _ = assertValidJson("referents response",
+        _ = assertValidJson("referents",
                             promise: client.referents(forSongId: 99)).sink(receiveCompletion: { _ in },
-                                                                           receiveValue: { (response) in
-                                                                            GeniusReferentTests.assert(response)
+                                                                           receiveValue: { (referents) in
+                                                                            GeniusReferentTests.assert(referents)
                                                                            })
-        assertValidJson("search results", promise: client.search(terms: "foo"))
-        _ = assertValidJson("song response",
+        assertValidJson("search results", promise: client.search(terms: "foo")) // .sink(receiveCompletion: { _ in },
+//                                                                                         receiveValue: { (search) in
+//                                                                                            GeniusSearchTests.assert(search.highlights)
+//                                                                                         })
+        _ = assertValidJson("song",
                             promise: client.song(id: 99)).sink(receiveCompletion: { _ in },
-                                                               receiveValue: { (response) in
-                                                                GeniusSongTests.assert(response)
+                                                               receiveValue: { (searchResults) in
+                                                                GeniusSongTests.assert(searchResults)
                                                                })
-        assertValidJson("web page response", promise: client.webPage(id: 99))
+        assertValidJson("web page", promise: client.webPage(id: 99))
     }
 
     func testErrorMode() {
