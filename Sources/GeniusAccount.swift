@@ -61,7 +61,6 @@ public struct GeniusAccount: Codable {
 
     public struct Stats: Codable {
         
-        public var allActivitiesCount: Int
         public var annotationsCount: Int
         public var answersCount: Int
         public var commentsCount: Int

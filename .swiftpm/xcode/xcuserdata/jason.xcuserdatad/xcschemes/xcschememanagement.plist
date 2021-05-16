@@ -218,6 +218,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>SwiftGenius_SwiftGeniusTests</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 	</dict>
 </dict>
 </plist>
