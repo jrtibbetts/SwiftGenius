@@ -8,14 +8,14 @@ class GeniusClientTests: ClientTestBase {
 
     // MARK: - Properties
 
-    let consumerKey = ProcessInfo.processInfo.environment["genius.client-id"] ?? "1234567890"
-    let consumerSecret = ProcessInfo.processInfo.environment["genius.client-secret"] ?? "abcdefghijklm`"
+    let consumerKey = ProcessInfo.processInfo.environment["genius.client-id"]!
+    let consumerSecret = ProcessInfo.processInfo.environment["genius.client-secret"]!
     let userAgent = "test agent"
-    let callbackUrl = URL(string: "https://www.apple.com")!
+    let callbackUrl = URL(string: ProcessInfo.processInfo.environment["genius.client-callback-url"]!)!
     lazy var genius: GeniusClient = {
         return GeniusClient(clientId: consumerKey,
                             clientSecret: consumerSecret,
-                            callbackUrl: URL(string: "genius-client-test")!)
+                            callbackUrl: callbackUrl)
     }()
 
     // MARK: - Test functions
@@ -34,7 +34,6 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
-/*
     func testAccountOk() {
         let authorizeExp = expectation(description: "Authenticating")
 
@@ -50,14 +49,13 @@ class GeniusClientTests: ClientTestBase {
             default:
                 return
             }
-        }, receiveValue: { (responseBlock) in
-            XCTAssertEqual(responseBlock.response?.user.email, "jason@tibbetts.net")
+        }, receiveValue: { (user) in
+            XCTAssertEqual(user.email, "jason@tibbetts.net")
             accountExp.fulfill()
         })
 
         wait(for: [accountExp], timeout: 10.0)
     }
- */
 
     func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
         assert(invalidFuture: genius.annotation(id: 99), description: "annotation 99")
