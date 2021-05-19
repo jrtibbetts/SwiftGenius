@@ -21,9 +21,9 @@ open class GeniusClient: NSObject, ObservableObject {
 
     @Published private var oAuthToken: String?
 
-    @Published var geniusAccount: GeniusAccount?
+    @Published public var geniusAccount: GeniusAccount?
 
-    @Published var error: Error?
+    @Published public var error: Error?
 
     // MARK: - Public Properties
 
