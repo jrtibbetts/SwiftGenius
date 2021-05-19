@@ -34,28 +34,27 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
-    func testAccountOk() {
-        let authorizeExp = expectation(description: "Authenticating")
-
-        genius.authorize()
-        wait(for: [authorizeExp], timeout: 10.0)
-
-        let accountExp = expectation(description: "Getting user account")
-
-        let subscriber = genius.account().sink(receiveCompletion: { (completion) in
-            switch completion {
-            case .failure(let error):
-                XCTFail("GeniusClient.account() finished with an error: \(error.localizedDescription)")
-            default:
-                return
-            }
-        }, receiveValue: { (user) in
-            XCTAssertEqual(user.email, "jason@tibbetts.net")
-            accountExp.fulfill()
-        })
-
-        wait(for: [accountExp], timeout: 10.0)
-    }
+//    func testAccountOk() {
+//        let authorizeExp = expectation(description: "Authenticating")
+//        genius.authorize()
+//        wait(for: [authorizeExp], timeout: 10.0)
+//
+//        let accountExp = expectation(description: "Getting user account")
+//
+//        let subscriber = genius.account().sink(receiveCompletion: { (completion) in
+//            switch completion {
+//            case .failure(let error):
+//                XCTFail("GeniusClient.account() finished with an error: \(error.localizedDescription)")
+//            default:
+//                return
+//            }
+//        }, receiveValue: { (user) in
+//            XCTAssertEqual(user.email, "jason@tibbetts.net")
+//            accountExp.fulfill()
+//        })
+//
+//        wait(for: [accountExp], timeout: 10.0)
+//    }
 
     func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
         assert(invalidFuture: genius.annotation(id: 99), description: "annotation 99")

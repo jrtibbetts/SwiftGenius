@@ -213,39 +213,15 @@ open class GeniusClient: NSObject, ObservableObject {
 
     }
 
-    public func account() -> Future<GeniusAccount, Error> {
-        return Future<GeniusAccount, Error> { [weak self] (future) in
-            guard let request = self?.geniusGetRequest(path: "/account/") else {
-                future(.failure(NSError(domain: "GeniusClient", code: 0, userInfo: nil)))
+    public func accountPublisher() -> AnyPublisher<GeniusAccount, Error> {
+            let request = geniusGetRequest(path: "/account/")!
 
-                return
-            }
-
-            URLSession.shared.dataTask(with: request) { (data, response, error) in
-                DispatchQueue.main.async {
-                    if let error = error {
-                        future(.failure(error))
-                    } else if let httpResponse = response as? HTTPURLResponse,
-                              httpResponse.statusCode != 200 {
-                        print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
-                    } else if let data = data {
-                        do {
-                            let jsonResponse = try Self.jsonDecoder.decode(GeniusAccount.Response.self, from: data)
-
-                            if let user = jsonResponse.response?.user {
-                                future(.success(user))
-                            } else if let meta = jsonResponse.meta {
-                                future(.failure(NSError(domain: "GeniusClient", code: meta.status, userInfo: ["message": meta.message])))
-                            } else {
-                                future(.failure(NSError(domain: "GeniusClient", code: -1, userInfo: nil)))
-                            }
-                        } catch {
-                            future(.failure(error))
-                        }
-                    }
-                }
-            }.resume()
-        }
+            return URLSession.shared.dataTaskPublisher(for: request)
+                .map { $0.data }
+                .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
+                .map { $0.response!.user }
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
     }
 
 }
@@ -259,6 +235,10 @@ extension GeniusClient: ASWebAuthenticationPresentationContextProviding {
 }
 
 extension GeniusClient: Genius {
+
+    public func account() -> Future<GeniusAccount, Error> {
+        return unimplemented(functionName: "account")
+    }
 
     public func annotation(id: Int) -> Future<GeniusAnnotation, Error> {
 //        return get(path: "/annotations/\(id)")
