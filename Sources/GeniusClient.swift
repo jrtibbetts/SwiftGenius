@@ -21,6 +21,10 @@ open class GeniusClient: NSObject, ObservableObject {
 
     @Published private var oAuthToken: String?
 
+    @Published var geniusAccount: GeniusAccount?
+
+    @Published var error: Error?
+
     // MARK: - Public Properties
 
     public var callbackUrl: URL
@@ -75,7 +79,11 @@ open class GeniusClient: NSObject, ObservableObject {
         super.init()
     }
 
-    private var logInSubscription: AnyCancellable?
+    private var currentOperation: AnyCancellable? {
+        didSet {
+            oldValue?.cancel()
+        }
+    }
 
     open func authorize() {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
@@ -105,7 +113,7 @@ open class GeniusClient: NSObject, ObservableObject {
             session.start()
         }
 
-        logInSubscription = logInFuture.sink(receiveCompletion: { (completion) in
+        currentOperation = logInFuture.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 print("Failed to receive a sign-in completion: ", error)
@@ -213,15 +221,26 @@ open class GeniusClient: NSObject, ObservableObject {
 
     }
 
-    public func accountPublisher() -> AnyPublisher<GeniusAccount, Error> {
-            let request = geniusGetRequest(path: "/account/")!
+    public func fetchAccount() {
+        let request = geniusGetRequest(path: "/account/")!
 
-            return URLSession.shared.dataTaskPublisher(for: request)
-                .map { $0.data }
-                .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
-                .map { $0.response!.user }
-                .receive(on: DispatchQueue.main)
-                .eraseToAnyPublisher()
+        currentOperation = URLSession.shared.dataTaskPublisher(for: request)
+            .map { $0.data }
+            .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
+            .map { $0.response!.user }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+            .receive(on: DispatchQueue.main)
+            .sink(receiveCompletion: { [weak self] (completion) in
+                switch completion {
+                case .failure(let error):
+                    self?.error = error
+                case .finished:
+                    return
+                }
+            }, receiveValue: { [weak self] (account) in
+                self?.geniusAccount = account
+            })
     }
 
 }
