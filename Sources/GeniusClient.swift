@@ -230,7 +230,6 @@ open class GeniusClient: NSObject, ObservableObject {
             .map { $0.response!.user }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
-            .receive(on: DispatchQueue.main)
             .sink(receiveCompletion: { [weak self] (completion) in
                 switch completion {
                 case .failure(let error):
