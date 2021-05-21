@@ -3,6 +3,17 @@
 import Combine
 import Foundation
 
+public protocol RequestBuilder {
+
+    func accountRequest() -> URLRequest
+    func annotationRequest() -> URLRequest
+    func artistRequest(id: Int) -> URLRequest
+    func referentRequest(id: Int) -> URLRequest
+    func searchRequest(terms: String) -> URLRequest
+    func songRequest(id: Int) -> URLRequest
+
+}
+
 /// Protocol for clients of the Genius.com API (https://api.genius.com). Note
 /// that no functions relating to authenticating with the genius.com server are
 /// included in this protocol; they can be found in the `GeniusClient`
