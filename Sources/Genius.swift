@@ -6,25 +6,52 @@ import Foundation
 public protocol RequestBuilder {
 
     func accountRequest() -> URLRequest
-    func annotationRequest() -> URLRequest
+    func annotationRequest(id: Int) -> URLRequest
     func artistRequest(id: Int) -> URLRequest
-    func referentRequest(id: Int) -> URLRequest
+    func referentsRequest(id: Int) -> URLRequest
     func searchRequest(terms: String) -> URLRequest
     func songRequest(id: Int) -> URLRequest
 
+}
+
+public enum HTTPError: LocalizedError {
+
+    case statusCode(Int)
+
+}
+
+public enum GeniusError: Error {
+    case unimplemented(functionName: String)
 }
 
 /// Protocol for clients of the Genius.com API (https://api.genius.com). Note
 /// that no functions relating to authenticating with the genius.com server are
 /// included in this protocol; they can be found in the `GeniusClient`
 /// implementation instead.
-public protocol Genius: AnyObject {
+open class Genius: NSObject {
+
+    public static var jsonDecoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+
+        return decoder
+    }()
+
+    private var requestBuilder: RequestBuilder
+
+    // MARK: - Initializer
+
+    internal init(requestBuilder: RequestBuilder) {
+        self.requestBuilder = requestBuilder
+    }
 
     /// Get the currently-authenticated user's account information.
     ///
     /// - returns: A `Future` that yields a `GeniusAccount` if the
     ///            request is successful, or an error if it wasn't.
-    func account() -> Future<GeniusAccount, Error>
+    func account() -> AnyPublisher<GeniusAccount, Error> {
+        return publisher(for: requestBuilder.accountRequest())
+    }
 
     /// Get a specific song lyric annotation.
     ///
@@ -32,7 +59,9 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusAnnotation` if
     ///            the request was successful, or an error if it isn't.
-    func annotation(id: Int) -> Future<GeniusAnnotation, Error>
+    func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
+        return publisher(for: requestBuilder.annotationRequest(id: id))
+    }
 
     /// Get a specific artist.
     ///
@@ -42,7 +71,9 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusArtist` if the
     ///            request was successful, or an error if it isn't.
-    func artist(id: Int) -> Future<GeniusArtist, Error>
+    func artist(id: Int) -> AnyPublisher<GeniusArtist, Error> {
+        return publisher(for: requestBuilder.artistRequest(id: id))
+    }
 
     /// Get the annotated lyric segments of a specified song. **Genius.com does
     /// not have an API for getting *all* of a song's lyrics due to copyright
@@ -52,7 +83,9 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusReferent` if the
     ///            request was successful, or an error if it isn't.
-    func referents(forSongId id: Int) -> Future<[GeniusReferent], Error>
+//    func referents(forSongId id: Int) -> AnyPublisher<[GeniusReferent], Error> {
+//        return publisher(for: requestBuilder.referentsRequest(id: id))
+//    }
 
     /// Search for content on Genius.com. Search results are generally lists of
     /// songs that match, so that an artist search returns that artist's top
@@ -60,7 +93,9 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSearch` if the
     ///            request was successful, or an error if it isn't.
-    func search(terms: String) -> Future<GeniusSearch, Error>
+    func search(terms: String) -> AnyPublisher<GeniusSearch, Error> {
+        return publisher(for: requestBuilder.searchRequest(terms: terms))
+    }
 
     /// Get a specific song from the Genius database.
     ///
@@ -70,7 +105,9 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSong` if the
     ///            request was successful, or an error if it isn't.
-    func song(id: Int) -> Future<GeniusSong, Error>
+    func song(id: Int) -> AnyPublisher<GeniusSong, Error> {
+        return publisher(for: requestBuilder.songRequest(id: id))
+    }
 
     /// Get all the songs by a specific artist. Unlike other Genius API calls,
     /// these results can be paged.
@@ -85,10 +122,34 @@ public protocol Genius: AnyObject {
     ///
     /// - returns: A `Future` that yields a `GeniusArtistSongs` if
     ///            the request was successful, or an error if it isn't.
-    func songs(byArtistId artistId: Int,
-               sortOrder: GeniusSongSortOrder,
-               resultsPerPage: Int,
-               pageNumber: Int) -> Future<[GeniusSong], Error>
+//    func songs(byArtistId artistId: Int,
+//               sortOrder: GeniusSongSortOrder,
+//               resultsPerPage: Int,
+//               pageNumber: Int) -> AnyPublisher<[GeniusSong], Error> {
+//
+//    }
+//
+//    public func artistPublisher(id: Int) -> AnyPublisher<GeniusArtist, Error> {
+//        let request = geniusGetRequest(path: "/artists/\(id)")!
+//
+//        return publisher(for: request)
+////            .map { $0.artist }
+//    }
+
+    private func publisher<T: Responsable>(for request: URLRequest) -> AnyPublisher<T, Error> {
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap { (output) in
+                if let httpResponse = output.response as? HTTPURLResponse,
+                          httpResponse.statusCode != 200 {
+                    throw HTTPError.statusCode(httpResponse.statusCode)
+                }
+
+                return output.data
+            }
+            .decode(type: T.self, decoder: Self.jsonDecoder)
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
 
 }
 

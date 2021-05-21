@@ -4,11 +4,7 @@ import AuthenticationServices
 import Combine
 import Foundation
 
-open class GeniusClient: NSObject, ObservableObject {
-
-    public enum GeniusError: Error {
-        case unimplemented(functionName: String)
-    }
+open class GeniusClient: Genius, ObservableObject {
 
     public enum Scope: String {
         case me
@@ -41,13 +37,6 @@ open class GeniusClient: NSObject, ObservableObject {
     /// header.
     public var userAgent: String
 
-    internal private(set) static var jsonDecoder: JSONDecoder = {
-        let jsonDecoder = JSONDecoder()
-        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        return jsonDecoder
-    }()
-
     // MARK: - Other Properties
 
     internal var baseUrl = URL(string: "https://api.genius.com/")!
@@ -75,9 +64,11 @@ open class GeniusClient: NSObject, ObservableObject {
         self.userAgent = userAgent
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
-
-        super.init()
+        self.requestBuilder = GeniusReleaseBuilder(baseUrl: baseUrl, oAuthToken: nil, userAgent: userAgent)
+        super.init(requestBuilder: requestBuilder)
     }
+
+    private var requestBuilder: GeniusReleaseBuilder
 
     private var currentOperation: AnyCancellable? {
         didSet {
@@ -170,21 +161,6 @@ open class GeniusClient: NSObject, ObservableObject {
         return request
     }
 
-    func geniusGetRequest(path: String) -> URLRequest? {
-        guard let endpoint = URL(string: path, relativeTo: baseUrl),
-              let oAuthToken = oAuthToken else {
-            return nil
-        }
-
-        var request = URLRequest(url: endpoint)
-        request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
-        request.addValue("text/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Bearer \(oAuthToken)", forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-
-        return request
-    }
-
     struct TokenRequestBody: Codable {
 
         static var encoder: JSONEncoder = {
@@ -221,25 +197,76 @@ open class GeniusClient: NSObject, ObservableObject {
 
     }
 
-    public func fetchAccount() {
-        let request = geniusGetRequest(path: "/account/")!
+//    public func fetchAccount() {
+//        let request = geniusGetRequest(path: "/account/")!
+//
+//        currentOperation = URLSession.shared.dataTaskPublisher(for: request)
+//            .map { $0.data }
+//            .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
+//            .map { $0.response!.user }
+//            .receive(on: DispatchQueue.main)
+//            .eraseToAnyPublisher()
+//            .sink(receiveCompletion: { [weak self] (completion) in
+//                switch completion {
+//                case .failure(let error):
+//                    self?.error = error
+//                case .finished:
+//                    return
+//                }
+//            }, receiveValue: { [weak self] (account) in
+//                self?.geniusAccount = account
+//            })
+//    }
 
-        currentOperation = URLSession.shared.dataTaskPublisher(for: request)
-            .map { $0.data }
-            .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
-            .map { $0.response!.user }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-            .sink(receiveCompletion: { [weak self] (completion) in
-                switch completion {
-                case .failure(let error):
-                    self?.error = error
-                case .finished:
-                    return
-                }
-            }, receiveValue: { [weak self] (account) in
-                self?.geniusAccount = account
-            })
+    private struct GeniusReleaseBuilder: RequestBuilder {
+
+        var baseUrl: URL!
+
+        var oAuthToken: String?
+
+        /// Identifies the calling app in each request's `User-Agent` request
+        /// header.
+        var userAgent: String
+
+        func accountRequest() -> URLRequest {
+            return geniusGetRequest(path: "/account")!
+        }
+
+        func annotationRequest(id: Int) -> URLRequest {
+            return geniusGetRequest(path: "/annotation/\(id)")!
+        }
+
+        func artistRequest(id: Int) -> URLRequest {
+            return geniusGetRequest(path: "/artists/\(id)")!
+        }
+
+        func referentsRequest(id: Int) -> URLRequest {
+            return geniusGetRequest(path: "/referents/\(id)")!
+        }
+
+        func searchRequest(terms: String) -> URLRequest {
+            return geniusGetRequest(path: "/search/\(terms)")!
+        }
+
+        func songRequest(id: Int) -> URLRequest {
+            return geniusGetRequest(path: "/song/\(id)")!
+        }
+
+        private func geniusGetRequest(path: String) -> URLRequest? {
+            guard let endpoint = URL(string: path, relativeTo: baseUrl),
+                  let oAuthToken = oAuthToken else {
+                return nil
+            }
+
+            var request = URLRequest(url: endpoint)
+            request.addValue(userAgent, forHTTPHeaderField: "User-Agent")
+            request.addValue("text/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("Bearer \(oAuthToken)", forHTTPHeaderField: "Authorization")
+            request.httpMethod = "GET"
+
+            return request
+        }
+
     }
 
 }
@@ -248,48 +275,6 @@ extension GeniusClient: ASWebAuthenticationPresentationContextProviding {
 
     public func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return ASPresentationAnchor()
-    }
-
-}
-
-extension GeniusClient: Genius {
-
-    public func account() -> Future<GeniusAccount, Error> {
-        return unimplemented(functionName: "account")
-    }
-
-    public func annotation(id: Int) -> Future<GeniusAnnotation, Error> {
-//        return get(path: "/annotations/\(id)")
-        return unimplemented(functionName: "annotation")
-    }
-
-    public func artist(id: Int) -> Future<GeniusArtist, Error> {
-        return unimplemented(functionName: "artist")
-    }
-
-    public func referents(forSongId id: Int) -> Future<[GeniusReferent], Error> {
-        return unimplemented(functionName: "referents")
-    }
-
-    public func search(terms: String) -> Future<GeniusSearch, Error> {
-        return unimplemented(functionName: "search")
-    }
-
-    public func song(id: Int) -> Future<GeniusSong, Error> {
-        return unimplemented(functionName: "song")
-    }
-
-    private func unimplemented<T>(functionName: String) -> Future<T, Error> {
-        return Future<T, Error> { (future) in
-            future(.failure(GeniusError.unimplemented(functionName: functionName)))
-        }
-    }
-
-    public func songs(byArtistId artistId: Int,
-                      sortOrder: GeniusSongSortOrder,
-                      resultsPerPage: Int,
-                      pageNumber: Int) -> Future<[GeniusSong], Error> {
-        return unimplemented(functionName: "account")
     }
 
 }

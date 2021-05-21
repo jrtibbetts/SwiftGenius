@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusAccount: Codable {
+public struct GeniusAccount: Responsable {
 
     public var apiPath: URL?
     //    public var artist: ?

@@ -8,14 +8,14 @@ class ClientTestBase: XCTestCase {
     var timeoutSeconds: TimeInterval = 5.0
 
     @discardableResult
-    func assert<T>(validFuture future: Future<T, Error>,
+    func assert<T>(validPublisher publisher: AnyPublisher<T, Error>,
                    description: String = "valid \(type(of: T.self))",
                    file: StaticString = #file,
                    line: UInt = #line) -> T? {
         let exp = expectation(description: description)
         var returnableObject: T?
 
-        _ = future.sink(receiveCompletion: { (completion) in
+        _ = publisher.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 XCTFail(error.localizedDescription, file: file, line: line)
@@ -33,14 +33,14 @@ class ClientTestBase: XCTestCase {
     }
 
     @discardableResult
-    func assert<T>(invalidFuture future: Future<T, Error>,
+    func assert<T>(failingPublisher publisher: AnyPublisher<T, Error>,
                    description: String = "invalid \(type(of: T.self))",
                    file: StaticString = #file,
                    line: UInt = #line) -> Error? {
         let exp = expectation(description: description)
         var returnableError: Error?
 
-        _ = future.sink(receiveCompletion: { (completion) in
+        _ = publisher.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 returnableError = error

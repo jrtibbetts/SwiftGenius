@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusSearch: Codable {
+public struct GeniusSearch: Responsable {
 
     public var highlights: [String]
     public var index: String

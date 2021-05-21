@@ -34,6 +34,23 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
+    func testArtistPublisherOk() {
+        let exp = expectation(description: "artist publisher")
+        genius.baseUrl = URL(string: SwiftGenius.resourceBundle.resourcePath!)!
+        _ = genius.artist(id: 99)
+            .sink { (completion) in
+                switch completion {
+                case .failure:
+                    XCTFail()
+                default:
+                    return
+                }
+            } receiveValue: { (artist) in
+                exp.fulfill()
+            }
+
+        wait(for: [exp], timeout: 5.0)
+    }
 //    func testAccountOk() {
 //        let authorizeExp = expectation(description: "Authenticating")
 //        genius.authorize()
@@ -57,34 +74,30 @@ class GeniusClientTests: ClientTestBase {
 //    }
 
     func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
-        assert(invalidFuture: genius.annotation(id: 99), description: "annotation 99")
+        assert(failingPublisher: genius.annotation(id: 99), description: "annotation 99")
     }
 
     func testArtistIsUnimplemented() {
-        assert(invalidFuture: genius.artist(id: 99))
+        assert(failingPublisher: genius.artist(id: 99))
     }
 
-    func testReferentsIsUnimplemented() {
-        assert(invalidFuture: genius.referents(forSongId: 99))
-    }
+//    func testReferentsIsUnimplemented() {
+//        assert(failingPublisher: genius.referents(forSongId: 99))
+//    }
 
     func testSearchIsUnimplemented() {
-        assert(invalidFuture: genius.search(terms: "foo"))
+        assert(failingPublisher: genius.search(terms: "foo"))
     }
 
     func testSongIsUnimplemented() {
-        assert(invalidFuture: genius.song(id: 99))
+        assert(failingPublisher: genius.song(id: 99))
     }
 
-    func testSongsByArtistIsUnimplemented() {
-        assert(invalidFuture: genius.songs(byArtistId: 99, sortOrder: .popularity, resultsPerPage: 100, pageNumber: 50))
-    }
+//    func testSongsByArtistIsUnimplemented() {
+//        assert(failingPublisher: genius.songs(byArtistId: 99, sortOrder: .popularity, resultsPerPage: 100, pageNumber: 50))
+//    }
 
     // MARK: - Utility functions
-
-    func assertPromiseWasRejected<T>(promise: Future<T, Error>) {
-        assert(invalidFuture: promise)
-    }
 
     func testRetrieveAccessToken() throws {
         let clientId = "foo"

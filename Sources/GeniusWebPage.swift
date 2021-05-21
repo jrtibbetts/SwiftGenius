@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusWebPage: Codable {
+public struct GeniusWebPage: Responsable {
 
     public var annotationCount: Int
     public var apiPath: String

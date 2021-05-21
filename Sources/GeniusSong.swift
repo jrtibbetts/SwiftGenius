@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusSong: Codable {
+public struct GeniusSong: Responsable {
 
     public var annotationCount: Int
     public var album: Album?

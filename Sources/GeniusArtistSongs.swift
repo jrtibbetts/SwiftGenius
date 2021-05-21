@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusArtistSongs: Codable {
+public struct GeniusArtistSongs: Responsable {
 
     public typealias Response = GeniusResponse<GeniusArtistSongs.ResponseBlock>
 

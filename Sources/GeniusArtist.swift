@@ -2,7 +2,13 @@
 
 import Foundation
 
-public struct GeniusArtist: Codable {
+public protocol Responsable: Codable {
+
+    associatedtype Response: Codable
+
+}
+
+public struct GeniusArtist: Responsable {
     
     public var alternateNames: [String]?
     public var apiPath: String
