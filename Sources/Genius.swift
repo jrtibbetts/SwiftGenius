@@ -49,7 +49,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusAccount` if the
     ///            request is successful, or an error if it wasn't.
-    func account() -> AnyPublisher<GeniusAccount, Error> {
+    open func account() -> AnyPublisher<GeniusAccount, Error> {
         return publisher(for: requestBuilder.accountRequest())
     }
 
@@ -59,7 +59,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusAnnotation` if
     ///            the request was successful, or an error if it isn't.
-    func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
+    open func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
         return publisher(for: requestBuilder.annotationRequest(id: id))
     }
 
@@ -71,7 +71,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusArtist` if the
     ///            request was successful, or an error if it isn't.
-    func artist(id: Int) -> AnyPublisher<GeniusArtist, Error> {
+    open func artist(id: Int) -> AnyPublisher<GeniusArtist, Error> {
         return publisher(for: requestBuilder.artistRequest(id: id))
     }
 
@@ -83,7 +83,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusReferent` if the
     ///            request was successful, or an error if it isn't.
-//    func referents(forSongId id: Int) -> AnyPublisher<[GeniusReferent], Error> {
+//    open func referents(forSongId id: Int) -> AnyPublisher<[GeniusReferent], Error> {
 //        return publisher(for: requestBuilder.referentsRequest(id: id))
 //    }
 
@@ -93,7 +93,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSearch` if the
     ///            request was successful, or an error if it isn't.
-    func search(terms: String) -> AnyPublisher<GeniusSearch, Error> {
+    open func search(terms: String) -> AnyPublisher<GeniusSearch, Error> {
         return publisher(for: requestBuilder.searchRequest(terms: terms))
     }
 
@@ -105,7 +105,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSong` if the
     ///            request was successful, or an error if it isn't.
-    func song(id: Int) -> AnyPublisher<GeniusSong, Error> {
+    open func song(id: Int) -> AnyPublisher<GeniusSong, Error> {
         return publisher(for: requestBuilder.songRequest(id: id))
     }
 
@@ -122,7 +122,7 @@ open class Genius: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusArtistSongs` if
     ///            the request was successful, or an error if it isn't.
-//    func songs(byArtistId artistId: Int,
+//    open func songs(byArtistId artistId: Int,
 //               sortOrder: GeniusSongSortOrder,
 //               resultsPerPage: Int,
 //               pageNumber: Int) -> AnyPublisher<[GeniusSong], Error> {
