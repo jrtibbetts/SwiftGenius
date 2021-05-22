@@ -9,21 +9,30 @@ class MockGeniusTests: ClientTestBase {
     let client = MockGenius()
     let errorClient = MockGenius(useErrorMode: true)
 
-    func testValidMode() {
-        _ = assertValidJson("user response", publisher: client.account()).sink(receiveCompletion: { _ in },
-                                                                               receiveValue: { (account) in
-                                                                                GeniusAccountTests.assert(account)
-                                                                               })
-        _ = assertValidJson("annotation",
-                            publisher: client.annotation(id: 99)).sink(receiveCompletion: { _ in },
-                                                                       receiveValue: { (annotation) in
-                                                                        GeniusAnnotationTests.assert(annotation)
-                                                                       })
-        _ = assertValidJson("artist",
-                            publisher: client.artist(id: 99)).sink(receiveCompletion: { _ in },
-                                                                   receiveValue: { (artist) in
-                                                                    GeniusArtistTests.assert(artist)
-                                                                   })
+    func testValidMockAccount() {
+        _ = assertValidJson("user account", publisher: client.account())
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { (account) in
+                    GeniusAccountTests.assert(account)
+                  })
+    }
+
+    func testValidMockAnnotations() {
+        _ = assertValidJson("annotations", publisher: client.annotation(id: 99))
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { (annotation) in
+                    GeniusAnnotationTests.assert(annotation)
+                  })
+    }
+
+    func testValidMockArtist() {
+        _ = assertValidJson("artist", publisher: client.artist(id: 99))
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { (artist) in
+                    GeniusArtistTests.assert(artist)
+                  })
+    }
+
 //        _ = assertValidJson("artist songs",
 //                            publisher: client.songs(byArtistId : 99)).sink(receiveCompletion: { _ in },
 //                                                                           receiveValue: { (songs) in
@@ -34,15 +43,19 @@ class MockGeniusTests: ClientTestBase {
 //                                                                             receiveValue: { (referents) in
 //                                                                                GeniusReferentTests.assert(referents)
 //                                                                             })
-        assertValidJson("search results", publisher: client.search(terms: "foo")) // .sink(receiveCompletion: { _ in },
+
+//    func testValidMockSearchResults() {
+//        _ = assertValidJson("search results", publisher: client.search(terms: "foo")) // .sink(receiveCompletion: { _ in },
         //                                                                                         receiveValue: { (search) in
         //                                                                                            GeniusSearchTests.assert(search.highlights)
         //                                                                                         })
-        _ = assertValidJson("song",
-                            publisher: client.song(id: 99)).sink(receiveCompletion: { _ in },
-                                                                 receiveValue: { (searchResults) in
-                                                                    GeniusSongTests.assert(searchResults)
-                                                                 })
+
+    func testValidMockSong() {
+        _ = assertValidJson("song", publisher: client.song(id: 99))
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { (searchResults) in
+                    GeniusSongTests.assert(searchResults)
+                  })
 //        assertValidJson("web page", publisher: client.webPage(id: 99))
     }
 

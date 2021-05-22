@@ -23,38 +23,38 @@ public class MockGenius: Genius {
 
         let errorMode: Bool
 
-        func buildRequest(path: String) -> URLRequest {
+        func buildRequest(path: String) -> URLRequest? {
             if errorMode {
-                return URLRequest(url: URL(string: "/broken")!)
-            } else {
-                let url = SwiftGenius.resourceBundle.url(forResource: path, withExtension: "json")!
-
+                return nil
+            } else if let url = SwiftGenius.resourceBundle.url(forResource: path, withExtension: "json") {
                 return URLRequest(url: url)
+            } else {
+                return nil
             }
         }
 
-        func accountRequest() -> URLRequest {
+        func accountRequest() -> URLRequest? {
             return buildRequest(path: "get-account-200")
         }
 
-        func annotationRequest(id: Int) -> URLRequest {
-            return buildRequest(path: "get-annotation-200")
+        func annotationRequest(id: Int) -> URLRequest? {
+            return buildRequest(path: "get-annotations-200")
         }
 
-        func artistRequest(id: Int) -> URLRequest {
-            return buildRequest(path: "get-artist-200")
+        func artistRequest(id: Int) -> URLRequest? {
+            return buildRequest(path: "get-artists-200")
         }
 
-        func referentsRequest(id: Int) -> URLRequest {
+        func referentsRequest(id: Int) -> URLRequest? {
             return buildRequest(path: "get-referents-200")
         }
 
-        func searchRequest(terms: String) -> URLRequest {
+        func searchRequest(terms: String) -> URLRequest? {
             return buildRequest(path: "get-search-200")
         }
 
-        func songRequest(id: Int) -> URLRequest {
-            return buildRequest(path: "get-song-200")
+        func songRequest(id: Int) -> URLRequest? {
+            return buildRequest(path: "get-songs-200")
         }
 
     }

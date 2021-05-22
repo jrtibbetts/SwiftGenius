@@ -18,6 +18,10 @@ class GeniusClientTests: ClientTestBase {
                             callbackUrl: callbackUrl)
     }()
 
+    override func setUpWithError() throws {
+        genius.oAuthToken = "some fake token"
+    }
+
     // MARK: - Test functions
 
     func testConstructorWithExplicitScopeOk() {
@@ -40,8 +44,8 @@ class GeniusClientTests: ClientTestBase {
         _ = genius.artist(id: 99)
             .sink { (completion) in
                 switch completion {
-                case .failure:
-                    XCTFail()
+                case .failure(let error):
+                    XCTFail(error.localizedDescription)
                 default:
                     return
                 }

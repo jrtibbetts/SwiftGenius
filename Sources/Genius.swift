@@ -5,12 +5,12 @@ import Foundation
 
 public protocol RequestBuilder {
 
-    func accountRequest() -> URLRequest
-    func annotationRequest(id: Int) -> URLRequest
-    func artistRequest(id: Int) -> URLRequest
-    func referentsRequest(id: Int) -> URLRequest
-    func searchRequest(terms: String) -> URLRequest
-    func songRequest(id: Int) -> URLRequest
+    func accountRequest() -> URLRequest?
+    func annotationRequest(id: Int) -> URLRequest?
+    func artistRequest(id: Int) -> URLRequest?
+    func referentsRequest(id: Int) -> URLRequest?
+    func searchRequest(terms: String) -> URLRequest?
+    func songRequest(id: Int) -> URLRequest?
 
 }
 
@@ -21,7 +21,10 @@ public enum HTTPError: LocalizedError {
 }
 
 public enum GeniusError: Error {
+
+    case invalidRequest
     case unimplemented(functionName: String)
+
 }
 
 /// Protocol for clients of the Genius.com API (https://api.genius.com). Note
@@ -50,7 +53,9 @@ open class Genius: NSObject {
     /// - returns: A `Future` that yields a `GeniusAccount` if the
     ///            request is successful, or an error if it wasn't.
     open func account() -> AnyPublisher<GeniusAccount, Error> {
-        return publisher(for: requestBuilder.accountRequest())
+        return publisher(for: requestBuilder.accountRequest()) { (accountResponse) in
+            return accountResponse.response!.user
+        }
     }
 
     /// Get a specific song lyric annotation.
@@ -60,7 +65,9 @@ open class Genius: NSObject {
     /// - returns: A `Future` that yields a `GeniusAnnotation` if
     ///            the request was successful, or an error if it isn't.
     open func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
-        return publisher(for: requestBuilder.annotationRequest(id: id))
+        return publisher(for: requestBuilder.annotationRequest(id: id)) { (annotationResponse) in
+            return annotationResponse.response!.annotation
+        }
     }
 
     /// Get a specific artist.
@@ -72,7 +79,9 @@ open class Genius: NSObject {
     /// - returns: A `Future` that yields a `GeniusArtist` if the
     ///            request was successful, or an error if it isn't.
     open func artist(id: Int) -> AnyPublisher<GeniusArtist, Error> {
-        return publisher(for: requestBuilder.artistRequest(id: id))
+        return publisher(for: requestBuilder.artistRequest(id: id)) { (artistResponse) in
+            return artistResponse.response!.artist
+        }
     }
 
     /// Get the annotated lyric segments of a specified song. **Genius.com does
@@ -94,7 +103,9 @@ open class Genius: NSObject {
     /// - returns: A `Future` that yields a `GeniusSearch` if the
     ///            request was successful, or an error if it isn't.
     open func search(terms: String) -> AnyPublisher<GeniusSearch, Error> {
-        return publisher(for: requestBuilder.searchRequest(terms: terms))
+        return publisher(for: requestBuilder.searchRequest(terms: terms)) { (searchResponse) in
+            return searchResponse.response!.hits.first!
+        }
     }
 
     /// Get a specific song from the Genius database.
@@ -106,7 +117,9 @@ open class Genius: NSObject {
     /// - returns: A `Future` that yields a `GeniusSong` if the
     ///            request was successful, or an error if it isn't.
     open func song(id: Int) -> AnyPublisher<GeniusSong, Error> {
-        return publisher(for: requestBuilder.songRequest(id: id))
+        return publisher(for: requestBuilder.songRequest(id: id)) { (songResponse) in
+            return songResponse.response!.song
+        }
     }
 
     /// Get all the songs by a specific artist. Unlike other Genius API calls,
@@ -136,7 +149,14 @@ open class Genius: NSObject {
 ////            .map { $0.artist }
 //    }
 
-    private func publisher<T: Responsable>(for request: URLRequest) -> AnyPublisher<T, Error> {
+    private func publisher<T: Responsable>(for request: URLRequest?,
+                                           map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
+        guard let request = request else {
+            return Future<T, Error> { (future) in
+                future(.failure(GeniusError.invalidRequest))
+            }.eraseToAnyPublisher()
+        }
+
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap { (output) in
                 if let httpResponse = output.response as? HTTPURLResponse,
@@ -146,7 +166,8 @@ open class Genius: NSObject {
 
                 return output.data
             }
-            .decode(type: T.self, decoder: Self.jsonDecoder)
+            .decode(type: T.Response.self, decoder: Self.jsonDecoder)
+            .map { map($0) }
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }

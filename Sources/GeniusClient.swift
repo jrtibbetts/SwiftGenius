@@ -15,7 +15,11 @@ open class GeniusClient: Genius, ObservableObject {
 
     // MARK: - Published Properties
 
-    @Published private var oAuthToken: String?
+    @Published var oAuthToken: String? {
+        didSet {
+            requestBuilder.oAuthToken = oAuthToken
+        }
+    }
 
     @Published public var geniusAccount: GeniusAccount?
 
@@ -222,34 +226,38 @@ open class GeniusClient: Genius, ObservableObject {
 
         var baseUrl: URL!
 
-        var oAuthToken: String?
+        var oAuthToken: String? {
+            didSet {
+                print("New token: \(oAuthToken)")
+            }
+        }
 
         /// Identifies the calling app in each request's `User-Agent` request
         /// header.
         var userAgent: String
 
-        func accountRequest() -> URLRequest {
-            return geniusGetRequest(path: "/account")!
+        func accountRequest() -> URLRequest? {
+            return geniusGetRequest(path: "/account")
         }
 
-        func annotationRequest(id: Int) -> URLRequest {
-            return geniusGetRequest(path: "/annotation/\(id)")!
+        func annotationRequest(id: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/annotation/\(id)")
         }
 
-        func artistRequest(id: Int) -> URLRequest {
-            return geniusGetRequest(path: "/artists/\(id)")!
+        func artistRequest(id: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/artists/\(id)")
         }
 
-        func referentsRequest(id: Int) -> URLRequest {
-            return geniusGetRequest(path: "/referents/\(id)")!
+        func referentsRequest(id: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/referents/\(id)")
         }
 
-        func searchRequest(terms: String) -> URLRequest {
-            return geniusGetRequest(path: "/search/\(terms)")!
+        func searchRequest(terms: String) -> URLRequest? {
+            return geniusGetRequest(path: "/search/\(terms)")
         }
 
-        func songRequest(id: Int) -> URLRequest {
-            return geniusGetRequest(path: "/song/\(id)")!
+        func songRequest(id: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/song/\(id)")
         }
 
         private func geniusGetRequest(path: String) -> URLRequest? {
