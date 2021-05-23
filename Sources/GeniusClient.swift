@@ -17,7 +17,7 @@ open class GeniusClient: Genius, ObservableObject {
 
     @Published var oAuthToken: String? {
         didSet {
-            requestBuilder.oAuthToken = oAuthToken
+            (requestBuilder as? GeniusRequestBuilder)?.oAuthToken = oAuthToken
         }
     }
 
@@ -66,11 +66,8 @@ open class GeniusClient: Genius, ObservableObject {
         self.userAgent = userAgent
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
-        self.requestBuilder = GeniusRequestBuilder(baseUrl: baseUrl, userAgent: userAgent)
-        super.init(requestBuilder: requestBuilder)
+        super.init(requestBuilder: GeniusRequestBuilder(baseUrl: baseUrl, userAgent: userAgent))
     }
-
-    private var requestBuilder: GeniusRequestBuilder
 
     private var currentOperation: AnyCancellable? {
         didSet {
@@ -199,7 +196,7 @@ open class GeniusClient: Genius, ObservableObject {
 
     }
 
-    private class GeniusRequestBuilder: NSObject, RequestBuilder {
+    private class GeniusRequestBuilder: RequestBuilder {
 
         var baseUrl: URL!
 
@@ -209,11 +206,9 @@ open class GeniusClient: Genius, ObservableObject {
         /// header.
         var userAgent: String
 
-        init(baseUrl: URL, oAuthToken: String? = nil, userAgent: String) {
+        init(baseUrl: URL, userAgent: String) {
             self.baseUrl = baseUrl
-            self.oAuthToken = oAuthToken
             self.userAgent = userAgent
-            super.init()
         }
 
         func accountRequest() -> URLRequest? {

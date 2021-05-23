@@ -40,7 +40,7 @@ open class Genius: NSObject {
         return decoder
     }()
 
-    private var requestBuilder: RequestBuilder
+    internal var requestBuilder: RequestBuilder
 
     // MARK: - Initializer
 
