@@ -39,6 +39,8 @@ public protocol Genius {
 
     func authorize()
 
+    func logOut()
+
     func search(terms: String) -> AnyPublisher<GeniusSearch, Error>
 
     func song(id: Int) -> AnyPublisher<GeniusSong, Error>

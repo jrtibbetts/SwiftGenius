@@ -7,22 +7,21 @@ public class MockGenius: BaseGeniusClient, Genius {
 
     public var isAuthenticated: Bool = false
 
-    let jsonDecoder: JSONDecoder
     let errorMode: Bool
     let errorModeError = NSError(domain: "MockGenius", code: 9, userInfo: nil)
 
     public init(useErrorMode errorMode: Bool = false) {
         self.errorMode = errorMode
 
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        self.jsonDecoder = decoder
-
         super.init(requestBuilder: MockRequestBuilder(errorMode: errorMode))
     }
 
     public func authorize() {
         isAuthenticated = true
+    }
+
+    public func logOut() {
+        isAuthenticated = false
     }
 
     struct MockRequestBuilder: RequestBuilder {
