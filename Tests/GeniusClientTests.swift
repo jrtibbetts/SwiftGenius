@@ -38,69 +38,6 @@ class GeniusClientTests: ClientTestBase {
         XCTAssertEqual(genius.scopeString, "me")
     }
 
-    func testArtistPublisherOk() {
-        let exp = expectation(description: "artist publisher")
-        genius.baseUrl = URL(string: SwiftGenius.resourceBundle.resourcePath!)!
-        _ = genius.artist(id: 99)
-            .sink { (completion) in
-                switch completion {
-                case .failure(let error):
-                    XCTFail(error.localizedDescription)
-                default:
-                    return
-                }
-            } receiveValue: { (artist) in
-                exp.fulfill()
-            }
-
-        wait(for: [exp], timeout: 5.0)
-    }
-//    func testAccountOk() {
-//        let authorizeExp = expectation(description: "Authenticating")
-//        genius.authorize()
-//        wait(for: [authorizeExp], timeout: 10.0)
-//
-//        let accountExp = expectation(description: "Getting user account")
-//
-//        let subscriber = genius.account().sink(receiveCompletion: { (completion) in
-//            switch completion {
-//            case .failure(let error):
-//                XCTFail("GeniusClient.account() finished with an error: \(error.localizedDescription)")
-//            default:
-//                return
-//            }
-//        }, receiveValue: { (user) in
-//            XCTAssertEqual(user.email, "jason@tibbetts.net")
-//            accountExp.fulfill()
-//        })
-//
-//        wait(for: [accountExp], timeout: 10.0)
-//    }
-
-    func testAnnotationWithValidIdReturnsValidAnnotationPromise() {
-        assert(failingPublisher: genius.annotation(id: 99), description: "annotation 99")
-    }
-
-    func testArtistIsUnimplemented() {
-        assert(failingPublisher: genius.artist(id: 99))
-    }
-
-//    func testReferentsIsUnimplemented() {
-//        assert(failingPublisher: genius.referents(forSongId: 99))
-//    }
-
-    func testSearchIsUnimplemented() {
-        assert(failingPublisher: genius.search(terms: "foo"))
-    }
-
-    func testSongIsUnimplemented() {
-        assert(failingPublisher: genius.song(id: 99))
-    }
-
-//    func testSongsByArtistIsUnimplemented() {
-//        assert(failingPublisher: genius.songs(byArtistId: 99, sortOrder: .popularity, resultsPerPage: 100, pageNumber: 50))
-//    }
-
     // MARK: - Utility functions
 
     func testRetrieveAccessToken() throws {

@@ -15,7 +15,7 @@ class ClientTestBase: XCTestCase {
         let exp = expectation(description: description)
         var returnableObject: T?
 
-        _ = publisher.sink(receiveCompletion: { (completion) in
+        let publisher = publisher.sink(receiveCompletion: { (completion) in
             switch completion {
             case .failure(let error):
                 XCTFail(error.localizedDescription, file: file, line: line)

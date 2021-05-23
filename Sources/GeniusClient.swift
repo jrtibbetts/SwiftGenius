@@ -21,8 +21,6 @@ open class GeniusClient: Genius, ObservableObject {
         }
     }
 
-    @Published public var geniusAccount: GeniusAccount?
-
     @Published public var error: Error?
 
     // MARK: - Public Properties
@@ -68,11 +66,11 @@ open class GeniusClient: Genius, ObservableObject {
         self.userAgent = userAgent
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
-        self.requestBuilder = GeniusReleaseBuilder(baseUrl: baseUrl, oAuthToken: nil, userAgent: userAgent)
+        self.requestBuilder = GeniusRequestBuilder(baseUrl: baseUrl, userAgent: userAgent)
         super.init(requestBuilder: requestBuilder)
     }
 
-    private var requestBuilder: GeniusReleaseBuilder
+    private var requestBuilder: GeniusRequestBuilder
 
     private var currentOperation: AnyCancellable? {
         didSet {
@@ -201,40 +199,22 @@ open class GeniusClient: Genius, ObservableObject {
 
     }
 
-//    public func fetchAccount() {
-//        let request = geniusGetRequest(path: "/account/")!
-//
-//        currentOperation = URLSession.shared.dataTaskPublisher(for: request)
-//            .map { $0.data }
-//            .decode(type: GeniusAccount.Response.self, decoder: Self.jsonDecoder)
-//            .map { $0.response!.user }
-//            .receive(on: DispatchQueue.main)
-//            .eraseToAnyPublisher()
-//            .sink(receiveCompletion: { [weak self] (completion) in
-//                switch completion {
-//                case .failure(let error):
-//                    self?.error = error
-//                case .finished:
-//                    return
-//                }
-//            }, receiveValue: { [weak self] (account) in
-//                self?.geniusAccount = account
-//            })
-//    }
-
-    private struct GeniusReleaseBuilder: RequestBuilder {
+    private class GeniusRequestBuilder: NSObject, RequestBuilder {
 
         var baseUrl: URL!
 
-        var oAuthToken: String? {
-            didSet {
-                print("New token: \(oAuthToken)")
-            }
-        }
+        var oAuthToken: String?
 
         /// Identifies the calling app in each request's `User-Agent` request
         /// header.
         var userAgent: String
+
+        init(baseUrl: URL, oAuthToken: String? = nil, userAgent: String) {
+            self.baseUrl = baseUrl
+            self.oAuthToken = oAuthToken
+            self.userAgent = userAgent
+            super.init()
+        }
 
         func accountRequest() -> URLRequest? {
             return geniusGetRequest(path: "/account")
