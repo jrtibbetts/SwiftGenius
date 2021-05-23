@@ -3,7 +3,9 @@
 import Combine
 import UIKit
 
-public class MockGenius: Genius {
+public class MockGenius: BaseGeniusClient, Genius {
+
+    public var isAuthenticated: Bool = false
 
     let jsonDecoder: JSONDecoder
     let errorMode: Bool
@@ -17,6 +19,10 @@ public class MockGenius: Genius {
         self.jsonDecoder = decoder
 
         super.init(requestBuilder: MockRequestBuilder(errorMode: errorMode))
+    }
+
+    public func authorize() {
+        isAuthenticated = true
     }
 
     struct MockRequestBuilder: RequestBuilder {
