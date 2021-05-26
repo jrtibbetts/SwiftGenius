@@ -27,26 +27,6 @@ public enum GeniusError: Error {
 
 }
 
-public protocol Genius {
-
-    var isAuthenticated: Bool { get }
-
-    func account() -> AnyPublisher<GeniusAccount, Error>
-
-    func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error>
-
-    func artist(id: Int) -> AnyPublisher<GeniusArtist, Error>
-
-    func authorize()
-
-    func logOut()
-
-    func search(terms: String) -> AnyPublisher<GeniusSearch, Error>
-
-    func song(id: Int) -> AnyPublisher<GeniusSong, Error>
-
-}
-
 /// Protocol for clients of the Genius.com API (https://api.genius.com). Note
 /// that no functions relating to authenticating with the genius.com server are
 /// included in this protocol; they can be found in the `GeniusClient`
