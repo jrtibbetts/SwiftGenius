@@ -3,7 +3,7 @@
 import Combine
 import Foundation
 
-public protocol Genius {
+public protocol Genius: ObservableObject {
 
     var isAuthenticated: Bool { get }
 
