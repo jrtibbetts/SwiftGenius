@@ -232,7 +232,7 @@ public class GeniusClient: BaseGeniusClient, ObservableObject, Genius {
                 return nil
             }
 
-            urlComponents.queryItems?.append(URLQueryItem(name: "terms", value: terms))
+            urlComponents.queryItems = [URLQueryItem(name: "terms", value: terms)]
 
             guard let url = urlComponents.url else {
                 return nil
