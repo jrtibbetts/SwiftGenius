@@ -216,23 +216,33 @@ public class GeniusClient: BaseGeniusClient, ObservableObject, Genius {
         }
 
         func annotationRequest(id: Int) -> URLRequest? {
-            return geniusGetRequest(path: "/annotation/\(id)")
+            return geniusGetRequest(path: "/annotations/\(id)")
         }
 
         func artistRequest(id: Int) -> URLRequest? {
             return geniusGetRequest(path: "/artists/\(id)")
         }
 
-        func referentsRequest(id: Int) -> URLRequest? {
-            return geniusGetRequest(path: "/referents/\(id)")
+        func referentsRequest(forSongId id: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/referents?song_id=\(id)")
         }
 
         func searchRequest(terms: String) -> URLRequest? {
-            return geniusGetRequest(path: "/search/\(terms)")
+            guard var urlComponents = URLComponents(string: "/search") else {
+                return nil
+            }
+
+            urlComponents.queryItems?.append(URLQueryItem(name: "terms", value: terms))
+
+            guard let url = urlComponents.url else {
+                return nil
+            }
+
+            return geniusGetRequest(path: url.absoluteString)
         }
 
         func songRequest(id: Int) -> URLRequest? {
-            return geniusGetRequest(path: "/song/\(id)")
+            return geniusGetRequest(path: "/songs/\(id)")
         }
 
         private func geniusGetRequest(path: String) -> URLRequest? {

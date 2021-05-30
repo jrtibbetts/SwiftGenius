@@ -8,7 +8,7 @@ public protocol RequestBuilder {
     func accountRequest() -> URLRequest?
     func annotationRequest(id: Int) -> URLRequest?
     func artistRequest(id: Int) -> URLRequest?
-    func referentsRequest(id: Int) -> URLRequest?
+    func referentsRequest(forSongId: Int) -> URLRequest?
     func searchRequest(terms: String) -> URLRequest?
     func songRequest(id: Int) -> URLRequest?
 

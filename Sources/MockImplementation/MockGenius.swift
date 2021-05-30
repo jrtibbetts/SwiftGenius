@@ -50,7 +50,7 @@ public class MockGenius: BaseGeniusClient, Genius {
             return buildRequest(path: "get-artists-200")
         }
 
-        func referentsRequest(id: Int) -> URLRequest? {
+        func referentsRequest(forSongId id: Int) -> URLRequest? {
             return buildRequest(path: "get-referents-200")
         }
 
