@@ -102,9 +102,9 @@ public class BaseGeniusClient: NSObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSearch` if the
     ///            request was successful, or an error if it isn't.
-    open func search(terms: String) -> AnyPublisher<GeniusSearch, Error> {
+    open func search(terms: String) -> AnyPublisher<[GeniusSearch], Error> {
         return publisher(for: requestBuilder.searchRequest(terms: terms)) { (searchResponse) in
-            return searchResponse.response!.hits.first!
+            return searchResponse.response!.hits
         }
     }
 
@@ -153,6 +153,29 @@ public class BaseGeniusClient: NSObject {
                                            map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
         guard let request = request else {
             return Future<T, Error> { (future) in
+                future(.failure(GeniusError.invalidRequest))
+            }.eraseToAnyPublisher()
+        }
+
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap { (output) in
+                if let httpResponse = output.response as? HTTPURLResponse,
+                          httpResponse.statusCode != 200 {
+                    throw HTTPError.statusCode(httpResponse.statusCode)
+                }
+
+                return output.data
+            }
+            .decode(type: T.Response.self, decoder: Self.jsonDecoder)
+            .map { map($0) }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
+    }
+
+    private func publisher<T: Responsable>(for request: URLRequest?,
+                                           map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
+        guard let request = request else {
+            return Future<[T], Error> { (future) in
                 future(.failure(GeniusError.invalidRequest))
             }.eraseToAnyPublisher()
         }
