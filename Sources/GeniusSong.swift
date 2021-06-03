@@ -82,9 +82,6 @@ public struct GeniusSong: Responsable {
         public var isVerified: Bool
         public var name: String
         public var url: URL
-        // swiftlint:disable identifier_name
-        public var iq: Int
-        // swiftlint:enable identifier_name
 
     }
 

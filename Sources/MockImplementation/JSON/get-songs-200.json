@@ -413,7 +413,6 @@
                                     "header_image_url":"https://s3.amazonaws.com/filepicker-images-rapgenius/EhSJtLIgRCmOeDrnlqo9_1405862672780564.jpg",
                                     "human_readable_role_for_display":"Editor",
                                     "id":2557222,
-                                    "iq":19483,
                                     "login":"ssaa10dec",
                                     "name":"ssaa10dec",
                                     "role_for_display":"editor",
@@ -472,7 +471,6 @@
                                     "header_image_url":"https://s3.amazonaws.com/rapgenius/avatars/medium/zmkfqkztReGZ0zuiuLXp.png",
                                     "human_readable_role_for_display":"Editor",
                                     "id":150910,
-                                    "iq":125107,
                                     "login":"Spinelli",
                                     "name":"Spinelli",
                                     "role_for_display":"editor",
@@ -531,7 +529,6 @@
                                     "header_image_url":"https://images.genius.com/e8a303ab79861711fb6aa79f1e231f90.960x617x1.jpg",
                                     "human_readable_role_for_display":"Moderator",
                                     "id":458792,
-                                    "iq":198878,
                                     "login":"Skhills",
                                     "name":"Skhills",
                                     "role_for_display":"moderator",
@@ -597,7 +594,6 @@
                 "is_verified":true,
                 "name":"Sia",
                 "url":"https://genius.com/artists/Sia",
-                "iq":5748
             },
             "producer_artists":[
                 {
@@ -712,7 +708,6 @@
                                 "is_verified":true,
                                 "name":"Jasmine Thompson",
                                 "url":"https://genius.com/artists/Jasmine-thompson",
-                                "iq":376
                             }
                         },
                         {
@@ -863,7 +858,6 @@
                                 "is_verified":true,
                                 "name":"Coco Jones",
                                 "url":"https://genius.com/artists/Coco-jones",
-                                "iq":466
                             }
                         },
                         {
@@ -1138,7 +1132,6 @@
                     "header_image_url":"https://images.genius.com/cb40ff6ba23119fdb3ec69073be7cf34.1000x427x1.jpg",
                     "human_readable_role_for_display":"Verified Artist",
                     "id":656681,
-                    "iq":5748,
                     "login":"siamusic",
                     "name":"Sia",
                     "role_for_display":"verified_artist",
@@ -1173,7 +1166,6 @@
                         "is_verified":true,
                         "name":"Sia",
                         "url":"https://genius.com/artists/Sia",
-                        "iq":5748
                     },
                     "user":{
                         "api_path":"/users/656681",
@@ -1210,7 +1202,6 @@
                         "header_image_url":"https://images.genius.com/cb40ff6ba23119fdb3ec69073be7cf34.1000x427x1.jpg",
                         "human_readable_role_for_display":"Verified Artist",
                         "id":656681,
-                        "iq":5748,
                         "login":"siamusic",
                         "name":"Sia",
                         "role_for_display":"verified_artist",
@@ -1255,7 +1246,6 @@
                     "is_verified":true,
                     "name":"Sia",
                     "url":"https://genius.com/artists/Sia",
-                    "iq":5748
                 }
             ]
         }
