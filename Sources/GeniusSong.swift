@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusSong: Responsable {
+public struct GeniusSong: GeniusElement {
 
     public var annotationCount: Int
     public var album: Album?

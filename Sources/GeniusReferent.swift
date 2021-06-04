@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusReferent: Responsable {
+public struct GeniusReferent: GeniusElement {
 
     public var annotatable: Annotatable
     public var annotations: [GeniusAnnotation]?

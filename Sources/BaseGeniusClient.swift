@@ -149,7 +149,7 @@ public class BaseGeniusClient: NSObject {
 ////            .map { $0.artist }
 //    }
 
-    private func publisher<T: Responsable>(for request: URLRequest?,
+    private func publisher<T: GeniusElement>(for request: URLRequest?,
                                            map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
         guard let request = request else {
             return Future<T, Error> { (future) in
@@ -172,7 +172,7 @@ public class BaseGeniusClient: NSObject {
             .eraseToAnyPublisher()
     }
 
-    private func publisher<T: Responsable>(for request: URLRequest?,
+    private func publisher<T: GeniusElement>(for request: URLRequest?,
                                            map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
         guard let request = request else {
             return Future<[T], Error> { (future) in

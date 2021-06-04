@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusAnnotation: Responsable {
+public struct GeniusAnnotation: GeniusElement {
 
     public var apiPath: String
 //    public var body: [Codable]

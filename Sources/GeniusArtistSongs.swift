@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusArtistSongs: Responsable {
+public struct GeniusArtistSongs: GeniusElement {
 
     public typealias Response = GeniusResponse<GeniusArtistSongs.ResponseBlock>
 

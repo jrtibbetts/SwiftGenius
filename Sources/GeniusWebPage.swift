@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusWebPage: Responsable {
+public struct GeniusWebPage: GeniusElement {
 
     public var annotationCount: Int
     public var apiPath: String

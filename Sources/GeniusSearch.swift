@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusSearch: Responsable {
+public struct GeniusSearch: GeniusElement {
 
     public var highlights: [String]
     public var index: String

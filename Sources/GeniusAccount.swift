@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusAccount: Responsable {
+public struct GeniusAccount: GeniusElement {
 
     public var apiPath: URL?
     //    public var artist: ?
