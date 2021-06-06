@@ -31,7 +31,7 @@ public enum GeniusError: Error {
 /// that no functions relating to authenticating with the genius.com server are
 /// included in this protocol; they can be found in the `GeniusClient`
 /// implementation instead.
-public class BaseGeniusClient: NSObject {
+public class BaseGeniusClient: NSObject, ObservableObject {
 
     public static var jsonDecoder: JSONDecoder = {
         let decoder = JSONDecoder()

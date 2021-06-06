@@ -4,7 +4,7 @@ import AuthenticationServices
 import Combine
 import Foundation
 
-public class GeniusClient: BaseGeniusClient, ObservableObject, Genius {
+public class GeniusClient: BaseGeniusClient, Genius {
 
     public enum Scope: String {
         case me

@@ -5,7 +5,7 @@ import UIKit
 
 public class MockGenius: BaseGeniusClient, Genius {
 
-    public var isAuthenticated: Bool = false
+    @Published public var isAuthenticated: Bool = false
 
     let errorMode: Bool
     let errorModeError = NSError(domain: "MockGenius", code: 9, userInfo: nil)
