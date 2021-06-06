@@ -14,7 +14,6 @@ public struct GeniusArtist: GeniusElement {
     public var imageUrl: URL?
     public var instagramName: String?
     // swiftlint:disable identifier_name
-    public var iq: Int
     // swiftlint:enable identifier_name
     public var isMemeVerified: Bool = false
     public var isVerified: Bool = true

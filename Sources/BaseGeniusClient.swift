@@ -122,39 +122,13 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
-    /// Get all the songs by a specific artist. Unlike other Genius API calls,
-    /// these results can be paged.
-    ///
-    /// - parameter byArtistId: The artist's Genius ID.
-    /// - parameter sortOrder: Either by [GeniusSongSortOrder.popularity] or
-    ///             [GeniusSongSortOrder.title].
-    /// - parameter resultsPerPage: The number of songs to include in each
-    ///             page of results.
-    /// - parameter pageNumber: The index of the search results pages. These
-    ///             start at 0.
-    ///
-    /// - returns: A `Future` that yields a `GeniusArtistSongs` if
-    ///            the request was successful, or an error if it isn't.
-//    open func songs(byArtistId artistId: Int,
-//               sortOrder: GeniusSongSortOrder,
-//               resultsPerPage: Int,
-//               pageNumber: Int) -> AnyPublisher<[GeniusSong], Error> {
-//
-//    }
-//
-//    public func artistPublisher(id: Int) -> AnyPublisher<GeniusArtist, Error> {
-//        let request = geniusGetRequest(path: "/artists/\(id)")!
-//
-//        return publisher(for: request)
-////            .map { $0.artist }
-//    }
-
     private func publisher<T: GeniusElement>(for request: URLRequest?,
                                            map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
         guard let request = request else {
             return Future<T, Error> { (future) in
                 future(.failure(GeniusError.invalidRequest))
-            }.eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
         }
 
         return URLSession.shared.dataTaskPublisher(for: request)
@@ -177,7 +151,8 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         guard let request = request else {
             return Future<[T], Error> { (future) in
                 future(.failure(GeniusError.invalidRequest))
-            }.eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
         }
 
         return URLSession.shared.dataTaskPublisher(for: request)
