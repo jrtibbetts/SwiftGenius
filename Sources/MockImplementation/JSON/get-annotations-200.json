@@ -1,41 +1,148 @@
 {
-    "meta":{
-        "status":200
+    "meta": {
+        "status": 200
     },
-    "response":{
-        "annotation":{
-            "api_path":"/annotations/10225840",
-            "body":{
-                "dom":{
-                    "tag":"root",
-                    "children":[
+    "response": {
+        "annotation": {
+            "api_path": "/annotations/3721376",
+            "body": {
+                "dom": {
+                    "tag": "root",
+                    "children": [
                         {
-                            "tag":"p",
-                            "children":[
-                                "For example, the id of this annotation is 10225839"
+                            "tag": "p",
+                            "children": [
+                                "“Chandelier” was released as the lead single from Sia’s sixth studio album, ",
+                                {
+                                    "tag": "em",
+                                    "children": [
+                                        "1000 Forms Of Fear"
+                                    ]
+                                },
+                                ". Despite its soaring melody, the song has a sad theme describing the life of a “party girl”. On the track, Sia talks about her alcohol and drug addiction."
+                            ]
+                        },
+                        "",
+                        {
+                            "tag": "p",
+                            "children": [
+                                "Sia has written songs for pop stars like ",
+                                {
+                                    "tag": "a",
+                                    "attributes": {
+                                        "href": "https://genius.com/Rihanna-diamonds-lyrics",
+                                        "rel": "noopener"
+                                    },
+                                    "data": {
+                                        "api_path": "/songs/89794"
+                                    },
+                                    "children": [
+                                        "Rihanna"
+                                    ]
+                                },
+                                ", ",
+                                {
+                                    "tag": "a",
+                                    "attributes": {
+                                        "href": "https://genius.com/Katy-perry-double-rainbow-lyrics",
+                                        "rel": "noopener"
+                                    },
+                                    "data": {
+                                        "api_path": "/songs/239168"
+                                    },
+                                    "children": [
+                                        "Katy Perry"
+                                    ]
+                                },
+                                ", and ",
+                                {
+                                    "tag": "a",
+                                    "attributes": {
+                                        "href": "https://genius.com/artists/Britney-spears",
+                                        "rel": "noopener"
+                                    },
+                                    "data": {
+                                        "api_path": "/artists/1052"
+                                    },
+                                    "children": [
+                                        "Britney Spears"
+                                    ]
+                                },
+                                ", but this time she saves the “swing from the chandelier” moment for her own angelic voice."
+                            ]
+                        },
+                        "",
+                        {
+                            "tag": "p",
+                            "children": [
+                                "The song has been described by many as Sia’s breakthrough performance due to its huge commercial success and critical acclaim. Billboard named the track one of the most memorable choruses of all time."
+                            ]
+                        },
+                        "",
+                        {
+                            "tag": "p",
+                            "children": [
+                                {
+                                    "tag": "a",
+                                    "attributes": {
+                                        "href": "https://genius.com/artists/Maddie-ziegler",
+                                        "rel": "noopener"
+                                    },
+                                    "data": {
+                                        "api_path": "/artists/329063"
+                                    },
+                                    "children": [
+                                        "Maddie Ziegler"
+                                    ]
+                                },
+                                " revealed in a ",
+                                {
+                                    "tag": "a",
+                                    "attributes": {
+                                        "href": "https://www.youtube.com/watch?v=J2kHoNCpTGM",
+                                        "rel": "noopener nofollow"
+                                    },
+                                    "children": [
+                                        "YouTube video"
+                                    ]
+                                },
+                                " that the people on set said that the set was haunted, due to the building being very old. Being an eleven year old, she was scared to dance there on her own. Maddie also said that when Sia reached out to her, asking her to be in the music video, she thought she would be a back-up dancer:"
+                            ]
+                        },
+                        "",
+                        {
+                            "tag": "blockquote",
+                            "children": [
+                                {
+                                    "tag": "p",
+                                    "children": [
+                                        "But when I got on set, it was just me in rehearsal."
+                                    ]
+                                }
                             ]
                         }
                     ]
                 }
             },
-            "comment_count":0,
-            "community":false,
-            "custom_preview":null,
-            "has_voters":true,
-            "id":10225840,
-            "pinned":false,
-            "share_url":"https://genius.com/10225840",
-            "source":null,
-            "state":"verified",
-            "url":"https://genius.com/10225840/www.example.com",
-            "verified":true,
-            "votes_total":4,
-            "current_user_metadata":{
-                "permissions":[
+            "comment_count": 4,
+            "community": true,
+            "custom_preview": null,
+            "has_voters": true,
+            "id": 3721376,
+            "pinned": false,
+            "share_url": "https://genius.com/3721376",
+            "source": null,
+            "state": "accepted",
+            "url": "https://genius.com/3721376/Sia-chandelier/Chandelier",
+            "verified": false,
+            "votes_total": 183,
+            "current_user_metadata": {
+                "permissions": [
                     "vote",
+                    "propose_edit_to",
                     "create_comment"
                 ],
-                "excluded_permissions":[
+                "excluded_permissions": [
                     "edit",
                     "cosign",
                     "uncosign",
@@ -44,197 +151,345 @@
                     "reject",
                     "see_unreviewed",
                     "clear_votes",
-                    "propose_edit_to",
                     "pin_to_profile",
                     "unpin_from_profile",
                     "update_source",
-                    "set_brand",
-                    "clear_brand",
                     "edit_custom_preview"
                 ],
-                "interactions":{
-                    "cosign":false,
-                    "pyong":false,
-                    "vote":null
+                "interactions": {
+                    "cosign": false,
+                    "pyong": false,
+                    "vote": null
                 },
-                "iq_by_action":{
-                    "accept":{
-                        "primary":{
-                            "multiplier":1,
-                            "base":10.0,
-                            "applicable":true
+                "iq_by_action": {
+                    "accept": {
+                        "primary": {
+                            "multiplier": 1,
+                            "base": 10.0,
+                            "applicable": true
                         }
                     },
-                    "reject":{
-                        "primary":{
-                            "multiplier":1,
-                            "base":2.0,
-                            "applicable":true
+                    "reject": {
+                        "primary": {
+                            "multiplier": 1,
+                            "base": 2.0,
+                            "applicable": true
                         }
                     },
-                    "delete":{
-                        "primary":{
-                            "multiplier":1,
-                            "base":5.0,
-                            "applicable":true
+                    "delete": {
+                        "primary": {
+                            "multiplier": 1,
+                            "base": 5.0,
+                            "applicable": true
                         }
                     }
                 }
             },
-            "authors":[
+            "authors": [
                 {
-                    "attribution":1.0,
-                    "pinned_role":null,
-                    "user":{
-                        "api_path":"/users/188555",
-                        "avatar":{
-                            "tiny":{
-                                "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                                "bounding_box":{
-                                    "width":16,
-                                    "height":16
+                    "attribution": 0.42391304347826086,
+                    "pinned_role": null,
+                    "user": {
+                        "api_path": "/users/2557222",
+                        "avatar": {
+                            "tiny": {
+                                "url": "https://images.genius.com/avatars/tiny/50313782b5b3ebfa8d920c5e2593a3b2",
+                                "bounding_box": {
+                                    "width": 16,
+                                    "height": 16
                                 }
                             },
-                            "thumb":{
-                                "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                                "bounding_box":{
-                                    "width":32,
-                                    "height":32
+                            "thumb": {
+                                "url": "https://images.genius.com/avatars/thumb/50313782b5b3ebfa8d920c5e2593a3b2",
+                                "bounding_box": {
+                                    "width": 32,
+                                    "height": 32
                                 }
                             },
-                            "small":{
-                                "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                                "bounding_box":{
-                                    "width":100,
-                                    "height":100
+                            "small": {
+                                "url": "https://images.genius.com/avatars/small/50313782b5b3ebfa8d920c5e2593a3b2",
+                                "bounding_box": {
+                                    "width": 100,
+                                    "height": 100
                                 }
                             },
-                            "medium":{
-                                "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                                "bounding_box":{
-                                    "width":300,
-                                    "height":400
+                            "medium": {
+                                "url": "https://images.genius.com/avatars/medium/50313782b5b3ebfa8d920c5e2593a3b2",
+                                "bounding_box": {
+                                    "width": 300,
+                                    "height": 400
                                 }
                             }
                         },
-                        "header_image_url":"https://images.genius.com/16e44a62093c06e563351a1c80bcb018.500x600x5.gif",
-                        "human_readable_role_for_display":"Editor",
-                        "id":188555,
-                        "iq":28907,
-                        "login":"nightpool",
-                        "name":"​nightpool",
-                        "role_for_display":"editor",
-                        "url":"https://genius.com/nightpool",
-                        "current_user_metadata":{
-                            "permissions":[
+                        "header_image_url": "https://images.genius.com/019f579c5a28845fb2060871e94c0c6c.864x360x1.jpg",
+                        "human_readable_role_for_display": "Moderator",
+                        "id": 2557222,
+                        "iq": 235266,
+                        "login": "ssaa10dec",
+                        "name": "Ssaa10dec",
+                        "role_for_display": "moderator",
+                        "url": "https://genius.com/ssaa10dec",
+                        "current_user_metadata": {
+                            "permissions": [
                                 "follow"
                             ],
-                            "excluded_permissions":[
-
-                            ],
-                            "interactions":{
-                                "following":false
-                            },
-                            "features":[
-
-                            ]
-                        }
-                    }
-                }
-            ],
-            "cosigned_by":[
-
-            ],
-            "verified_by":{
-                "api_path":"/users/188555",
-                "avatar":{
-                    "tiny":{
-                        "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                        "bounding_box":{
-                            "width":16,
-                            "height":16
-                        }
-                    },
-                    "thumb":{
-                        "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                        "bounding_box":{
-                            "width":32,
-                            "height":32
-                        }
-                    },
-                    "small":{
-                        "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                        "bounding_box":{
-                            "width":100,
-                            "height":100
-                        }
-                    },
-                    "medium":{
-                        "url":"https://images.genius.com/503912f69fd1692084e2d55fa18839e3.900x900x1.jpg",
-                        "bounding_box":{
-                            "width":300,
-                            "height":400
+                            "excluded_permissions": [],
+                            "interactions": {
+                                "following": false
+                            }
                         }
                     }
                 },
-                "header_image_url":"https://images.genius.com/16e44a62093c06e563351a1c80bcb018.500x600x5.gif",
-                "human_readable_role_for_display":"Editor",
-                "id":188555,
-                "iq":28907,
-                "login":"nightpool",
-                "name":"​nightpool",
-                "role_for_display":"editor",
-                "url":"https://genius.com/nightpool",
-                "current_user_metadata":{
-                    "permissions":[
-                        "follow"
-                    ],
-                    "excluded_permissions":[
-
-                    ],
-                    "interactions":{
-                        "following":false
-                    },
-                    "features":[
-
-                    ]
+                {
+                    "attribution": 0.40217391304347827,
+                    "pinned_role": null,
+                    "user": {
+                        "api_path": "/users/8901159",
+                        "avatar": {
+                            "tiny": {
+                                "url": "https://images.genius.com/avatars/tiny/b0318a7989e0baa362a5b05362c559f4",
+                                "bounding_box": {
+                                    "width": 16,
+                                    "height": 16
+                                }
+                            },
+                            "thumb": {
+                                "url": "https://images.genius.com/avatars/thumb/b0318a7989e0baa362a5b05362c559f4",
+                                "bounding_box": {
+                                    "width": 32,
+                                    "height": 32
+                                }
+                            },
+                            "small": {
+                                "url": "https://images.genius.com/avatars/small/b0318a7989e0baa362a5b05362c559f4",
+                                "bounding_box": {
+                                    "width": 100,
+                                    "height": 100
+                                }
+                            },
+                            "medium": {
+                                "url": "https://images.genius.com/avatars/medium/b0318a7989e0baa362a5b05362c559f4",
+                                "bounding_box": {
+                                    "width": 300,
+                                    "height": 400
+                                }
+                            }
+                        },
+                        "header_image_url": "https://s3.amazonaws.com/filepicker-images-rapgenius/lz0u9ytsjro",
+                        "human_readable_role_for_display": "Contributor",
+                        "id": 8901159,
+                        "iq": 8254,
+                        "login": "TYFNA",
+                        "name": "TYFNA",
+                        "role_for_display": "contributor",
+                        "url": "https://genius.com/TYFNA",
+                        "current_user_metadata": {
+                            "permissions": [
+                                "follow"
+                            ],
+                            "excluded_permissions": [],
+                            "interactions": {
+                                "following": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "attribution": 0.15217391304347827,
+                    "pinned_role": null,
+                    "user": {
+                        "api_path": "/users/150910",
+                        "avatar": {
+                            "tiny": {
+                                "url": "https://s3.amazonaws.com/rapgenius/avatars/tiny/zmkfqkztReGZ0zuiuLXp.png",
+                                "bounding_box": {
+                                    "width": 16,
+                                    "height": 16
+                                }
+                            },
+                            "thumb": {
+                                "url": "https://s3.amazonaws.com/rapgenius/avatars/thumb/zmkfqkztReGZ0zuiuLXp.png",
+                                "bounding_box": {
+                                    "width": 32,
+                                    "height": 32
+                                }
+                            },
+                            "small": {
+                                "url": "https://s3.amazonaws.com/rapgenius/avatars/small/zmkfqkztReGZ0zuiuLXp.png",
+                                "bounding_box": {
+                                    "width": 100,
+                                    "height": 100
+                                }
+                            },
+                            "medium": {
+                                "url": "https://s3.amazonaws.com/rapgenius/avatars/medium/zmkfqkztReGZ0zuiuLXp.png",
+                                "bounding_box": {
+                                    "width": 300,
+                                    "height": 400
+                                }
+                            }
+                        },
+                        "header_image_url": "https://s3.amazonaws.com/rapgenius/avatars/medium/zmkfqkztReGZ0zuiuLXp.png",
+                        "human_readable_role_for_display": "Editor",
+                        "id": 150910,
+                        "iq": 147353,
+                        "login": "Spinelli",
+                        "name": "Spinelli",
+                        "role_for_display": "editor",
+                        "url": "https://genius.com/Spinelli",
+                        "current_user_metadata": {
+                            "permissions": [
+                                "follow"
+                            ],
+                            "excluded_permissions": [],
+                            "interactions": {
+                                "following": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "attribution": 0.016304347826086956,
+                    "pinned_role": null,
+                    "user": {
+                        "api_path": "/users/458792",
+                        "avatar": {
+                            "tiny": {
+                                "url": "https://images.genius.com/avatars/tiny/e2bd00d48b48b2489eb3f2a969dd1ed3",
+                                "bounding_box": {
+                                    "width": 16,
+                                    "height": 16
+                                }
+                            },
+                            "thumb": {
+                                "url": "https://images.genius.com/avatars/thumb/e2bd00d48b48b2489eb3f2a969dd1ed3",
+                                "bounding_box": {
+                                    "width": 32,
+                                    "height": 32
+                                }
+                            },
+                            "small": {
+                                "url": "https://images.genius.com/avatars/small/e2bd00d48b48b2489eb3f2a969dd1ed3",
+                                "bounding_box": {
+                                    "width": 100,
+                                    "height": 100
+                                }
+                            },
+                            "medium": {
+                                "url": "https://images.genius.com/avatars/medium/e2bd00d48b48b2489eb3f2a969dd1ed3",
+                                "bounding_box": {
+                                    "width": 300,
+                                    "height": 400
+                                }
+                            }
+                        },
+                        "header_image_url": "https://images.genius.com/e8a303ab79861711fb6aa79f1e231f90.960x617x1.jpg",
+                        "human_readable_role_for_display": "Moderator",
+                        "id": 458792,
+                        "iq": 363866,
+                        "login": "Skhills",
+                        "name": "Skhills #BlackLivesMatter",
+                        "role_for_display": "moderator",
+                        "url": "https://genius.com/Skhills",
+                        "current_user_metadata": {
+                            "permissions": [
+                                "follow"
+                            ],
+                            "excluded_permissions": [],
+                            "interactions": {
+                                "following": false
+                            }
+                        }
+                    }
+                },
+                {
+                    "attribution": 0.005434782608695652,
+                    "pinned_role": null,
+                    "user": {
+                        "api_path": "/users/12128",
+                        "avatar": {
+                            "tiny": {
+                                "url": "https://images.rapgenius.com/avatars/tiny/b0afb1ccd43ff1285d5ec9cd111713a4",
+                                "bounding_box": {
+                                    "width": 16,
+                                    "height": 16
+                                }
+                            },
+                            "thumb": {
+                                "url": "https://images.rapgenius.com/avatars/thumb/b0afb1ccd43ff1285d5ec9cd111713a4",
+                                "bounding_box": {
+                                    "width": 32,
+                                    "height": 32
+                                }
+                            },
+                            "small": {
+                                "url": "https://images.rapgenius.com/avatars/small/b0afb1ccd43ff1285d5ec9cd111713a4",
+                                "bounding_box": {
+                                    "width": 100,
+                                    "height": 100
+                                }
+                            },
+                            "medium": {
+                                "url": "https://images.rapgenius.com/avatars/medium/b0afb1ccd43ff1285d5ec9cd111713a4",
+                                "bounding_box": {
+                                    "width": 300,
+                                    "height": 400
+                                }
+                            }
+                        },
+                        "header_image_url": "https://images.rapgenius.com/avatars/medium/b0afb1ccd43ff1285d5ec9cd111713a4",
+                        "human_readable_role_for_display": "Editor",
+                        "id": 12128,
+                        "iq": 189638,
+                        "login": "dalmo",
+                        "name": "Dalmo Mendonça",
+                        "role_for_display": "editor",
+                        "url": "https://genius.com/dalmo",
+                        "current_user_metadata": {
+                            "permissions": [
+                                "follow"
+                            ],
+                            "excluded_permissions": [],
+                            "interactions": {
+                                "following": false
+                            }
+                        }
+                    }
                 }
-            }
-        },
-        "referent":{
-            "_type":"referent",
-            "annotator_id":188555,
-            "annotator_login":"nightpool",
-            "api_path":"/referents/10225839",
-            "classification":"accepted",
-            "featured":false,
-            "fragment":"This domain is established to be used for illustrative examples in documents",
-            "id":10225839,
-            "is_description":false,
-            "path":"/10225839/www.example.com",
-            "range":{
-                "start":"/div[1]/p[1]",
-                "startOffset":"0",
-                "end":"/div[1]/p[1]",
-                "endOffset":"76",
-                "before":"d-color: #fff;\n        }\n        div {\n            width: auto;\n            margin: 0 auto;\n            border-radius: 0;\n            padding: 1em;\n        }\n    }\n        \n\n\n\n\n    Example Domain\n    ",
-                "after":". You may use this\n    domain in examples without prior coordination or asking for permission.\n    More information...\n\n\n\n",
-                "content":"This domain is established to be used for illustrative examples in documents"
-            },
-            "song_id":null,
-            "url":"https://genius.com/10225839/www.example.com",
-            "verified_annotator_ids":[
-                188555
             ],
-            "annotatable":{
-                "api_path":"/web_pages/5301",
-                "context":"example.com",
-                "id":5301,
-                "image_url":"https://assets.genius.com/images/default_cover_image.png?1516137724",
-                "link_title":"Example Domain",
-                "title":"Example Domain",
-                "type":"WebPage",
-                "url":"https://genius.com/www.example.com"
+            "cosigned_by": [],
+            "rejection_comment": null,
+            "verified_by": null
+        },
+        "referent": {
+            "_type": "referent",
+            "annotator_id": 47098,
+            "annotator_login": "notero",
+            "api_path": "/referents/3721376",
+            "classification": "accepted",
+            "fragment": "Chandelier",
+            "id": 3721376,
+            "is_description": true,
+            "path": "/3721376/Sia-chandelier/Chandelier",
+            "range": {
+                "content": "Chandelier"
+            },
+            "song_id": 378195,
+            "url": "https://genius.com/3721376/Sia-chandelier/Chandelier",
+            "verified_annotator_ids": [],
+            "annotatable": {
+                "api_path": "/songs/378195",
+                "client_timestamps": {
+                    "updated_by_human_at": 1617085774,
+                    "lyrics_updated_at": 1617085774
+                },
+                "context": "Sia",
+                "id": 378195,
+                "image_url": "https://images.genius.com/5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg",
+                "link_title": "Chandelier by Sia",
+                "title": "Chandelier",
+                "type": "Song",
+                "url": "https://genius.com/Sia-chandelier-lyrics"
             }
         }
     }

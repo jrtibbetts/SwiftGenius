@@ -1,406 +1,401 @@
 {
-    "meta":{
-        "status":200
+    "meta": {
+        "status": 200
     },
-    "response":{
-        "hits":[
+    "response": {
+        "hits": [
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":19,
-                    "api_path":"/songs/3039923",
-                    "full_title":"HUMBLE. by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.genius.com/039eed0758eb3aa30f050c77e7bbdc1e.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/039eed0758eb3aa30f050c77e7bbdc1e.1000x1000x1.jpg",
-                    "id":3039923,
-                    "lyrics_owner_id":104344,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-humble-lyrics",
-                    "pyongs_count":894,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/4387b0bcc88e07676997ba73793cc73c.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":23,
-                        "pageviews":9045775
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 32,
+                    "api_path": "/songs/378195",
+                    "full_title": "Chandelier by Sia",
+                    "header_image_thumbnail_url": "https://images.genius.com/9ac569a5e53c34934f2b8f7195d1afad.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/9ac569a5e53c34934f2b8f7195d1afad.1000x1000x1.jpg",
+                    "id": 378195,
+                    "lyrics_owner_id": 47098,
+                    "lyrics_state": "complete",
+                    "path": "/Sia-chandelier-lyrics",
+                    "pyongs_count": 442,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/5bcfb76690b3fb068a317c76579b70b5.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 1,
+                        "concurrents": 2,
+                        "hot": false,
+                        "pageviews": 1859925
                     },
-                    "title":"HUMBLE.",
-                    "title_with_featured":"HUMBLE.",
-                    "url":"https://genius.com/Kendrick-lamar-humble-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Chandelier",
+                    "title_with_featured": "Chandelier",
+                    "url": "https://genius.com/Sia-chandelier-lyrics",
+                    "song_art_primary_color": "#36a6dd",
+                    "song_art_secondary_color": "#27436b",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/16775",
+                        "header_image_url": "https://images.genius.com/cb40ff6ba23119fdb3ec69073be7cf34.1000x427x1.jpg",
+                        "id": 16775,
+                        "image_url": "https://images.genius.com/6bcd2bd1708eeae7282400f1e4be633f.600x600x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": true,
+                        "name": "Sia",
+                        "url": "https://genius.com/artists/Sia",
+                        "iq": 7942
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":89,
-                    "api_path":"/songs/90478",
-                    "full_title":"​m.A.A.d city by Kendrick Lamar (Ft. MC Eiht)",
-                    "header_image_thumbnail_url":"https://images.genius.com/7ce90585a9da57d4ee67a09f27d8d6bc.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/7ce90585a9da57d4ee67a09f27d8d6bc.1000x1000x1.jpg",
-                    "id":90478,
-                    "lyrics_owner_id":103971,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-maad-city-lyrics",
-                    "pyongs_count":2081,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/7ce90585a9da57d4ee67a09f27d8d6bc.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":6,
-                        "pageviews":5477141
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 19,
+                    "api_path": "/songs/2333293",
+                    "full_title": "A list of all their YouTube videos by Scott Bradlee's Postmodern Jukebox",
+                    "header_image_thumbnail_url": "https://images.genius.com/c4cbd06c9e2a7b952e44b83e41bcb788.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/c4cbd06c9e2a7b952e44b83e41bcb788.500x500x1.jpg",
+                    "id": 2333293,
+                    "lyrics_owner_id": 269182,
+                    "lyrics_state": "complete",
+                    "path": "/Scott-bradlees-postmodern-jukebox-a-list-of-all-their-youtube-videos-lyrics",
+                    "pyongs_count": 1,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/c4cbd06c9e2a7b952e44b83e41bcb788.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/c4cbd06c9e2a7b952e44b83e41bcb788.500x500x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 17,
+                        "hot": false
                     },
-                    "title":"​m.A.A.d city",
-                    "title_with_featured":"​m.A.A.d city (Ft. MC Eiht)",
-                    "url":"https://genius.com/Kendrick-lamar-maad-city-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "A list of all their YouTube videos",
+                    "title_with_featured": "A list of all their YouTube videos",
+                    "url": "https://genius.com/Scott-bradlees-postmodern-jukebox-a-list-of-all-their-youtube-videos-lyrics",
+                    "song_art_primary_color": "#cb5344",
+                    "song_art_secondary_color": "#901013",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/523216",
+                        "header_image_url": "https://images.genius.com/cba9980f0a6387fdc88b1d74386f5881.1000x653x1.jpg",
+                        "id": 523216,
+                        "image_url": "https://images.genius.com/2d424bf3c3c7a60294829949e341cf7f.900x900x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Scott Bradlee’s Postmodern Jukebox",
+                        "url": "https://genius.com/artists/Scott-bradlees-postmodern-jukebox"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":50,
-                    "api_path":"/songs/81159",
-                    "full_title":"Swimming Pools (Drank) by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.genius.com/08bd7e3fd36bc6cf8fca520c5e475903.300x299x1.jpg",
-                    "header_image_url":"https://images.genius.com/08bd7e3fd36bc6cf8fca520c5e475903.923x919x1.jpg",
-                    "id":81159,
-                    "lyrics_owner_id":11524,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-swimming-pools-drank-lyrics",
-                    "pyongs_count":860,
-                    "song_art_image_thumbnail_url":"https://images.rapgenius.com/6ae8dfaad68e239d83a87163903257d1.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":2,
-                        "concurrents":2,
-                        "pageviews":5146734
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/488693",
+                    "full_title": "Null by Nervosaaaaaaa",
+                    "header_image_thumbnail_url": "https://assets.genius.com/images/default_cover_image.png?1623425993",
+                    "header_image_url": "https://assets.genius.com/images/default_cover_image.png?1623425993",
+                    "id": 488693,
+                    "lyrics_owner_id": 177552,
+                    "lyrics_state": "complete",
+                    "path": "/Nervosaaaaaaa-null-lyrics",
+                    "pyongs_count": 2,
+                    "song_art_image_thumbnail_url": "https://assets.genius.com/images/default_cover_image.png?1623425993",
+                    "song_art_image_url": "https://assets.genius.com/images/default_cover_image.png?1623425993",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
                     },
-                    "title":"Swimming Pools (Drank)",
-                    "title_with_featured":"Swimming Pools (Drank)",
-                    "url":"https://genius.com/Kendrick-lamar-swimming-pools-drank-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Null",
+                    "title_with_featured": "Null",
+                    "url": "https://genius.com/Nervosaaaaaaa-null-lyrics",
+                    "song_art_primary_color": "#E9E9E9",
+                    "song_art_secondary_color": "#E9E9E9",
+                    "song_art_text_color": "#000000",
+                    "primary_artist": {
+                        "api_path": "/artists/817455",
+                        "header_image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "id": 817455,
+                        "image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Nervosaaaaaaa",
+                        "url": "https://genius.com/artists/Nervosaaaaaaa"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":38,
-                    "api_path":"/songs/3035222",
-                    "full_title":"DNA. by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.1000x1000x1.jpg",
-                    "id":3035222,
-                    "lyrics_owner_id":104344,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-dna-lyrics",
-                    "pyongs_count":480,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":19,
-                        "pageviews":4254038
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/843214",
+                    "full_title": "Crystal Chandelier by Louis Armstrong",
+                    "header_image_thumbnail_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.935x935x1.jpg",
+                    "id": 843214,
+                    "lyrics_owner_id": 1549345,
+                    "lyrics_state": "complete",
+                    "path": "/Louis-armstrong-crystal-chandelier-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.935x935x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
                     },
-                    "title":"DNA.",
-                    "title_with_featured":"DNA.",
-                    "url":"https://genius.com/Kendrick-lamar-dna-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Crystal Chandelier",
+                    "title_with_featured": "Crystal Chandelier",
+                    "url": "https://genius.com/Louis-armstrong-crystal-chandelier-lyrics",
+                    "song_art_primary_color": "#7f7f7f",
+                    "song_art_secondary_color": "#424242",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/26349",
+                        "header_image_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.935x935x1.jpg",
+                        "id": 26349,
+                        "image_url": "https://images.genius.com/f69c6f830885425fe1dc77b466a07b92.935x935x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Louis Armstrong",
+                        "url": "https://genius.com/artists/Louis-armstrong"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":53,
-                    "api_path":"/songs/90475",
-                    "full_title":"Money Trees by Kendrick Lamar (Ft. Jay Rock)",
-                    "header_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.1000x1000x1.jpg",
-                    "id":90475,
-                    "lyrics_owner_id":1328,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-money-trees-lyrics",
-                    "pyongs_count":853,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":8,
-                        "pageviews":4138488
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/2081624",
+                    "full_title": "Chandelier by Sam Tsui",
+                    "header_image_thumbnail_url": "https://images.genius.com/8b5c73340a9749bc2098feced8c12f7f.300x300x1.png",
+                    "header_image_url": "https://images.genius.com/8b5c73340a9749bc2098feced8c12f7f.504x504x1.png",
+                    "id": 2081624,
+                    "lyrics_owner_id": 1549345,
+                    "lyrics_state": "complete",
+                    "path": "/Sam-tsui-chandelier-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/8b5c73340a9749bc2098feced8c12f7f.300x300x1.png",
+                    "song_art_image_url": "https://images.genius.com/8b5c73340a9749bc2098feced8c12f7f.504x504x1.png",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
                     },
-                    "title":"Money Trees",
-                    "title_with_featured":"Money Trees (Ft. Jay Rock)",
-                    "url":"https://genius.com/Kendrick-lamar-money-trees-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Chandelier",
+                    "title_with_featured": "Chandelier",
+                    "url": "https://genius.com/Sam-tsui-chandelier-lyrics",
+                    "song_art_primary_color": "#b6945a",
+                    "song_art_secondary_color": "#ecd390",
+                    "song_art_text_color": "#000",
+                    "primary_artist": {
+                        "api_path": "/artists/337564",
+                        "header_image_url": "https://images.genius.com/1f9d0d743a83d3f720c78be84798e7b9.1000x1000x1.png",
+                        "id": 337564,
+                        "image_url": "https://images.genius.com/8b5c73340a9749bc2098feced8c12f7f.504x504x1.png",
+                        "is_meme_verified": false,
+                        "is_verified": true,
+                        "name": "Sam Tsui",
+                        "url": "https://genius.com/artists/Sam-tsui",
+                        "iq": 100
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":40,
-                    "api_path":"/songs/90473",
-                    "full_title":"Bitch, Don't Kill My Vibe by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.1000x1000x1.jpg",
-                    "id":90473,
-                    "lyrics_owner_id":83406,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-bitch-dont-kill-my-vibe-lyrics",
-                    "pyongs_count":617,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/e362fbdbbbb70c998d1d1dfa47ea2b17.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":6,
-                        "pageviews":4051711
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 1,
+                    "api_path": "/songs/1106705",
+                    "full_title": "Safe by Chandelier",
+                    "header_image_thumbnail_url": "https://images.genius.com/2ffca4b9f4659a2da0b79580b0afcad3.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/2ffca4b9f4659a2da0b79580b0afcad3.500x500x1.jpg",
+                    "id": 1106705,
+                    "lyrics_owner_id": 1549345,
+                    "lyrics_state": "complete",
+                    "path": "/Chandelier-safe-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/2ffca4b9f4659a2da0b79580b0afcad3.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/2ffca4b9f4659a2da0b79580b0afcad3.500x500x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
                     },
-                    "title":"Bitch, Don't Kill My Vibe",
-                    "title_with_featured":"Bitch, Don't Kill My Vibe",
-                    "url":"https://genius.com/Kendrick-lamar-bitch-dont-kill-my-vibe-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Safe",
+                    "title_with_featured": "Safe",
+                    "url": "https://genius.com/Chandelier-safe-lyrics",
+                    "song_art_primary_color": "#d44c24",
+                    "song_art_secondary_color": "#482817",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/371181",
+                        "header_image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "id": 371181,
+                        "image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Chandelier",
+                        "url": "https://genius.com/artists/Chandelier"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":30,
-                    "api_path":"/songs/3047142",
-                    "full_title":"XXX. by Kendrick Lamar (Ft. U2)",
-                    "header_image_thumbnail_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.1000x1000x1.jpg",
-                    "id":3047142,
-                    "lyrics_owner_id":599242,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-xxx-lyrics",
-                    "pyongs_count":144,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/d69476d2d413d9e0ff9ab1aaa12dc220.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":12,
-                        "pageviews":3813538
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 2,
+                    "api_path": "/songs/5371821",
+                    "full_title": "Chandelier by Original Broadway Cast of Moulin Rouge! The Musical (Ft. Aaron Tveit, Danny Burstein, Holly James, Jacqueline B. Arnold & Sahr Ngaujah)",
+                    "header_image_thumbnail_url": "https://images.genius.com/3a5d58e7fe15d5982b771b4852bedee9.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/3a5d58e7fe15d5982b771b4852bedee9.1000x1000x1.jpg",
+                    "id": 5371821,
+                    "lyrics_owner_id": 7642222,
+                    "lyrics_state": "complete",
+                    "path": "/Original-broadway-cast-of-moulin-rouge-the-musical-chandelier-lyrics",
+                    "pyongs_count": 1,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/3a5d58e7fe15d5982b771b4852bedee9.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/3a5d58e7fe15d5982b771b4852bedee9.1000x1000x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 2,
+                        "hot": false
                     },
-                    "title":"XXX.",
-                    "title_with_featured":"XXX. (Ft. U2)",
-                    "url":"https://genius.com/Kendrick-lamar-xxx-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Chandelier",
+                    "title_with_featured": "Chandelier (Ft. Aaron Tveit, Danny Burstein, Holly James, Jacqueline B. Arnold & Sahr Ngaujah)",
+                    "url": "https://genius.com/Original-broadway-cast-of-moulin-rouge-the-musical-chandelier-lyrics",
+                    "song_art_primary_color": "#f70404",
+                    "song_art_secondary_color": "#9b0707",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/2109550",
+                        "header_image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "id": 2109550,
+                        "image_url": "https://assets.genius.com/images/default_avatar_300.png?1623425993",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Original Broadway Cast of Moulin Rouge! The Musical",
+                        "url": "https://genius.com/artists/Original-broadway-cast-of-moulin-rouge-the-musical"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":51,
-                    "api_path":"/songs/92856",
-                    "full_title":"Poetic Justice by Kendrick Lamar (Ft. Drake)",
-                    "header_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.1000x1000x1.jpg",
-                    "id":92856,
-                    "lyrics_owner_id":110771,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-poetic-justice-lyrics",
-                    "pyongs_count":379,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":3,
-                        "concurrents":5,
-                        "pageviews":3841141
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 0,
+                    "api_path": "/songs/5219613",
+                    "full_title": "Chandelier by Kurt Hugo Schneider (Ft. Sam Tsui)",
+                    "header_image_thumbnail_url": "https://images.genius.com/9a932f9e54f72d9627fd5e5567f85205.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/9a932f9e54f72d9627fd5e5567f85205.500x500x1.jpg",
+                    "id": 5219613,
+                    "lyrics_owner_id": 4801273,
+                    "lyrics_state": "complete",
+                    "path": "/Kurt-hugo-schneider-chandelier-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/9a932f9e54f72d9627fd5e5567f85205.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/9a932f9e54f72d9627fd5e5567f85205.500x500x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 0,
+                        "hot": false
                     },
-                    "title":"Poetic Justice",
-                    "title_with_featured":"Poetic Justice (Ft. Drake)",
-                    "url":"https://genius.com/Kendrick-lamar-poetic-justice-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Chandelier",
+                    "title_with_featured": "Chandelier (Ft. Sam Tsui)",
+                    "url": "https://genius.com/Kurt-hugo-schneider-chandelier-lyrics",
+                    "song_art_primary_color": "#bf6a3f",
+                    "song_art_secondary_color": "#24140c",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/993071",
+                        "header_image_url": "https://images.genius.com/0fe17d80d2ece0daab3ad617cc6d77b5.1000x667x1.jpg",
+                        "id": 993071,
+                        "image_url": "https://images.genius.com/d564cf2e99ba0f8e088f35e5e9b52356.612x612x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Kurt Hugo Schneider",
+                        "url": "https://genius.com/artists/Kurt-hugo-schneider"
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":24,
-                    "api_path":"/songs/721659",
-                    "full_title":"King Kunta by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.rapgenius.com/5c45787f8bcd449a46bc3d1b50e65cc8.300x300x1.jpg",
-                    "header_image_url":"https://images.rapgenius.com/5c45787f8bcd449a46bc3d1b50e65cc8.640x640x1.jpg",
-                    "id":721659,
-                    "lyrics_owner_id":599242,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-king-kunta-lyrics",
-                    "pyongs_count":1880,
-                    "song_art_image_thumbnail_url":"https://images.rapgenius.com/5c45787f8bcd449a46bc3d1b50e65cc8.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":11,
-                        "pageviews":3626090
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 3,
+                    "api_path": "/songs/3763664",
+                    "full_title": "Racks by D Savage",
+                    "header_image_thumbnail_url": "https://images.genius.com/0b7ca4ea343eea7723e959198f54ea1d.300x300x1.jpg",
+                    "header_image_url": "https://images.genius.com/0b7ca4ea343eea7723e959198f54ea1d.500x500x1.jpg",
+                    "id": 3763664,
+                    "lyrics_owner_id": 1532287,
+                    "lyrics_state": "complete",
+                    "path": "/D-savage-racks-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/0b7ca4ea343eea7723e959198f54ea1d.300x300x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/0b7ca4ea343eea7723e959198f54ea1d.500x500x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 3,
+                        "hot": false
                     },
-                    "title":"King Kunta",
-                    "title_with_featured":"King Kunta",
-                    "url":"https://genius.com/Kendrick-lamar-king-kunta-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Racks",
+                    "title_with_featured": "Racks",
+                    "url": "https://genius.com/D-savage-racks-lyrics",
+                    "song_art_primary_color": "#0484b1",
+                    "song_art_secondary_color": "#047cab",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/655347",
+                        "header_image_url": "https://images.genius.com/440ec02846173fe884d8031e7c5c6f98.720x720x1.png",
+                        "id": 655347,
+                        "image_url": "https://images.genius.com/440ec02846173fe884d8031e7c5c6f98.720x720x1.png",
+                        "is_meme_verified": false,
+                        "is_verified": true,
+                        "name": "D Savage",
+                        "url": "https://genius.com/artists/D-savage",
+                        "iq": 494
                     }
                 }
             },
             {
-                "highlights":[
-
-                ],
-                "index":"song",
-                "type":"song",
-                "result":{
-                    "annotation_count":36,
-                    "api_path":"/songs/92853",
-                    "full_title":"Backseat Freestyle by Kendrick Lamar",
-                    "header_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "header_image_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.1000x1000x1.jpg",
-                    "id":92853,
-                    "lyrics_owner_id":3986,
-                    "lyrics_state":"complete",
-                    "path":"/Kendrick-lamar-backseat-freestyle-lyrics",
-                    "pyongs_count":522,
-                    "song_art_image_thumbnail_url":"https://images.genius.com/71de91b0a7f63cb65044ab728c0b6cef.300x300x1.jpg",
-                    "stats":{
-                        "hot":false,
-                        "unreviewed_annotations":0,
-                        "concurrents":2,
-                        "pageviews":3197691
+                "highlights": [],
+                "index": "song",
+                "type": "song",
+                "result": {
+                    "annotation_count": 3,
+                    "api_path": "/songs/398968",
+                    "full_title": "Hey Cisco by Deep Purple",
+                    "header_image_thumbnail_url": "https://images.genius.com/4907de1299f4e6925b6123913e2c10b6.220x220x1.jpg",
+                    "header_image_url": "https://images.genius.com/4907de1299f4e6925b6123913e2c10b6.220x220x1.jpg",
+                    "id": 398968,
+                    "lyrics_owner_id": 397025,
+                    "lyrics_state": "complete",
+                    "path": "/Deep-purple-hey-cisco-lyrics",
+                    "pyongs_count": null,
+                    "song_art_image_thumbnail_url": "https://images.genius.com/4907de1299f4e6925b6123913e2c10b6.220x220x1.jpg",
+                    "song_art_image_url": "https://images.genius.com/4907de1299f4e6925b6123913e2c10b6.220x220x1.jpg",
+                    "stats": {
+                        "unreviewed_annotations": 3,
+                        "hot": false
                     },
-                    "title":"Backseat Freestyle",
-                    "title_with_featured":"Backseat Freestyle",
-                    "url":"https://genius.com/Kendrick-lamar-backseat-freestyle-lyrics",
-                    "primary_artist":{
-                        "api_path":"/artists/1421",
-                        "header_image_url":"https://images.genius.com/3d4bc53cfb5f00d5f6a70e19960cc881.1000x1000x1.jpg",
-                        "id":1421,
-                        "image_url":"https://images.genius.com/eb0ad077e281e41ccd28b400e38061d2.1000x1000x1.jpg",
-                        "is_meme_verified":true,
-                        "is_verified":true,
-                        "name":"Kendrick Lamar",
-                        "url":"https://genius.com/artists/Kendrick-lamar",
-                        "iq":32946
+                    "title": "Hey Cisco",
+                    "title_with_featured": "Hey Cisco",
+                    "url": "https://genius.com/Deep-purple-hey-cisco-lyrics",
+                    "song_art_primary_color": "#b9395c",
+                    "song_art_secondary_color": "#4c3c84",
+                    "song_art_text_color": "#fff",
+                    "primary_artist": {
+                        "api_path": "/artists/34310",
+                        "header_image_url": "https://images.genius.com/7d246fe9459a8524a9a69fd11324ece8.1000x562x1.jpg",
+                        "id": 34310,
+                        "image_url": "https://images.genius.com/91b25ad26e90b71d04d42ccec0a46347.1000x1000x1.jpg",
+                        "is_meme_verified": false,
+                        "is_verified": false,
+                        "name": "Deep Purple",
+                        "url": "https://genius.com/artists/Deep-purple"
                     }
                 }
             }

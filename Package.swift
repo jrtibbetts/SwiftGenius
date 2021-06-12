@@ -26,7 +26,6 @@ let pkg = Package(
                 path: "Sources",
                 resources: [
                     .copy("MockImplementation/JSON/get-account-200.json"),
-                    .copy("MockImplementation/JSON/get-artist-songs-200.json"),
                     .copy("MockImplementation/JSON/get-referents-200.json"),
                     .copy("MockImplementation/JSON/get-songs-200.json"),
                     .copy("MockImplementation/JSON/get-annotations-200.json"),
