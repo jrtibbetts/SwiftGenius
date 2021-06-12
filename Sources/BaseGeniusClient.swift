@@ -8,7 +8,7 @@ public protocol RequestBuilder {
     func accountRequest() -> URLRequest?
     func annotationRequest(id: Int) -> URLRequest?
     func artistRequest(id: Int) -> URLRequest?
-    func referentsRequest(forSongId: Int) -> URLRequest?
+    func referentsRequest(songId: Int) -> URLRequest?
     func searchRequest(terms: String) -> URLRequest?
     func songRequest(id: Int) -> URLRequest?
 
@@ -92,9 +92,11 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusReferent` if the
     ///            request was successful, or an error if it isn't.
-//    open func referents(forSongId id: Int) -> AnyPublisher<[GeniusReferent], Error> {
-//        return publisher(for: requestBuilder.referentsRequest(id: id))
-//    }
+    open func referents(songId: Int) -> AnyPublisher<[GeniusReferent], Error> {
+        return publisher(for: requestBuilder.referentsRequest(songId: songId)) { (referentsResponse) in
+            return referentsResponse.response!.referents
+        }
+    }
 
     /// Search for content on Genius.com. Search results are generally lists of
     /// songs that match, so that an artist search returns that artist's top

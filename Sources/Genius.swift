@@ -17,6 +17,8 @@ public protocol Genius: ObservableObject {
 
     func logOut()
 
+    func referents(songId: Int) -> AnyPublisher<[GeniusReferent], Error>
+
     func search(terms: String) -> AnyPublisher<[GeniusSearch], Error>
 
     func song(id: Int) -> AnyPublisher<GeniusSong, Error>

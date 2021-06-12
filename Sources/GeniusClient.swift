@@ -223,8 +223,8 @@ public class GeniusClient: BaseGeniusClient, Genius {
             return geniusGetRequest(path: "/artists/\(id)")
         }
 
-        func referentsRequest(forSongId id: Int) -> URLRequest? {
-            return geniusGetRequest(path: "/referents?song_id=\(id)")
+        func referentsRequest(songId: Int) -> URLRequest? {
+            return geniusGetRequest(path: "/referents?song_id=\(songId)")
         }
 
         func searchRequest(terms: String) -> URLRequest? {
