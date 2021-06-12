@@ -4,3 +4,4 @@ build/
 docs/
 
 SwiftGenius.xcscheme
+.swiftpm/xcode/xcshareddata/xcschemes

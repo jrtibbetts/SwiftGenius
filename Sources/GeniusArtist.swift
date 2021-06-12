@@ -16,7 +16,7 @@ public struct GeniusArtist: GeniusElement {
     public var isMemeVerified: Bool = false
     public var isVerified: Bool = true
     public var name: String
-    public var twitterName: String
+    public var twitterName: String?
     public var url: URL?
     public var user: GeniusAccount?
 
