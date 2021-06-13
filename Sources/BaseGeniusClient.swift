@@ -33,12 +33,7 @@ public enum GeniusError: Error {
 /// implementation instead.
 public class BaseGeniusClient: NSObject, ObservableObject {
 
-    public static var jsonDecoder: JSONDecoder = {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-
-        return decoder
-    }()
+    public static var jsonDecoder = GeniusDecoder()
 
     internal var requestBuilder: RequestBuilder
 
