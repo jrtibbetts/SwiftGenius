@@ -5,7 +5,7 @@ import XCTest
 
 class ClientTestBase: XCTestCase {
 
-    var timeoutSeconds: TimeInterval = 5.0
+    var timeoutSeconds: TimeInterval = 15.0
 
     @discardableResult
     func assert<T>(validPublisher publisher: AnyPublisher<T, Error>,

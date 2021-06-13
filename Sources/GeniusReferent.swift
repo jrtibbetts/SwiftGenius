@@ -8,7 +8,6 @@ public struct GeniusReferent: GeniusElement {
     public var annotations: [GeniusAnnotation]?
     public var annotatorId: Int
     public var annotatorLogin: String
-    public var apiPath: String
     public var classification: String
     public var featured: Bool?
     public var fragment: String?
@@ -28,7 +27,6 @@ public struct GeniusReferent: GeniusElement {
         case annotations
         case annotatorId
         case annotatorLogin
-        case apiPath
         case classification
         case featured
         case fragment
@@ -46,7 +44,6 @@ public struct GeniusReferent: GeniusElement {
 
     public struct Annotatable: Codable {
 
-        public var apiPath: String
         public var context: String
         // swiftlint:disable identifier_name
         public var id: Int

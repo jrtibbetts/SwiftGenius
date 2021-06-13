@@ -5,7 +5,6 @@ import Foundation
 public struct GeniusWebPage: GeniusElement {
 
     public var annotationCount: Int
-    public var apiPath: String
     public var domain: String
     // swiftlint:disable identifier_name
     public var id: Int

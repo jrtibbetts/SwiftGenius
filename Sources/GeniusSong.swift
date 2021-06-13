@@ -6,7 +6,6 @@ public struct GeniusSong: GeniusElement {
 
     public var annotationCount: Int
     public var album: Album?
-    public var apiPath: String
     public var currentUserMetadata: GeniusCurrentUserMetadata?
 //    public var descriptionAnnotation: GeniusDescription
     public var embedContent: String?
@@ -58,7 +57,6 @@ public struct GeniusSong: GeniusElement {
 
     public struct Album: Codable {
 
-        public var apiPath: String
         public var artist: ArtistOverview?
         public var coverArtUrl: URL?
         public var fullTitle: String
@@ -72,14 +70,11 @@ public struct GeniusSong: GeniusElement {
 
     public struct ArtistOverview: Codable {
 
-        public var apiPath: String
         public var headerImageUrl: URL?
         // swiftlint:disable identifier_name
         public var id: Int
         // swiftlint:enable identifier_name
         public var imageUrl: URL?
-        public var isMemeVerified: Bool
-        public var isVerified: Bool
         public var name: String
         public var url: URL
 

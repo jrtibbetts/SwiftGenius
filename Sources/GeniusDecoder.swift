@@ -13,5 +13,5 @@ open class GeniusDecoder: JSONDecoder {
         super.init()
         keyDecodingStrategy = .convertFromSnakeCase
     }
-
+ 
 }

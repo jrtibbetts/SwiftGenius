@@ -4,7 +4,6 @@ import Foundation
 
 public struct GeniusAccount: GeniusElement {
 
-    public var apiPath: URL?
     //    public var artist: ?
     public var availableIdentityProviders: [String]?
     public var avatar: GeniusAvatar?
@@ -19,9 +18,6 @@ public struct GeniusAccount: GeniusElement {
     public var id: Int
     // swiftlint:enable identifier_name
     public var identities: [Identity]?
-    // swiftlint:disable identifier_name
-    public var iq: Int
-    // swiftlint:enable identifier_name
     public var iqForDisplay: String?
     public var login: String
     public var name: String

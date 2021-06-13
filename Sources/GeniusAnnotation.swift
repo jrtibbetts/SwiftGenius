@@ -4,7 +4,6 @@ import Foundation
 
 public struct GeniusAnnotation: GeniusElement {
 
-    public var apiPath: String
 //    public var body: [Codable]
     public var commentCount: Int
     public var community: Bool?

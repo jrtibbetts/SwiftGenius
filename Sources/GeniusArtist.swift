@@ -5,7 +5,6 @@ import Foundation
 public struct GeniusArtist: GeniusElement {
     
     public var alternateNames: [String]?
-    public var apiPath: String
     public var currentUserMetadata: GeniusCurrentUserMetadata?
     public var description: GeniusDescription?
 //    public var descriptionAnnotation: DescriptionAnnotation?
@@ -13,8 +12,6 @@ public struct GeniusArtist: GeniusElement {
     public var headerImageUrl: URL?
     public var imageUrl: URL?
     public var instagramName: String?
-    public var isMemeVerified: Bool = false
-    public var isVerified: Bool = true
     public var name: String
     public var twitterName: String?
     public var url: URL?
