@@ -245,6 +245,10 @@ public class GeniusClient: BaseGeniusClient, Genius {
             return geniusGetRequest(path: "/songs/\(id)")
         }
 
+        func webPageRequest(urlString: String) -> URLRequest? {
+            return geniusGetRequest(path: "/webpages/lookup?raw_annotatable_url=\(urlString)")
+        }
+
         private func geniusGetRequest(path: String) -> URLRequest? {
             guard let endpoint = URL(string: path, relativeTo: baseUrl),
                   let oAuthToken = oAuthToken else {

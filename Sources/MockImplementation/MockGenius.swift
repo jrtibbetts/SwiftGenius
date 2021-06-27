@@ -62,6 +62,10 @@ public class MockGenius: BaseGeniusClient, Genius {
             return buildRequest(path: "get-songs-200")
         }
 
+        func webPageRequest(urlString: String) -> URLRequest? {
+            return buildRequest(path: "get-webpage-200")
+        }
+
     }
 
 //    // Copied from JSONClient

@@ -23,5 +23,7 @@ public protocol Genius: ObservableObject {
 
     func song(id: Int) -> AnyPublisher<GeniusSong, Error>
 
+    func webPage(urlString: String) -> AnyPublisher<GeniusWebPage, Error>
+
 }
 

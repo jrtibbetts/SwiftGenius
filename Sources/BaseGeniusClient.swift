@@ -11,6 +11,7 @@ public protocol RequestBuilder {
     func referentsRequest(songId: Int) -> URLRequest?
     func searchRequest(terms: String) -> URLRequest?
     func songRequest(id: Int) -> URLRequest?
+    func webPageRequest(urlString: String) -> URLRequest?
 
 }
 
@@ -119,8 +120,14 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
+    open func webPage(urlString: String) -> AnyPublisher<GeniusWebPage, Error> {
+        return publisher(for: requestBuilder.webPageRequest(urlString: urlString)) { (webPageResponse) in
+            return webPageResponse.response!.webPage
+        }
+    }
+
     private func publisher<T: GeniusElement>(for request: URLRequest?,
-                                           map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
+                                             map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
         guard let request = request else {
             return Future<T, Error> { (future) in
                 future(.failure(GeniusError.invalidRequest))
@@ -144,7 +151,7 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     }
 
     private func publisher<T: GeniusElement>(for request: URLRequest?,
-                                           map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
+                                             map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
         guard let request = request else {
             return Future<[T], Error> { (future) in
                 future(.failure(GeniusError.invalidRequest))
