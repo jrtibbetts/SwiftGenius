@@ -2,9 +2,9 @@
 
 import Foundation
 
-class ArtistDetailViewModel: GeniusElementModel<GeniusArtist> {
+open class ArtistDetailViewModel: GeniusElementModel<GeniusArtist> {
 
-    public func fetchArtist(id: Int, genius: GeniusClient) {
+    open func fetchArtist(id: Int, genius: GeniusClient) {
         super.fetch(genius.artist(id: id))
     }
 

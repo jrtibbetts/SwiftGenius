@@ -2,9 +2,9 @@
 
 import Foundation
 
-class SearchResultsViewModel: GeniusElementArrayModel<GeniusSearch> {
+open class SearchResultsViewModel: GeniusElementArrayModel<GeniusSearch> {
 
-    func fetchSearchResults(genius: GeniusClient, searchTerms: String) {
+    open func fetchSearchResults(genius: GeniusClient, searchTerms: String) {
         super.fetch(genius.search(terms: searchTerms))
     }
 

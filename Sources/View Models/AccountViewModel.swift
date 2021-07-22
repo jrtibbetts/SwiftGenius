@@ -2,9 +2,9 @@
 
 import Foundation
 
-class AccountViewModel: GeniusElementModel<GeniusAccount> {
+open class AccountViewModel: GeniusElementModel<GeniusAccount> {
 
-    func fetchAccount(genius: GeniusClient) {
+    open func fetchAccount(genius: GeniusClient) {
         super.fetch(genius.account())
     }
 

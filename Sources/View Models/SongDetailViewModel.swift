@@ -2,9 +2,9 @@
 
 import Foundation
 
-class SongDetailViewModel: GeniusElementModel<GeniusSong> {
+open class SongDetailViewModel: GeniusElementModel<GeniusSong> {
 
-    func fetchSong(genius: GeniusClient, songId: String) {
+    open func fetchSong(genius: GeniusClient, songId: String) {
         super.fetch(genius.song(id: Int(songId)!))
     }
 
