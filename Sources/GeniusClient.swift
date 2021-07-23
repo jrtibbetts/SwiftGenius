@@ -113,8 +113,7 @@ public class GeniusClient: BaseGeniusClient, Genius {
                     break
                 }
             }, receiveValue: { [weak self] (url) in
-                self?.retrieveAccessToken(from: url)
-                future(.success(true))
+                self?.retrieveAccessToken(from: url, future: future)
             })
         }
         .eraseToAnyPublisher()
@@ -124,19 +123,24 @@ public class GeniusClient: BaseGeniusClient, Genius {
         oAuthToken = nil
     }
 
-    open func retrieveAccessToken(from url: URL) {
+    open func retrieveAccessToken(from url: URL,
+                                  future: @escaping (Result<Bool, Error>) -> Void) {
         let request = accessTokenRequest(from: url)
 
         URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             DispatchQueue.main.async {
                 if let error = error {
                     print("Error when requesting auth token: ", error)
+                    future(.failure(error))
                 } else if let httpResponse = response as? HTTPURLResponse,
                           httpResponse.statusCode != 200 {
                     print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
+                    let error = NSError(domain: "GeniusClient", code: httpResponse.statusCode, userInfo: nil)
+                    future(.failure(error))
                 } else if let data = data {
                     let tokenResponse: TokenResponse? = try? Self.jsonDecoder.decode(TokenResponse.self, from: data)
                     self?.oAuthToken = tokenResponse?.accessToken
+                    future(.success(true))
                 }
             }
         }.resume()
