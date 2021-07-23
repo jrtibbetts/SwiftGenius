@@ -75,7 +75,7 @@ public class GeniusClient: BaseGeniusClient, Genius {
         }
     }
 
-    open func authorize() {
+    open func authorize() -> AnyPublisher<Bool, Error> {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
         var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
         components.queryItems = [
@@ -103,16 +103,21 @@ public class GeniusClient: BaseGeniusClient, Genius {
             session.start()
         }
 
-        currentOperation = logInFuture.sink(receiveCompletion: { (completion) in
-            switch completion {
-            case .failure(let error):
-                print("Failed to receive a sign-in completion: ", error)
-            default:
-                break
-            }
-        }, receiveValue: { [weak self] (url) in
-            self?.retrieveAccessToken(from: url)
-        })
+        return Future<Bool, Error> { [weak self] (future) in
+            self?.currentOperation = logInFuture.sink(receiveCompletion: { (completion) in
+                switch completion {
+                case .failure(let error):
+                    print("Failed to receive a sign-in completion: ", error)
+                    future(.failure(error))
+                default:
+                    break
+                }
+            }, receiveValue: { [weak self] (url) in
+                self?.retrieveAccessToken(from: url)
+                future(.success(true))
+            })
+        }
+        .eraseToAnyPublisher()
     }
 
     open func logOut() {
