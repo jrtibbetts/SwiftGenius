@@ -1,9 +1,4 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jason R Tibbetts on 6/12/21.
-//
+//  Copyright © 2021 Poikile Creations. All rights reserved.
 
 import Foundation
 

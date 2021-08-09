@@ -1,4 +1,4 @@
-//  Created by Jason R Tibbetts on 7/21/21.
+//  Copyright © 2021 Poikile Creations. All rights reserved.
 
 import Foundation
 
