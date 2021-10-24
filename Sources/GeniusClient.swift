@@ -146,6 +146,22 @@ public class GeniusClient: BaseGeniusClient, Genius {
         }.resume()
     }
 
+    open func retrieveAccessToken(from url: URL) async throws -> String {
+        let request = accessTokenRequest(from: url)
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let httpResponse = response as? HTTPURLResponse,
+           httpResponse.statusCode != 200 {
+            print("HTTP error response: ", String(data: data, encoding: .utf8)!)
+            throw NSError(domain: "GeniusClient", code: httpResponse.statusCode, userInfo: nil)
+        } else {
+            let tokenResponse: TokenResponse = try Self.jsonDecoder.decode(TokenResponse.self, from: data)
+
+            return tokenResponse.accessToken
+        }
+    }
+
     func accessTokenRequest(from url: URL) -> URLRequest {
         let components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
         let queryItems = components.query!

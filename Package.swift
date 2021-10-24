@@ -1,11 +1,13 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.5
 import PackageDescription
 
 let pkg = Package(
     name: "SwiftGenius",
 
     platforms: [
-        .iOS(.v14)
+        .iOS(.v15),
+        .tvOS(.v14),
+        .macOS(.v12)
     ],
 
     products: [
