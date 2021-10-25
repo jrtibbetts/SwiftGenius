@@ -54,6 +54,12 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
+    open func account() async throws -> GeniusAccount {
+        return try await fetchElement(for: requestBuilder.accountRequest()) { (accountResponse) in
+            return accountResponse.response!.user
+        }
+    }
+
     /// Get a specific song lyric annotation.
     ///
     /// - parameter id: The annotation's ID.
@@ -62,6 +68,12 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///            the request was successful, or an error if it isn't.
     open func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
         return publisher(for: requestBuilder.annotationRequest(id: id)) { (annotationResponse) in
+            return annotationResponse.response!.annotation
+        }
+    }
+
+    open func annotation(id: Int) async throws -> GeniusAnnotation {
+        return try await fetchElement(for: requestBuilder.annotationRequest(id: id)) { (annotationResponse) in
             return annotationResponse.response!.annotation
         }
     }
@@ -80,6 +92,12 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
+    open func artist(id: Int) async throws -> GeniusArtist {
+        return try await fetchElement(for: requestBuilder.artistRequest(id: id)) { (artistResponse) in
+            return artistResponse.response!.artist
+        }
+    }
+
     /// Get the annotated lyric segments of a specified song. **Genius.com does
     /// not have an API for getting *all* of a song's lyrics due to copyright
     /// restrictions.**
@@ -90,6 +108,12 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///            request was successful, or an error if it isn't.
     open func referents(songId: Int) -> AnyPublisher<[GeniusReferent], Error> {
         return publisher(for: requestBuilder.referentsRequest(songId: songId)) { (referentsResponse) in
+            return referentsResponse.response!.referents
+        }
+    }
+
+    open func referents(songId: Int) async throws -> [GeniusReferent] {
+        return try await fetchElements(for: requestBuilder.referentsRequest(songId: songId)) { (referentsResponse) in
             return referentsResponse.response!.referents
         }
     }
@@ -120,8 +144,20 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
+    open func song(id: Int) async throws -> GeniusSong {
+        return try await fetchElement(for: requestBuilder.songRequest(id: id)) { (songResponse) in
+            return songResponse.response!.song
+        }
+    }
+
     open func webPage(urlString: String) -> AnyPublisher<GeniusWebPage, Error> {
         return publisher(for: requestBuilder.webPageRequest(urlString: urlString)) { (webPageResponse) in
+            return webPageResponse.response!.webPage
+        }
+    }
+
+    open func webPage(urlString: String) async throws -> GeniusWebPage {
+        return try await fetchElement(for: requestBuilder.webPageRequest(urlString: urlString)) { (webPageResponse) in
             return webPageResponse.response!.webPage
         }
     }
@@ -167,6 +203,25 @@ public class BaseGeniusClient: NSObject, ObservableObject {
             .receive(on: DispatchQueue.main)
             .eraseToAnyPublisher()
     }
+
+    private func fetchElements<T: GeniusElement>(for request: URLRequest?,
+                                                 map: @escaping (T.Response) -> [T]) async throws -> [T] {
+        guard let request = request else {
+            throw GeniusError.invalidRequest
+        }
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let httpResponse = response as? HTTPURLResponse,
+           httpResponse.statusCode != 200 {
+            throw HTTPError.statusCode(httpResponse.statusCode)
+        }
+
+        let element = try Self.jsonDecoder.decode(T.Response.self, from: data)
+
+        return map(element)
+    }
+
 
     private func publisher<T: GeniusElement>(for request: URLRequest?,
                                              map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
