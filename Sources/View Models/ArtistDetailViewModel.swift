@@ -5,7 +5,18 @@ import Foundation
 open class ArtistDetailViewModel: GeniusElementModel<GeniusArtist> {
 
     open func fetchArtist(id: Int, genius: GeniusClient) {
-        super.fetch(genius.artist(id: id))
+        loading = true
+
+        Task {
+            do {
+                self.element = try await genius.artist(id: id)
+            } catch {
+                self.error = error
+            }
+
+            loading = false
+        }
+
     }
 
 }

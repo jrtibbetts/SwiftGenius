@@ -5,7 +5,17 @@ import Foundation
 open class WebPageViewModel: GeniusElementModel<GeniusWebPage> {
 
     open func fetchWebPage(genius: GeniusClient, urlString: String) {
-        super.fetch(genius.webPage(urlString: urlString))
+        loading = true
+
+        Task {
+            do {
+                self.element = try await genius.webPage(urlString: urlString)
+            } catch {
+                self.error = error
+            }
+
+            loading = false
+        }
     }
 
 }

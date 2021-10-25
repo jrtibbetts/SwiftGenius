@@ -1,6 +1,5 @@
 //  Copyright © 2018 Jason R Tibbetts. All rights reserved.
 
-import Combine
 import Foundation
 
 public protocol RequestBuilder {
@@ -48,12 +47,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusAccount` if the
     ///            request is successful, or an error if it wasn't.
-    open func account() -> AnyPublisher<GeniusAccount, Error> {
-        return publisher(for: requestBuilder.accountRequest()) { (accountResponse) in
-            return accountResponse.response!.user
-        }
-    }
-
     open func account() async throws -> GeniusAccount {
         return try await fetchElement(for: requestBuilder.accountRequest()) { (accountResponse) in
             return accountResponse.response!.user
@@ -66,12 +59,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusAnnotation` if
     ///            the request was successful, or an error if it isn't.
-    open func annotation(id: Int) -> AnyPublisher<GeniusAnnotation, Error> {
-        return publisher(for: requestBuilder.annotationRequest(id: id)) { (annotationResponse) in
-            return annotationResponse.response!.annotation
-        }
-    }
-
     open func annotation(id: Int) async throws -> GeniusAnnotation {
         return try await fetchElement(for: requestBuilder.annotationRequest(id: id)) { (annotationResponse) in
             return annotationResponse.response!.annotation
@@ -86,12 +73,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusArtist` if the
     ///            request was successful, or an error if it isn't.
-    open func artist(id: Int) -> AnyPublisher<GeniusArtist, Error> {
-        return publisher(for: requestBuilder.artistRequest(id: id)) { (artistResponse) in
-            return artistResponse.response!.artist
-        }
-    }
-
     open func artist(id: Int) async throws -> GeniusArtist {
         return try await fetchElement(for: requestBuilder.artistRequest(id: id)) { (artistResponse) in
             return artistResponse.response!.artist
@@ -106,12 +87,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusReferent` if the
     ///            request was successful, or an error if it isn't.
-    open func referents(songId: Int) -> AnyPublisher<[GeniusReferent], Error> {
-        return publisher(for: requestBuilder.referentsRequest(songId: songId)) { (referentsResponse) in
-            return referentsResponse.response!.referents
-        }
-    }
-
     open func referents(songId: Int) async throws -> [GeniusReferent] {
         return try await fetchElements(for: requestBuilder.referentsRequest(songId: songId)) { (referentsResponse) in
             return referentsResponse.response!.referents
@@ -124,8 +99,8 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSearch` if the
     ///            request was successful, or an error if it isn't.
-    open func search(terms: String) -> AnyPublisher<[GeniusSearch], Error> {
-        return publisher(for: requestBuilder.searchRequest(terms: terms)) { (searchResponse) in
+    open func search(terms: String) async throws -> [GeniusSearch] {
+        return try await fetchElements(for: requestBuilder.searchRequest(terms: terms)) { (searchResponse) in
             return searchResponse.response!.hits
         }
     }
@@ -138,21 +113,9 @@ public class BaseGeniusClient: NSObject, ObservableObject {
     ///
     /// - returns: A `Future` that yields a `GeniusSong` if the
     ///            request was successful, or an error if it isn't.
-    open func song(id: Int) -> AnyPublisher<GeniusSong, Error> {
-        return publisher(for: requestBuilder.songRequest(id: id)) { (songResponse) in
-            return songResponse.response!.song
-        }
-    }
-
     open func song(id: Int) async throws -> GeniusSong {
         return try await fetchElement(for: requestBuilder.songRequest(id: id)) { (songResponse) in
             return songResponse.response!.song
-        }
-    }
-
-    open func webPage(urlString: String) -> AnyPublisher<GeniusWebPage, Error> {
-        return publisher(for: requestBuilder.webPageRequest(urlString: urlString)) { (webPageResponse) in
-            return webPageResponse.response!.webPage
         }
     }
 
@@ -180,30 +143,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         return map(element)
     }
 
-    private func publisher<T: GeniusElement>(for request: URLRequest?,
-                                             map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
-        guard let request = request else {
-            return Future<T, Error> { (future) in
-                future(.failure(GeniusError.invalidRequest))
-            }
-            .eraseToAnyPublisher()
-        }
-
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { (output) in
-                if let httpResponse = output.response as? HTTPURLResponse,
-                          httpResponse.statusCode != 200 {
-                    throw HTTPError.statusCode(httpResponse.statusCode)
-                }
-
-                return output.data
-            }
-            .decode(type: T.Response.self, decoder: Self.jsonDecoder)
-            .map { map($0) }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
-    }
-
     private func fetchElements<T: GeniusElement>(for request: URLRequest?,
                                                  map: @escaping (T.Response) -> [T]) async throws -> [T] {
         guard let request = request else {
@@ -220,31 +159,6 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         let element = try Self.jsonDecoder.decode(T.Response.self, from: data)
 
         return map(element)
-    }
-
-
-    private func publisher<T: GeniusElement>(for request: URLRequest?,
-                                             map: @escaping (T.Response) -> [T]) -> AnyPublisher<[T], Error> {
-        guard let request = request else {
-            return Future<[T], Error> { (future) in
-                future(.failure(GeniusError.invalidRequest))
-            }
-            .eraseToAnyPublisher()
-        }
-
-        return URLSession.shared.dataTaskPublisher(for: request)
-            .tryMap { (output) in
-                if let httpResponse = output.response as? HTTPURLResponse,
-                          httpResponse.statusCode != 200 {
-                    throw HTTPError.statusCode(httpResponse.statusCode)
-                }
-
-                return output.data
-            }
-            .decode(type: T.Response.self, decoder: Self.jsonDecoder)
-            .map { map($0) }
-            .receive(on: DispatchQueue.main)
-            .eraseToAnyPublisher()
     }
 
 }

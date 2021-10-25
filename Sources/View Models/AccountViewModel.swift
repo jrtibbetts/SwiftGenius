@@ -5,7 +5,17 @@ import Foundation
 open class AccountViewModel: GeniusElementModel<GeniusAccount> {
 
     open func fetchAccount(genius: GeniusClient) {
-        super.fetch(genius.account())
+        loading = true
+
+        Task {
+            do {
+                self.element = try await genius.account()
+            } catch {
+                self.error = error
+            }
+
+            loading = false
+        }
     }
 
 }

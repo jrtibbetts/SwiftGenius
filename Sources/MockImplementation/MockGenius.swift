@@ -73,26 +73,4 @@ public class MockGenius: BaseGeniusClient, Genius {
 
     }
 
-//    // Copied from JSONClient
-//    public func apply<T: Codable>(toJsonObjectIn fileName: String,
-//                                  error: Error? = nil) -> Future<T, Error> {
-//        return Future<T, Error> { [unowned self] (future) in
-//            if errorMode {
-//                future(.failure(NSError(domain: "MockGenius", code: 0, userInfo: nil)))
-//            } else {
-//                do {
-//                    if let url = SwiftGenius.resourceBundle.url(forResource: fileName, withExtension: "json") {
-//                        let data = try Data(contentsOf: url)
-//                        let obj: T = try jsonDecoder.decode(T.self, from: data)
-//                        future(.success(obj))
-//                    } else {
-//                        future(.failure(NSError(domain: "MockGenius", code: 1, userInfo: nil)))
-//                    }
-//                } catch {
-//                    future(.failure(error))
-//                }
-//            }
-//        }
-//    }
-
 }
