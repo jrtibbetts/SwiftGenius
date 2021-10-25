@@ -4,28 +4,6 @@ import AuthenticationServices
 import Combine
 import Foundation
 
-public extension ASWebAuthenticationSession {
-
-    convenience init(_ url: URL,
-                     callbackScheme: String?) async throws {
-        self.init(url: url, callbackURLScheme: callbackScheme) { (callbackUrl, error) in
-            if let error = error {
-                completion(.failure(error))
-            } else if let url = callbackUrl {
-                completion(.success(url))
-            }
-        }
-
-        session.presentationContextProvider = self
-        session.prefersEphemeralWebBrowserSession = false
-        session.start()
-        Task {
-
-        }
-    }
-
-}
-
 public class GeniusClient: BaseGeniusClient, Genius {
 
     public enum Scope: String {
@@ -96,21 +74,6 @@ public class GeniusClient: BaseGeniusClient, Genius {
             oldValue?.cancel()
         }
     }
-
-//    open func authorizeAsynchronously() async throws -> Bool {
-//        let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
-//        var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
-//        components.queryItems = [
-//            "client_id": clientId,
-//            "redirect_uri": callbackUrl.absoluteString,
-//            "scope": scope.map { $0.rawValue }.joined(separator: " "),
-//            "state": state,
-//            "response_type": "code"
-//        ].map { URLQueryItem(name: $0, value: $1) }
-//
-//        let authUrl = components.url!
-//        let callbackScheme = callbackUrl.scheme
-//    }
 
     open func authorize() -> AnyPublisher<Bool, Error> {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!

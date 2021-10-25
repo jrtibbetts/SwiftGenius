@@ -126,6 +126,24 @@ public class BaseGeniusClient: NSObject, ObservableObject {
         }
     }
 
+    private func fetchElement<T: GeniusElement>(for request: URLRequest?,
+                                                map: @escaping (T.Response) -> T) async throws -> T {
+        guard let request = request else {
+            throw GeniusError.invalidRequest
+        }
+
+        let (data, response) = try await URLSession.shared.data(for: request)
+
+        if let httpResponse = response as? HTTPURLResponse,
+           httpResponse.statusCode != 200 {
+            throw HTTPError.statusCode(httpResponse.statusCode)
+        }
+
+        let element = try Self.jsonDecoder.decode(T.Response.self, from: data)
+
+        return map(element)
+    }
+
     private func publisher<T: GeniusElement>(for request: URLRequest?,
                                              map: @escaping (T.Response) -> T) -> AnyPublisher<T, Error> {
         guard let request = request else {
