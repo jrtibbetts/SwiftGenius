@@ -75,7 +75,25 @@ public class GeniusClient: BaseGeniusClient, Genius {
         }
     }
 
-    open func authorize() -> AnyPublisher<Bool, Error> {
+    func callbackUrl(for authUrl: URL,
+                     callbackURLScheme scheme: String) async throws -> URL? {
+        return try await withCheckedThrowingContinuation { (continuation) in
+            let session = ASWebAuthenticationSession(url: authUrl,
+                                                     callbackURLScheme: scheme) { (callbackUrl, error) in
+                if let error = error {
+                    continuation.resume(throwing: error)
+                } else if let url = callbackUrl {
+                    continuation.resume(returning: url)
+                }
+            }
+
+            session.presentationContextProvider = self
+            session.prefersEphemeralWebBrowserSession = false
+            session.start()
+        }
+    }
+
+    open func authorize() async throws -> Bool {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
         var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
         components.queryItems = [
