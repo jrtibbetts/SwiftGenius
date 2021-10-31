@@ -93,7 +93,7 @@ public class GeniusClient: BaseGeniusClient, Genius {
         }
     }
 
-    open func authorize() async throws -> Bool {
+    open func authorize() -> AnyPublisher<Bool, Error> {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
         var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
         components.queryItems = [
