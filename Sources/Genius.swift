@@ -13,7 +13,7 @@ public protocol Genius: ObservableObject {
 
     func artist(id: Int) async throws -> GeniusArtist
 
-    func authorize() -> AnyPublisher<Bool, Error>
+    func authorize() async throws -> String
 
     func logOut()
 

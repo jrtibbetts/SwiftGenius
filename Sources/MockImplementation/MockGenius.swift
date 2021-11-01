@@ -16,13 +16,10 @@ public class MockGenius: BaseGeniusClient, Genius {
         super.init(requestBuilder: MockRequestBuilder(errorMode: errorMode))
     }
 
-    public func authorize() -> AnyPublisher<Bool, Error> {
+    public func authorize() async throws -> String {
         isAuthenticated = true
 
-        return Future<Bool, Error> { (future) in
-            future(.success(true))
-        }
-        .eraseToAnyPublisher()
+        return "some token"
     }
 
     public func logOut() {

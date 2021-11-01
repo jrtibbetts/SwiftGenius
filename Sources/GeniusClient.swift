@@ -1,7 +1,6 @@
 //  Copyright © 2017 Jason R Tibbetts. All rights reserved.
 
 import AuthenticationServices
-import Combine
 import Foundation
 
 public class GeniusClient: BaseGeniusClient, Genius {
@@ -25,7 +24,7 @@ public class GeniusClient: BaseGeniusClient, Genius {
 
     // MARK: - Public Properties
 
-    public var callbackUrl: URL
+    public var redirectUrl: URL
 
     public var isAuthenticated: Bool {
         return oAuthToken != nil
@@ -57,26 +56,20 @@ public class GeniusClient: BaseGeniusClient, Genius {
 
     public init(clientId: String,
                 clientSecret: String,
-                callbackUrl: URL,
+                redirectUrl: URL,
                 userAgent: String = "SwiftGenius/1.0",
                 scope: [Scope] = [.me]) {
         self.clientId = clientId
         self.clientSecret = clientSecret
-        self.callbackUrl = callbackUrl
+        self.redirectUrl = redirectUrl
         self.userAgent = userAgent
         self.scope = scope
         self.state = "Genius " + dateFormatter.string(from: Date())
         super.init(requestBuilder: GeniusRequestBuilder(baseUrl: baseUrl, userAgent: userAgent))
     }
 
-    private var currentOperation: AnyCancellable? {
-        didSet {
-            oldValue?.cancel()
-        }
-    }
-
     func callbackUrl(for authUrl: URL,
-                     callbackURLScheme scheme: String) async throws -> URL? {
+                     callbackURLScheme scheme: String) async throws -> URL {
         return try await withCheckedThrowingContinuation { (continuation) in
             let session = ASWebAuthenticationSession(url: authUrl,
                                                      callbackURLScheme: scheme) { (callbackUrl, error) in
@@ -93,75 +86,27 @@ public class GeniusClient: BaseGeniusClient, Genius {
         }
     }
 
-    open func authorize() -> AnyPublisher<Bool, Error> {
+    open func authorize() async throws -> String {
         let endpoint = URL(string: "/oauth/authorize", relativeTo: baseUrl)!
         var components = URLComponents(url: endpoint, resolvingAgainstBaseURL: true)!
         components.queryItems = [
             "client_id": clientId,
-            "redirect_uri": callbackUrl.absoluteString,
+            "redirect_uri": redirectUrl.absoluteString,
             "scope": scope.map { $0.rawValue }.joined(separator: " "),
             "state": state,
             "response_type": "code"
         ].map { URLQueryItem(name: $0, value: $1) }
 
         let authUrl = components.url!
-        let callbackScheme = callbackUrl.scheme
-        let logInFuture = Future<URL, Error> { [weak self] (completion) in
-            let session = ASWebAuthenticationSession(url: authUrl,
-                                                     callbackURLScheme: callbackScheme) { (callbackUrl, error) in
-                if let error = error {
-                    completion(.failure(error))
-                } else if let url = callbackUrl {
-                    completion(.success(url))
-                }
-            }
+        let callbackScheme = redirectUrl.scheme!
+        let url = try await callbackUrl(for: authUrl, callbackURLScheme: callbackScheme)
+        let token = try await retrieveAccessToken(from: url)
 
-            session.presentationContextProvider = self
-            session.prefersEphemeralWebBrowserSession = false
-            session.start()
-        }
-
-        return Future<Bool, Error> { [weak self] (future) in
-            self?.currentOperation = logInFuture.sink(receiveCompletion: { (completion) in
-                switch completion {
-                case .failure(let error):
-                    print("Failed to receive a sign-in completion: ", error)
-                    future(.failure(error))
-                default:
-                    break
-                }
-            }, receiveValue: { [weak self] (url) in
-                self?.retrieveAccessToken(from: url, future: future)
-            })
-        }
-        .eraseToAnyPublisher()
+        return token
     }
 
     open func logOut() {
         oAuthToken = nil
-    }
-
-    open func retrieveAccessToken(from url: URL,
-                                  future: @escaping (Result<Bool, Error>) -> Void) {
-        let request = accessTokenRequest(from: url)
-
-        URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
-            DispatchQueue.main.async {
-                if let error = error {
-                    print("Error when requesting auth token: ", error)
-                    future(.failure(error))
-                } else if let httpResponse = response as? HTTPURLResponse,
-                          httpResponse.statusCode != 200 {
-                    print("HTTP error response: ", String(data: data!, encoding: .utf8)!)
-                    let error = NSError(domain: "GeniusClient", code: httpResponse.statusCode, userInfo: nil)
-                    future(.failure(error))
-                } else if let data = data {
-                    let tokenResponse: TokenResponse? = try? Self.jsonDecoder.decode(TokenResponse.self, from: data)
-                    self?.oAuthToken = tokenResponse?.accessToken
-                    future(.success(true))
-                }
-            }
-        }.resume()
     }
 
     open func retrieveAccessToken(from url: URL) async throws -> String {
@@ -191,7 +136,7 @@ public class GeniusClient: BaseGeniusClient, Genius {
         let tokenBody = TokenRequestBody(code: queryItems["code"]!,
                                          clientId: clientId,
                                          clientSecret: clientSecret,
-                                         redirectUri: callbackUrl.absoluteString)
+                                         redirectUri: redirectUrl.absoluteString)
 
         let endpoint = URL(string: "/oauth/token", relativeTo: baseUrl)!
         var request = URLRequest(url: endpoint)
