@@ -9,14 +9,21 @@ open class ArtistDetailViewModel: GeniusElementModel<GeniusArtist> {
 
         Task {
             do {
-                self.element = try await genius.artist(id: id)
+                let newElement = try await genius.artist(id: id)
+
+                DispatchQueue.main.async {
+                    self.element = newElement
+                }
             } catch {
-                self.error = error
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
 
-            loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
-
     }
 
 }

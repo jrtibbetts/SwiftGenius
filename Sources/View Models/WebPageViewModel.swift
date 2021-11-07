@@ -9,12 +9,20 @@ open class WebPageViewModel: GeniusElementModel<GeniusWebPage> {
 
         Task {
             do {
-                self.element = try await genius.webPage(urlString: urlString)
+                let newElement = try await genius.webPage(urlString: urlString)
+
+                DispatchQueue.main.async {
+                    self.element = newElement
+                }
             } catch {
-                self.error = error
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
 
-            loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
     }
 

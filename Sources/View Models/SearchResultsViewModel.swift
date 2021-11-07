@@ -9,12 +9,20 @@ open class SearchResultsViewModel: GeniusElementArrayModel<GeniusSearch> {
 
         Task {
             do {
-                self.elements = try await genius.search(terms: searchTerms)
+                let newElements = try await genius.search(terms: searchTerms)
+
+                DispatchQueue.main.async {
+                    self.elements = newElements
+                }
             } catch {
-                self.error = error
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
 
-            loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
     }
 

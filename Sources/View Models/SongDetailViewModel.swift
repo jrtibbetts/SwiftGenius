@@ -9,12 +9,20 @@ open class SongDetailViewModel: GeniusElementModel<GeniusSong> {
 
         Task {
             do {
-                self.element = try await genius.song(id: Int(songId)!)
+                let newElement = try await genius.song(id: Int(songId)!)
+
+                DispatchQueue.main.async {
+                    self.element = newElement
+                }
             } catch {
-                self.error = error
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
 
-            loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
     }
 
