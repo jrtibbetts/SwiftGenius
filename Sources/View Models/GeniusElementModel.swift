@@ -19,23 +19,4 @@ open class GeniusElementArrayModel<G: GeniusElement>: NSObject, ObservableObject
     @Published public var error: Error?
     @Published public var loading: Bool = false
 
-    var requestCancellable: AnyCancellable?
-
-    public func fetch(_ publisher: AnyPublisher<[G], Error>) {
-        loading = true
-
-        requestCancellable = publisher
-            .sink(receiveCompletion: { (completion) in
-                self.loading = false
-                switch completion {
-                case .finished:
-                    return
-                case .failure(let error):
-                    print(error)
-                }
-            }, receiveValue: { (elements) in
-                self.elements = elements
-            })
-    }
-
 }
