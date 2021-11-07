@@ -101,7 +101,10 @@ public class GeniusClient: BaseGeniusClient, Genius {
         let callbackScheme = redirectUrl.scheme!
         let url = try await callbackUrl(for: authUrl, callbackURLScheme: callbackScheme)
         let token = try await retrieveAccessToken(from: url)
-        oAuthToken = token
+
+        DispatchQueue.main.async {
+            self.oAuthToken = token
+        }
 
         return token
     }
