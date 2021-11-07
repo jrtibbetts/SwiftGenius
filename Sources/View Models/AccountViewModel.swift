@@ -9,12 +9,19 @@ open class AccountViewModel: GeniusElementModel<GeniusAccount> {
 
         Task {
             do {
-                self.element = try await genius.account()
+                let account = try await genius.account()
+                DispatchQueue.main.async {
+                    self.element = account
+                }
             } catch {
-                self.error = error
+                DispatchQueue.main.async {
+                    self.error = error
+                }
             }
 
-            loading = false
+            DispatchQueue.main.async {
+                self.loading = false
+            }
         }
     }
 

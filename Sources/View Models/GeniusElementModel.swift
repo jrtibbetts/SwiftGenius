@@ -12,7 +12,7 @@ open class GeniusElementModel<G: GeniusElement>: NSObject, ObservableObject {
 
 }
 
-/// A view model for fetching an array of a ``Genius` ``Responsable`` type.
+/// A view model for fetching an array of a ``Genius`` ``Responsable`` type.
 open class GeniusElementArrayModel<G: GeniusElement>: NSObject, ObservableObject {
 
     @Published public var elements: [G]?
