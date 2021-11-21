@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusSong: GeniusElement {
+public struct GeniusSong: GeniusElement, Equatable {
 
     public var annotationCount: Int
     public var album: Album?
@@ -31,7 +31,7 @@ public struct GeniusSong: GeniusElement {
     public var titleWithFeatured: String?
     public var url: URL?
 
-    public struct FactTrack: Codable {
+    public struct FactTrack: Codable, Equatable {
 
         public var provider: String
         public var externalUrl: String
@@ -41,7 +41,7 @@ public struct GeniusSong: GeniusElement {
 
     }
 
-    public struct Stats: Codable {
+    public struct Stats: Codable, Equatable {
 
         public var acceptedAnnotations: Int?
         public var contributors: Int?
@@ -55,7 +55,7 @@ public struct GeniusSong: GeniusElement {
 
     }
 
-    public struct Album: Codable {
+    public struct Album: Codable, Equatable {
 
         public var artist: ArtistOverview?
         public var coverArtUrl: URL?
@@ -68,7 +68,7 @@ public struct GeniusSong: GeniusElement {
 
     }
 
-    public struct ArtistOverview: Codable {
+    public struct ArtistOverview: Codable, Equatable {
 
         public var headerImageUrl: URL?
         // swiftlint:disable identifier_name

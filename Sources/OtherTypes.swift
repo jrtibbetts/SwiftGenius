@@ -5,21 +5,21 @@ import Foundation
 public typealias IQAction = String
 public typealias IQLevel = String
 
-public struct GeniusContributor: Codable {
+public struct GeniusContributor: Codable, Equatable {
 
     public var resourceUrl: String
     public var username: String
     
 }
 
-public struct GeniusCurrentUserMetadata: Codable {
+public struct GeniusCurrentUserMetadata: Codable, Equatable {
 
     public var permissions: [String]?
     public var excludedPermissions: [String]?
     public var interactions: [String : Bool?]
     public var iqByAction: [IQAction : [IQLevel : LevelModifiers]]?
 
-    public struct LevelModifiers: Codable {
+    public struct LevelModifiers: Codable, Equatable {
         public var applicable: Bool
         public var base: Float
         public var multiplier: Int
@@ -27,7 +27,7 @@ public struct GeniusCurrentUserMetadata: Codable {
     
 }
 
-public struct GeniusDescription: Codable {
+public struct GeniusDescription: Codable, Equatable {
     public var plain: String?
     public var html: String?
 //    public var dom: DomNode?
