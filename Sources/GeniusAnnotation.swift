@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct GeniusAnnotation: GeniusElement {
+public struct GeniusAnnotation: GeniusElement, Identifiable {
 
 //    public var body: [Codable]
     public var commentCount: Int
